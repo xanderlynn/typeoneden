@@ -5,8 +5,14 @@ const year = new Date().getFullYear();
 <footer class="border-t border-[#2E2E2E] bg-[#0F0F0F]">
   <div class="site-container flex flex-col gap-6 py-10 text-sm text-[#999999] md:flex-row md:items-end md:justify-between">
     <div class="space-y-3">
-      <p class="text-base text-[#F5F5F5]">Living boldly with Type 1 Diabetes.</p>
-      <p>© {year} Type One Den</p>
+      <div class="flex items-center gap-2">
+        <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-[#F472B6] text-[10px] font-black text-[#0F0F0F] tracking-tight select-none">
+          T1D
+        </span>
+        <span class="font-semibold text-[#F5F5F5] tracking-tight" style="font-family: 'Inter', sans-serif;">TypeOneDen</span>
+      </div>
+      <p class="text-base text-[#999999]">Living boldly with Type 1 Diabetes.</p>
+      <p>© {year} TypeOneDen</p>
       <div class="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.14em]">
         <a href="/privacy" class="text-[#999999] hover:text-[#F5F5F5]">Privacy</a>
         <a href="/disclosure" class="text-[#999999] hover:text-[#F5F5F5]">Disclosure</a>

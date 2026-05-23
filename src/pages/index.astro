@@ -16,14 +16,17 @@ const latestPosts = (await getCollection('blog').catch(() => []))
   description="Type One Den is your guide to thriving with T1D through honest stories, practical resources, and real community."
 >
   <main class="bg-[#0F0F0F] text-[#F5F5F5]" style="font-family: Inter, sans-serif;">
-    <section class="border-b border-[#2E2E2E] py-20">
-      <div class="max-w-[720px] mx-auto px-4 text-center space-y-6">
-        <p class="text-sm uppercase tracking-[0.3em] text-[#F472B6]">Type One Den</p>
-        <h1 class="text-5xl md:text-6xl leading-tight" style="font-family: 'Playfair Display', serif;">Living Boldly with Type 1 Diabetes</h1>
-        <p class="text-lg md:text-xl leading-8 text-[#999999]">Your guide to thriving with T1D — real talk, real resources, real community.</p>
-        <div class="flex flex-col justify-center gap-4 sm:flex-row">
-          <a href="/blog" class="inline-flex items-center justify-center rounded-full bg-[#F472B6] px-6 py-3 font-semibold text-[#0F0F0F] transition hover:opacity-90">Read the Blog</a>
-          <a href="/start" class="inline-flex items-center justify-center rounded-full border border-[#2E2E2E] px-6 py-3 font-semibold text-[#F5F5F5] transition hover:border-[#F472B6] hover:text-[#F472B6]">Start Here</a>
+    <!-- Hero -->
+    <section class="relative overflow-hidden border-b border-[#2E2E2E] py-24 md:py-32">
+      <!-- Subtle pink glow from top -->
+      <div class="pointer-events-none absolute inset-x-0 top-0 h-[500px]" style="background: radial-gradient(ellipse 70% 40% at 50% -5%, oklch(0.55 0.18 330 / 0.22), transparent);" aria-hidden="true" />
+      <div class="relative max-w-[760px] mx-auto px-4 text-center space-y-7">
+        <span class="eyebrow">Type 1 Diabetes</span>
+        <h1 class="text-5xl md:text-7xl leading-[1.1] tracking-tight" style="font-family: 'Playfair Display', serif;">Living Boldly<br/>with Type&nbsp;1</h1>
+        <p class="text-lg md:text-xl leading-8 text-[#999999] max-w-[540px] mx-auto">Your guide to thriving with T1D — real talk, real resources, real community.</p>
+        <div class="flex flex-col justify-center gap-4 sm:flex-row pt-2">
+          <a href="/blog" class="button-accent">Read the Blog</a>
+          <a href="/start" class="button-outline">Start Here</a>
         </div>
       </div>
     </section>
@@ -45,6 +48,7 @@ const latestPosts = (await getCollection('blog').catch(() => []))
                 pubDate={post.data.pubDate}
                 description={post.data.description}
                 category={post.data.category}
+                image={post.data.image}
               />
             ))}
           </div>

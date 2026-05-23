@@ -162,12 +162,18 @@ pre {
 .button-accent {
   border: 1px solid var(--color-accent);
   background: var(--color-accent);
-  color: var(--color-bg);
+  color: #0F0F0F !important;
+}
+
+a.button-accent,
+button.button-accent {
+  color: #0F0F0F !important;
 }
 
 .button-accent:hover {
   background: #f9a8d4;
-  color: var(--color-bg);
+  border-color: #f9a8d4;
+  color: #0F0F0F !important;
 }
 
 .button-accent:active {
@@ -281,6 +287,23 @@ pre {
 .prose img {
   border: 1px solid var(--color-border);
   border-radius: 1rem;
+}
+
+/* ─── Opacity-stack text hierarchy (Fuwari / Astro-sphere pattern) ─── */
+.text-primary   { color: rgb(255 255 255 / 0.90); }
+.text-secondary { color: rgb(255 255 255 / 0.65); }
+.text-muted     { color: rgb(255 255 255 / 0.40); }
+.text-subtle    { color: rgb(255 255 255 / 0.25); }
+
+/* ─── Scroll-fade-in animation ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .prose figcaption {

@@ -15,11 +15,20 @@ const isActive = (href: string) => {
 };
 ---
 
-<nav class="sticky top-0 z-50 border-b border-[#2E2E2E] bg-[#0F0F0F]/95 backdrop-blur">
+<nav
+  id="site-nav"
+  class="sticky top-0 z-50 border-b border-transparent bg-[#0F0F0F]/0 transition-all duration-300 ease-in-out"
+  data-nav
+>
   <div class="site-container">
     <div class="flex items-center justify-between gap-6 py-4">
-      <a href="/" class="font-serif text-2xl font-semibold tracking-tight text-[#F472B6]">
-        Type One Den
+      <a href="/" class="flex items-center gap-2 group" aria-label="TypeOneDen home">
+        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#F472B6] text-xs font-black text-[#0F0F0F] tracking-tight select-none">
+          T1D
+        </span>
+        <span class="font-semibold text-lg tracking-tight text-[#F5F5F5] group-hover:text-[#F472B6] transition-colors" style="font-family: 'Inter', sans-serif;">
+          TypeOneDen
+        </span>
       </a>
 
       <button
@@ -74,6 +83,21 @@ const isActive = (href: string) => {
 <script>
   const toggle = document.querySelector('[data-nav-toggle]');
   const menu = document.querySelector('[data-nav-menu]');
+  const nav = document.querySelector('[data-nav]') as HTMLElement | null;
+
+  // Scroll-aware frosted glass
+  const updateNav = () => {
+    if (!nav) return;
+    if (window.scrollY > 20) {
+      nav.classList.add('border-[#2E2E2E]', 'bg-[#0F0F0F]/95', 'backdrop-blur-md', 'shadow-sm', 'shadow-black/40');
+      nav.classList.remove('border-transparent', 'bg-[#0F0F0F]/0');
+    } else {
+      nav.classList.remove('border-[#2E2E2E]', 'bg-[#0F0F0F]/95', 'backdrop-blur-md', 'shadow-sm', 'shadow-black/40');
+      nav.classList.add('border-transparent', 'bg-[#0F0F0F]/0');
+    }
+  };
+  updateNav();
+  window.addEventListener('scroll', updateNav, { passive: true });
 
   if (toggle instanceof HTMLButtonElement && menu instanceof HTMLElement) {
     const closeMenu = () => {
