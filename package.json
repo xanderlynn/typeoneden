@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@bradygaster/squad-sdk": "^0.9.4",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^5.18.1",
     "tailwindcss": "^4.3.0"
