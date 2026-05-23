@@ -1,0 +1,29 @@
+name: "[integration] Integration Task"
+description: APIs, embeds, forms, analytics, and third-party wiring
+title: "[integration] "
+labels: ["integration", "ron"]
+body:
+  - type: markdown
+    attributes:
+      value: "**Routed to: Ron (Integration Engineer)**"
+  - type: textarea
+    id: description
+    attributes:
+      label: What integration needs to be wired up?
+      placeholder: Describe the integration task...
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: What does "done" look like?
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options: [P0 - Blocking, P1 - High, P2 - Normal, P3 - Low]
+    validations:
+      required: true

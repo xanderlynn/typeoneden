@@ -1,0 +1,29 @@
+name: "[testing] Testing Task"
+description: QA passes, accessibility checks, regression audits, and validation
+title: "[testing] "
+labels: ["testing", "neville"]
+body:
+  - type: markdown
+    attributes:
+      value: "**Routed to: Neville (QA / Tester)**"
+  - type: textarea
+    id: description
+    attributes:
+      label: What needs to be tested or audited?
+      placeholder: Describe the testing task...
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: What does "done" look like?
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options: [P0 - Blocking, P1 - High, P2 - Normal, P3 - Low]
+    validations:
+      required: true

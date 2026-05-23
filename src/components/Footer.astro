@@ -1,0 +1,35 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-[#2E2E2E] bg-[#0F0F0F]">
+  <div class="site-container flex flex-col gap-6 py-10 text-sm text-[#999999] md:flex-row md:items-end md:justify-between">
+    <div class="space-y-3">
+      <p class="text-base text-[#F5F5F5]">Living boldly with Type 1 Diabetes.</p>
+      <p>© {year} Type One Den</p>
+      <div class="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.14em]">
+        <a href="/privacy" class="text-[#999999] hover:text-[#F5F5F5]">Privacy</a>
+        <a href="/disclosure" class="text-[#999999] hover:text-[#F5F5F5]">Disclosure</a>
+        <a href="/terms" class="text-[#999999] hover:text-[#F5F5F5]">Terms</a>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <a
+        href="/youtube"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#2E2E2E] text-[#F5F5F5] transition-colors hover:border-[#F472B6] hover:text-[#F472B6]"
+        aria-label="YouTube"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+          <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.7 31.7 0 0 0 0 12a31.7 31.7 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.7 31.7 0 0 0 24 12a31.7 31.7 0 0 0-.5-5.8ZM9.6 15.7V8.3l6.5 3.7-6.5 3.7Z" />
+        </svg>
+      </a>
+      <span class="inline-flex h-10 items-center justify-center rounded-full border border-dashed border-[#2E2E2E] px-3 text-xs uppercase tracking-[0.14em] text-[#999999]">
+        Instagram
+      </span>
+      <span class="inline-flex h-10 items-center justify-center rounded-full border border-dashed border-[#2E2E2E] px-3 text-xs uppercase tracking-[0.14em] text-[#999999]">
+        TikTok
+      </span>
+    </div>
+  </div>
+</footer>

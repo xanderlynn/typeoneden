@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AffiliateLink from '../components/AffiliateLink.astro';
+---
+
+<BaseLayout
+  title="What I Use | Type One Den"
+  description="A curated list of type 1 diabetes products, tools, and resources that make everyday life easier."
+>
+  <main class="bg-[#0F0F0F] py-16 text-[#F5F5F5]" style="font-family: Inter, sans-serif;">
+    <div class="max-w-[720px] mx-auto px-4 space-y-10">
+      <header class="space-y-5">
+        <p class="text-sm uppercase tracking-[0.3em] text-[#F472B6]">What I Use</p>
+        <h1 class="text-4xl md:text-5xl" style="font-family: 'Playfair Display', serif;">Tools that make life with T1D easier</h1>
+        <div class="rounded-3xl border border-[#F472B6] bg-[#1A1A1A] p-5">
+          <p class="font-semibold text-[#F5F5F5]">Affiliate disclosure</p>
+          <p class="mt-2 leading-8 text-[#999999]">These are the products and tools that actually make life with T1D easier. Some links are affiliate links — I only recommend things I personally use or believe in.</p>
+        </div>
+      </header>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl" style="font-family: 'Playfair Display', serif;">CGM &amp; Pump Supplies</h2>
+        <div class="space-y-4">
+          <AffiliateLink href="#" name="Skin Grip Adhesive Patches" description="Extra hold for CGMs and pump sites during workouts, heat, and long days." badge="Everyday essential" />
+          <AffiliateLink href="#" name="ExpressionMed Sensor Tape" description="A stylish tape option when you want your diabetes gear to feel more like you." badge="Fan favorite" />
+          <AffiliateLink href="#" name="Sugar Medical Supply Case" description="A compact organizer for meters, backup insulin, and site change extras." />
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl" style="font-family: 'Playfair Display', serif;">T1D Fashion &amp; Bags</h2>
+        <div class="space-y-4">
+          <AffiliateLink href="#" name="Myabetic James Diabetes Sling" description="A polished everyday bag with room for supplies, snacks, and real life." badge="Travel pick" />
+          <AffiliateLink href="#" name="Dia-Be-Tees Graphic Tee" description="Soft, expressive apparel for days when you want your T1D pride visible." />
+          <AffiliateLink href="#" name="Myabetic Kamen Pump Belt" description="A wearable option for carrying tech more comfortably and securely." />
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl" style="font-family: 'Playfair Display', serif;">Books &amp; Education</h2>
+        <div class="space-y-4">
+          <AffiliateLink href="#" name="Think Like a Pancreas" description="A foundational read for understanding insulin dosing and daily patterns." badge="Must read" />
+          <AffiliateLink href="#" name="Bright Spots &amp; Landmines" description="A supportive, practical guide for building sustainable T1D habits." />
+          <AffiliateLink href="#" name="Juicebox Podcast Pro Tip Series" description="A binge-worthy audio resource for learning from real conversations and lived experience." />
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl" style="font-family: 'Playfair Display', serif;">Food &amp; Nutrition</h2>
+        <div class="space-y-4">
+          <AffiliateLink href="#" name="The Only Bean Edamame Snacks" description="A protein-packed snack that&apos;s easy to throw into a diabetes bag." />
+          <AffiliateLink href="#" name="MyNetDiary Diabetes Tracker" description="A simple way to log meals, carbs, and patterns when you want more insight." />
+          <AffiliateLink href="#" name="Glucose Tablets Travel Tube" description="Fast-acting low treatment that&apos;s easy to stash everywhere." badge="Low kit staple" />
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl" style="font-family: 'Playfair Display', serif;">Tech &amp; Apps</h2>
+        <div class="space-y-4">
+          <AffiliateLink href="#" name="Sugarmate" description="A popular companion app for CGM alerts, reporting, and daily trend visibility." />
+          <AffiliateLink href="#" name="Tidepool" description="Helpful for reviewing device data and spotting what&apos;s working over time." badge="Data-friendly" />
+          <AffiliateLink href="#" name="Anker Portable Charger" description="Because diabetes tech and dead batteries are not a good combination." />
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>

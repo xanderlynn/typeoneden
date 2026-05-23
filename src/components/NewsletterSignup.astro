@@ -1,0 +1,44 @@
+---
+interface Props {
+  heading?: string;
+  subtext?: string;
+}
+
+const {
+  heading = 'Join the Den',
+  subtext = 'Weekly dispatches from life with T1D — honest, practical, and never boring.',
+} = Astro.props;
+---
+
+<section class="rounded-2xl border border-[#2E2E2E] border-l-4 border-l-[#F472B6] bg-[#1A1A1A] p-6">
+  <div class="space-y-3">
+    <h2 class="text-3xl text-[#F5F5F5]" style="font-family: 'Playfair Display', serif;">{heading}</h2>
+    <p class="text-sm leading-6 text-[#999999]">{subtext}</p>
+  </div>
+
+  <!-- Update YOUR_FORM_ID in the action URL with your Kit form ID before going live. -->
+  <form
+    action="https://app.kit.com/forms/YOUR_FORM_ID/subscriptions"
+    method="post"
+    class="mt-6 flex flex-col gap-3 sm:flex-row"
+  >
+    <label class="sr-only" for="newsletter-email">Email address</label>
+    <input
+      id="newsletter-email"
+      type="email"
+      name="email_address"
+      autocomplete="email"
+      required
+      placeholder="you@example.com"
+      class="min-h-12 flex-1 rounded-xl border border-[#2E2E2E] bg-[#0F0F0F] px-4 text-[#F5F5F5] placeholder:text-[#999999] focus:border-[#F472B6] focus:outline-none"
+    />
+    <button
+      type="submit"
+      class="min-h-12 rounded-xl bg-[#F472B6] px-5 font-semibold text-[#0F0F0F] transition-colors duration-200 hover:bg-[#ec5aa7]"
+    >
+      Subscribe
+    </button>
+  </form>
+
+  <p class="mt-3 text-xs text-[#999999]">No spam. Unsubscribe anytime.</p>
+</section>

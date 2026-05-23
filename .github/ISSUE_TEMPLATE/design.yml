@@ -1,0 +1,29 @@
+name: "[design] Design Task"
+description: Visual design, Tailwind tokens, component styles, typography
+title: "[design] "
+labels: ["design", "hermione"]
+body:
+  - type: markdown
+    attributes:
+      value: "**Routed to: Hermione (Lead Designer)**"
+  - type: textarea
+    id: description
+    attributes:
+      label: What needs to be designed or styled?
+      placeholder: Describe the design task...
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: What does "done" look like?
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options: [P0 - Blocking, P1 - High, P2 - Normal, P3 - Low]
+    validations:
+      required: true

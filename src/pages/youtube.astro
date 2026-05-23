@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import YouTubeEmbed from '../components/YouTubeEmbed.astro';
+---
+
+<BaseLayout
+  title="Watch | Type One Den"
+  description="Watch videos from Type One Den covering T1D basics, tech reviews, and life with type 1 diabetes."
+>
+  <main class="bg-[#0F0F0F] py-16 text-[#F5F5F5]" style="font-family: Inter, sans-serif;">
+    <div class="max-w-6xl mx-auto px-4 space-y-12">
+      <header class="max-w-[720px] space-y-5">
+        <p class="text-sm uppercase tracking-[0.3em] text-[#F472B6]">YouTube</p>
+        <h1 class="text-4xl md:text-5xl" style="font-family: 'Playfair Display', serif;">Watch life with T1D in motion</h1>
+        <p class="text-lg leading-8 text-[#999999]">The Type One Den YouTube channel is where honest conversations, product walkthroughs, and day-in-the-life moments come to life. Expect practical guidance, thoughtful reviews, and the kind of real talk that makes diabetes feel a little less lonely.</p>
+        <a href="https://youtube.com/@typeoneden" target="_blank" rel="noreferrer" class="inline-flex rounded-full bg-[#F472B6] px-6 py-3 font-semibold text-[#0F0F0F] transition hover:opacity-90">Visit the YouTube channel</a>
+      </header>
+
+      <section class="space-y-6">
+        <div class="flex items-center justify-between gap-4">
+          <h2 class="text-2xl" style="font-family: 'Playfair Display', serif;">Latest Videos</h2>
+          <span class="text-sm text-[#999999]">Placeholder videos until the channel launches</span>
+        </div>
+        <div class="grid gap-6 lg:grid-cols-3 md:grid-cols-2">
+          <YouTubeEmbed videoId="dQw4w9WgXcQ" title="Placeholder: My T1D morning routine" />
+          <YouTubeEmbed videoId="3JZ_D3ELwOQ" title="Placeholder: CGM and pump setup walkthrough" />
+          <YouTubeEmbed videoId="L_jWHffIx5E" title="Placeholder: What I keep in my diabetes bag" />
+        </div>
+      </section>
+
+      <section class="space-y-6">
+        <h2 class="text-2xl" style="font-family: 'Playfair Display', serif;">Playlists</h2>
+        <div class="grid gap-6 md:grid-cols-3">
+          <article class="rounded-3xl border border-[#2E2E2E] bg-[#1A1A1A] p-6">
+            <h3 class="text-xl mb-3" style="font-family: 'Playfair Display', serif;">T1D Basics</h3>
+            <p class="leading-8 text-[#999999]">Helpful starter videos covering diagnosis, daily routines, and confidence-building basics.</p>
+          </article>
+          <article class="rounded-3xl border border-[#2E2E2E] bg-[#1A1A1A] p-6">
+            <h3 class="text-xl mb-3" style="font-family: 'Playfair Display', serif;">Tech Reviews</h3>
+            <p class="leading-8 text-[#999999]">Real-world thoughts on CGMs, pumps, accessories, and the apps that support them.</p>
+          </article>
+          <article class="rounded-3xl border border-[#2E2E2E] bg-[#1A1A1A] p-6">
+            <h3 class="text-xl mb-3" style="font-family: 'Playfair Display', serif;">Day in My Life</h3>
+            <p class="leading-8 text-[#999999]">Vlogs and honest check-ins that show what it actually looks like to live with T1D.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>

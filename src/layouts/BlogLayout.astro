@@ -1,0 +1,46 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  pubDate: Date;
+  category: string;
+  image?: string;
+  author?: string;
+}
+
+const {
+  title,
+  description,
+  pubDate,
+  category,
+  image,
+  author = 'Type One Den',
+} = Astro.props;
+
+const formattedDate = pubDate.toLocaleDateString('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+});
+---
+
+<BaseLayout title={title} description={description} ogImage={image}>
+  <header class="site-container pt-16 pb-10">
+    <div class="space-y-5">
+      <span class="eyebrow">{category}</span>
+      <h1 class="text-4xl font-medium text-[#F5F5F5] md:text-6xl">{title}</h1>
+      <p class="text-sm text-[#999999] md:text-base">
+        {author} <span aria-hidden="true">•</span> <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+      </p>
+      {description && <p class="max-w-2xl text-lg text-[#999999]">{description}</p>}
+    </div>
+  </header>
+
+  <div class="site-container pb-16">
+    <article class="prose">
+      <slot />
+    </article>
+  </div>
+</BaseLayout>

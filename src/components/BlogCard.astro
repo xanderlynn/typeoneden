@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  slug: string;
+  pubDate: Date;
+  description: string;
+  category: string;
+}
+
+const { title, slug, pubDate, description, category } = Astro.props;
+const formattedDate = pubDate.toLocaleDateString('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+});
+---
+
+<a
+  href={`/blog/${slug}`}
+  class="group flex h-full flex-col rounded-xl border border-[#2E2E2E] bg-[#1A1A1A] p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#F472B6]"
+>
+  <div class="mb-4">
+    <span class="inline-flex rounded-full bg-[#0F0F0F] px-3 py-1 text-xs font-medium text-[#F472B6]">
+      {category}
+    </span>
+  </div>
+
+  <div class="flex flex-1 flex-col gap-3">
+    <h2 class="line-clamp-2 text-2xl leading-tight text-[#F5F5F5]" style="font-family: 'Playfair Display', serif;">
+      {title}
+    </h2>
+    <p class="line-clamp-3 text-sm leading-6 text-[#999999]">{description}</p>
+  </div>
+
+  <p class="mt-6 text-xs uppercase tracking-[0.2em] text-[#999999]">{formattedDate}</p>
+</a>

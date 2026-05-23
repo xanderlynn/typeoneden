@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
+
+const pathways = [
+  {
+    title: 'I was just diagnosed with T1D',
+    links: [
+      { href: '/blog?category=Life%20with%20T1D', label: 'Start with everyday life articles that make the learning curve feel less overwhelming.' },
+      { href: '/resources', label: 'Browse trusted products and educational tools for your starter kit.' },
+    ],
+  },
+  {
+    title: "I'm a T1D parent",
+    links: [
+      { href: '/blog?category=Advocacy', label: 'Read supportive posts about navigating care, systems, and self-advocacy.' },
+      { href: '/newsletter', label: 'Join the email list for gentle weekly guidance and resource roundups.' },
+    ],
+  },
+  {
+    title: "I've had T1D for years and want community",
+    links: [
+      { href: '/about', label: 'Meet the heart behind Type One Den and the lived experience shaping this space.' },
+      { href: '/youtube', label: 'Watch honest videos and day-in-the-life content that feels like a friend check-in.' },
+    ],
+  },
+  {
+    title: 'I want to understand T1D tech (CGMs, pumps)',
+    links: [
+      { href: '/blog?category=Tech%20%26%20Gear', label: 'Jump into tech-focused blog posts and product discussions.' },
+      { href: '/resources', label: 'See the apps, accessories, and gear that make devices easier to live with.' },
+    ],
+  },
+  {
+    title: 'I want realistic food and nutrition ideas',
+    links: [
+      { href: '/blog?category=Nutrition', label: 'Explore nutrition posts centered on balance, not perfection.' },
+      { href: '/resources', label: 'Find pantry staples, snacks, and tools that simplify carb counting.' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Start Here | Type One Den"
+  description="A starting point for new Type One Den readers looking for T1D guidance, community, and practical resources."
+>
+  <main class="bg-[#0F0F0F] py-16 text-[#F5F5F5]" style="font-family: Inter, sans-serif;">
+    <div class="max-w-[720px] mx-auto px-4 space-y-10">
+      <header class="space-y-5 text-center">
+        <p class="text-sm uppercase tracking-[0.3em] text-[#F472B6]">Start Here</p>
+        <h1 class="text-4xl md:text-5xl" style="font-family: 'Playfair Display', serif;">New Here? Start Here.</h1>
+        <p class="text-lg leading-8 text-[#999999]">If you&apos;re new to Type One Den, this page is your shortcut. Whether you&apos;re newly diagnosed, supporting someone you love, or trying to make sense of diabetes tech, these hand-picked pathways will point you toward the most helpful places to begin.</p>
+      </header>
+
+      <section class="space-y-5">
+        {pathways.map((pathway) => (
+          <article class="rounded-3xl border border-[#2E2E2E] bg-[#1A1A1A] p-6 space-y-4">
+            <h2 class="text-2xl" style="font-family: 'Playfair Display', serif;">{pathway.title}</h2>
+            <ul class="space-y-3 text-[#999999]">
+              {pathway.links.map((link) => (
+                <li>
+                  <a href={link.href} class="inline-flex items-start gap-3 transition hover:text-[#F5F5F5]">
+                    <span class="mt-2 h-2 w-2 rounded-full bg-[#F472B6]" aria-hidden="true"></span>
+                    <span>{link.label}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </section>
+
+      <section class="rounded-3xl border border-[#F472B6] bg-[#1A1A1A] p-8 text-center">
+        <h2 class="text-2xl mb-3" style="font-family: 'Playfair Display', serif;">Want the best of Type One Den in your inbox?</h2>
+        <p class="mb-6 leading-8 text-[#999999]">Subscribe for weekly posts, honest resources, and the kind of support that meets you exactly where you are.</p>
+        <NewsletterSignup heading="Start with the newsletter" subtext="Weekly posts, exclusive tips, and early access to upcoming resources." />
+      </section>
+    </div>
+  </main>
+</BaseLayout>

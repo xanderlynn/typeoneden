@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
+---
+
+<BaseLayout
+  title="About | Type One Den"
+  description="Meet the woman behind Type One Den and learn why this space exists for bold, honest life with type 1 diabetes."
+>
+  <main class="bg-[#0F0F0F] py-16 text-[#F5F5F5]" style="font-family: Inter, sans-serif;">
+    <div class="max-w-[720px] mx-auto px-4 space-y-12">
+      <section class="space-y-5">
+        <p class="text-sm uppercase tracking-[0.3em] text-[#F472B6]">About Type One Den</p>
+        <h1 class="text-4xl md:text-5xl leading-tight" style="font-family: 'Playfair Display', serif;">Hi, I&apos;m the woman behind the Den.</h1>
+        <p class="text-lg leading-8 text-[#999999]">I&apos;m a woman living with type 1 diabetes, learning every day how to balance blood sugars, ambition, joy, burnout, snacks, hormones, and real life. This page is intentionally personal for now, with placeholder copy that can be tailored to your exact story, voice, and diagnosis journey later.</p>
+      </section>
+
+      <section class="space-y-4 rounded-3xl border border-[#2E2E2E] bg-[#1A1A1A] p-8">
+        <h2 class="text-2xl" style="font-family: 'Playfair Display', serif;">My Story</h2>
+        <p class="leading-8 text-[#999999]">I was diagnosed with T1D and quickly learned that life doesn&apos;t pause for carb counts, low alerts, or infusion set changes. I had to figure out how to move through work, relationships, travel, and everyday routines while carrying the invisible mental load that comes with this condition. Type One Den began as a way to turn that lived experience into something useful, honest, and comforting for other people navigating the same road.</p>
+      </section>
+
+      <section class="space-y-4 rounded-3xl border border-[#2E2E2E] bg-[#1A1A1A] p-8">
+        <h2 class="text-2xl" style="font-family: 'Playfair Display', serif;">Living with T1D</h2>
+        <p class="leading-8 text-[#999999]">Living with T1D is both deeply practical and deeply emotional. It&apos;s managing devices, trends, prescriptions, and meals, while also protecting your confidence, identity, and peace of mind. I believe we deserve resources that acknowledge both sides: the data and the feelings, the technology and the humanity.</p>
+      </section>
+
+      <section class="space-y-4 rounded-3xl border border-[#2E2E2E] bg-[#1A1A1A] p-8">
+        <h2 class="text-2xl" style="font-family: 'Playfair Display', serif;">Why I Started This Blog</h2>
+        <p class="leading-8 text-[#999999]">I started Type One Den because I wanted a place that felt less clinical and more like a trusted friend. A place for grounded advice, product recommendations with integrity, and stories that make you feel less alone. Not every day with T1D is inspiring, but every day deserves support.</p>
+      </section>
+
+      <section class="space-y-4 rounded-3xl border border-[#2E2E2E] bg-[#1A1A1A] p-8">
+        <h2 class="text-2xl" style="font-family: 'Playfair Display', serif;">What You&apos;ll Find Here</h2>
+        <ul class="space-y-3 text-[#999999]">
+          <li>• Real-life reflections on the emotional side of T1D</li>
+          <li>• Practical guides for tech, gear, routines, and food</li>
+          <li>• Resources for new diagnoses, long-time T1Ds, and families</li>
+          <li>• Honest recommendations for products I use or genuinely trust</li>
+          <li>• A warm, judgment-free community vibe</li>
+        </ul>
+      </section>
+
+      <section class="rounded-3xl border border-[#F472B6] bg-[#1A1A1A] p-8 text-center">
+        <h2 class="text-2xl mb-3" style="font-family: 'Playfair Display', serif;">Want to stay close to the Den?</h2>
+        <p class="mb-6 leading-8 text-[#999999]">Subscribe for new posts, practical T1D tips, and first access to the resources I&apos;m building for this community.</p>
+        <NewsletterSignup heading="Subscribe to the newsletter" subtext="Real talk, useful resources, and encouragement delivered straight to your inbox." />
+      </section>
+    </div>
+  </main>
+</BaseLayout>

@@ -1,0 +1,106 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+const categories = ['All', 'Life with T1D', 'Tech & Gear', 'Nutrition', 'Advocacy'];
+const posts = (await getCollection('blog').catch(() => []))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout
+  title="Blog | Type One Den"
+  description="Browse the latest articles from Type One Den on life with type 1 diabetes, tech, nutrition, and advocacy."
+>
+  <main class="bg-[#0F0F0F] py-16 text-[#F5F5F5]" style="font-family: Inter, sans-serif;">
+    <div class="max-w-6xl mx-auto px-4 space-y-10">
+      <header class="max-w-[720px] space-y-5">
+        <p class="text-sm uppercase tracking-[0.3em] text-[#F472B6]">Blog</p>
+        <h1 class="text-4xl md:text-5xl" style="font-family: 'Playfair Display', serif;">Stories, guides, and honest T1D living</h1>
+        <p class="text-lg leading-8 text-[#999999]">Explore articles on everyday life with T1D, diabetes tech, food, advocacy, and the messy middle of trying to live well with a condition that never really clocks out.</p>
+      </header>
+
+      <section class="space-y-6">
+        <div class="flex flex-wrap gap-3" aria-label="Filter posts by category">
+          {categories.map((category) => (
+            <button
+              type="button"
+              class:list={[
+                'category-tab rounded-full border px-4 py-2 text-sm transition',
+                category === 'All'
+                  ? 'border-[#F472B6] bg-[#F472B6] text-[#0F0F0F]'
+                  : 'border-[#2E2E2E] bg-[#1A1A1A] text-[#999999] hover:text-[#F5F5F5]',
+              ]}
+              data-category={category}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        {posts.length > 0 ? (
+          <div id="blog-grid" class="grid gap-6 lg:grid-cols-3 md:grid-cols-2">
+            {posts.map((post) => (
+              <div class="post-card" data-category={post.data.category}>
+                <BlogCard
+                  title={post.data.title}
+                  slug={post.slug}
+                  pubDate={post.data.pubDate}
+                  description={post.data.description}
+                  category={post.data.category}
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="rounded-3xl border border-dashed border-[#2E2E2E] bg-[#1A1A1A] p-8 text-center text-[#999999]">
+            Posts will appear here once the blog collection is populated.
+          </div>
+        )}
+      </section>
+    </div>
+  </main>
+
+  <script is:inline>
+    const tabs = Array.from(document.querySelectorAll('.category-tab'));
+    const cards = Array.from(document.querySelectorAll('.post-card'));
+    const params = new URLSearchParams(window.location.search);
+    const initialCategory = params.get('category') || 'All';
+
+    const setCategory = (category) => {
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.category === category;
+        tab.classList.toggle('border-[#F472B6]', isActive);
+        tab.classList.toggle('bg-[#F472B6]', isActive);
+        tab.classList.toggle('text-[#0F0F0F]', isActive);
+        tab.classList.toggle('border-[#2E2E2E]', !isActive);
+        tab.classList.toggle('bg-[#1A1A1A]', !isActive);
+        tab.classList.toggle('text-[#999999]', !isActive);
+      });
+
+      cards.forEach((card) => {
+        const matches = category === 'All' || card.dataset.category === category;
+        card.classList.toggle('hidden', !matches);
+      });
+    };
+
+    setCategory(initialCategory);
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const category = tab.dataset.category || 'All';
+        const url = new URL(window.location.href);
+
+        if (category === 'All') {
+          url.searchParams.delete('category');
+        } else {
+          url.searchParams.set('category', category);
+        }
+
+        window.history.replaceState({}, '', url);
+        setCategory(category);
+      });
+    });
+  </script>
+</BaseLayout>

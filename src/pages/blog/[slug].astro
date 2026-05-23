@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog').catch(() => []);
+
+  return posts
+    .filter((post) => !post.data.draft)
+    .map((post) => ({
+      params: { slug: post.slug },
+      props: { post },
+    }));
+}
+
+const { post } = Astro.props as { post: any };
+const { Content } = await post.render();
+---
+
+<BlogLayout
+  title={post.data.title}
+  description={post.data.description}
+  pubDate={post.data.pubDate}
+  category={post.data.category}
+  image={post.data.image}
+  author={post.data.author}
+>
+  <article class="bg-[#0F0F0F] text-[#F5F5F5]" style="font-family: Inter, sans-serif;">
+    <div class="max-w-[720px] mx-auto px-4 py-12">
+      <div class="space-y-6 leading-8 text-[#999999] [&_a]:text-[#F472B6] [&_a]:underline [&_a]:decoration-transparent [&_a]:underline-offset-4 hover:[&_a]:decoration-current [&_blockquote]:border-l-2 [&_blockquote]:border-[#F472B6] [&_blockquote]:pl-4 [&_em]:text-[#F5F5F5] [&_h1]:mb-4 [&_h1]:text-4xl [&_h1]:text-[#F5F5F5] [&_h1]:leading-tight [&_h1]:font-semibold [&_h2]:mb-4 [&_h2]:mt-10 [&_h2]:text-3xl [&_h2]:text-[#F5F5F5] [&_h3]:mb-3 [&_h3]:mt-8 [&_h3]:text-2xl [&_h3]:text-[#F5F5F5] [&_img]:rounded-3xl [&_li]:text-[#999999] [&_ol]:pl-6 [&_strong]:text-[#F5F5F5] [&_ul]:pl-6">
+        <Content />
+      </div>
+
+      <section class="mt-12 rounded-3xl border border-[#2E2E2E] bg-[#1A1A1A] p-8">
+        <h2 class="text-2xl mb-4" style="font-family: 'Playfair Display', serif;">Join the conversation</h2>
+        <!-- Wire up Giscus here once the GitHub repo, category, and mapping details are finalized. -->
+        <div id="comments" class="min-h-32 rounded-2xl border border-dashed border-[#2E2E2E] bg-[#0F0F0F] p-6 text-[#999999]">
+          Giscus comments will appear here soon.
+        </div>
+      </section>
+    </div>
+  </article>
+</BlogLayout>

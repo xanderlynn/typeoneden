@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
+---
+
+<BaseLayout
+  title="Newsletter | Type One Den"
+  description="Join the Type One Den newsletter for weekly posts, exclusive tips, and early access to new resources."
+>
+  <main class="bg-[#0F0F0F] py-16 text-[#F5F5F5]" style="font-family: Inter, sans-serif;">
+    <div class="max-w-[720px] mx-auto px-4 space-y-10 text-center">
+      <header class="space-y-5">
+        <p class="text-sm uppercase tracking-[0.3em] text-[#F472B6]">Newsletter</p>
+        <h1 class="text-4xl md:text-5xl" style="font-family: 'Playfair Display', serif;">Join the Den</h1>
+        <p class="text-lg leading-8 text-[#999999]">Get the kind of T1D email you&apos;ll actually want to open: weekly posts, exclusive tips, and early access to the tools and guides I&apos;m building for this community.</p>
+      </header>
+
+      <section class="rounded-3xl border border-[#2E2E2E] bg-[#1A1A1A] p-8 space-y-6">
+        <div class="grid gap-4 md:grid-cols-3 text-left">
+          <div class="rounded-2xl border border-[#2E2E2E] bg-[#0F0F0F] p-4">
+            <h2 class="font-semibold text-[#F5F5F5]">Weekly posts</h2>
+            <p class="mt-2 text-sm leading-7 text-[#999999]">Fresh stories, practical tips, and thoughtful reflections on life with T1D.</p>
+          </div>
+          <div class="rounded-2xl border border-[#2E2E2E] bg-[#0F0F0F] p-4">
+            <h2 class="font-semibold text-[#F5F5F5]">Exclusive tips</h2>
+            <p class="mt-2 text-sm leading-7 text-[#999999]">Subscriber-only notes on routines, products, mindset, and staying steady through the messy days.</p>
+          </div>
+          <div class="rounded-2xl border border-[#2E2E2E] bg-[#0F0F0F] p-4">
+            <h2 class="font-semibold text-[#F5F5F5]">Early access</h2>
+            <p class="mt-2 text-sm leading-7 text-[#999999]">Be first to see new downloads, resource guides, and future Type One Den launches.</p>
+          </div>
+        </div>
+        <p class="text-sm uppercase tracking-[0.25em] text-[#F472B6]">Join 1,000+ T1D readers</p>
+        <NewsletterSignup heading="Get on the list" subtext="This social proof is a placeholder and can be updated once the newsletter is live." />
+      </section>
+    </div>
+  </main>
+</BaseLayout>

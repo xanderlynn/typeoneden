@@ -1,17 +1,76 @@
 ---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogCard from '../components/BlogCard.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
+import YouTubeEmbed from '../components/YouTubeEmbed.astro';
 
+const latestPosts = (await getCollection('blog').catch(() => []))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Type One Den"
+  description="Type One Den is your guide to thriving with T1D through honest stories, practical resources, and real community."
+>
+  <main class="bg-[#0F0F0F] text-[#F5F5F5]" style="font-family: Inter, sans-serif;">
+    <section class="border-b border-[#2E2E2E] py-20">
+      <div class="max-w-[720px] mx-auto px-4 text-center space-y-6">
+        <p class="text-sm uppercase tracking-[0.3em] text-[#F472B6]">Type One Den</p>
+        <h1 class="text-5xl md:text-6xl leading-tight" style="font-family: 'Playfair Display', serif;">Living Boldly with Type 1 Diabetes</h1>
+        <p class="text-lg md:text-xl leading-8 text-[#999999]">Your guide to thriving with T1D — real talk, real resources, real community.</p>
+        <div class="flex flex-col justify-center gap-4 sm:flex-row">
+          <a href="/blog" class="inline-flex items-center justify-center rounded-full bg-[#F472B6] px-6 py-3 font-semibold text-[#0F0F0F] transition hover:opacity-90">Read the Blog</a>
+          <a href="/start" class="inline-flex items-center justify-center rounded-full border border-[#2E2E2E] px-6 py-3 font-semibold text-[#F5F5F5] transition hover:border-[#F472B6] hover:text-[#F472B6]">Start Here</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16">
+      <div class="max-w-6xl mx-auto px-4 space-y-8">
+        <div class="max-w-[720px] space-y-3">
+          <p class="text-sm uppercase tracking-[0.3em] text-[#F472B6]">Latest Posts</p>
+          <h2 class="text-3xl md:text-4xl" style="font-family: 'Playfair Display', serif;">Fresh from the blog</h2>
+          <p class="leading-8 text-[#999999]">New stories, practical guides, and honest notes from real life with T1D.</p>
+        </div>
+
+        {latestPosts.length > 0 ? (
+          <div class="grid gap-6 lg:grid-cols-3 md:grid-cols-2">
+            {latestPosts.map((post) => (
+              <BlogCard
+                title={post.data.title}
+                slug={post.slug}
+                pubDate={post.data.pubDate}
+                description={post.data.description}
+                category={post.data.category}
+              />
+            ))}
+          </div>
+        ) : (
+          <div class="rounded-3xl border border-dashed border-[#2E2E2E] bg-[#1A1A1A] p-8 text-center text-[#999999]">
+            Blog posts will show up here once the collection is populated.
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section class="border-y border-[#2E2E2E] bg-[#1A1A1A] py-16">
+      <div class="max-w-[720px] mx-auto px-4 space-y-5">
+        <div class="space-y-3">
+          <p class="text-sm uppercase tracking-[0.3em] text-[#F472B6]">Featured Video</p>
+          <h2 class="text-3xl md:text-4xl" style="font-family: 'Playfair Display', serif;">Featured YouTube Video</h2>
+          <p class="leading-8 text-[#999999]">A placeholder feature until the first Type One Den video goes live on YouTube.</p>
+        </div>
+        <YouTubeEmbed videoId="dQw4w9WgXcQ" title="Placeholder: Welcome to Type One Den" />
+      </div>
+    </section>
+
+    <section class="py-16">
+      <div class="max-w-[720px] mx-auto px-4">
+        <NewsletterSignup heading="Join the Den newsletter" subtext="Get weekly T1D stories, practical tips, and the first look at new resources." />
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,29 @@
+name: "[seo] SEO / Legal Task"
+description: Metadata, schema, disclosures, policies, and search optimization
+title: "[seo] "
+labels: ["seo", "mcgonagall"]
+body:
+  - type: markdown
+    attributes:
+      value: "**Routed to: McGonagall (SEO & Legal)**"
+  - type: textarea
+    id: description
+    attributes:
+      label: What SEO or legal item needs attention?
+      placeholder: Describe the SEO or legal task...
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: What does "done" look like?
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options: [P0 - Blocking, P1 - High, P2 - Normal, P3 - Low]
+    validations:
+      required: true

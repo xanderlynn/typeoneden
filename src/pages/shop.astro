@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
+---
+
+<!-- SHOP PAGE: Hidden from nav. Activate when Shopify Starter is set up. -->
+<BaseLayout
+  title="Shop | Type One Den"
+  description="A preview of upcoming Type One Den merch and product drops."
+>
+  <main class="bg-[#0F0F0F] py-16 text-[#F5F5F5]" style="font-family: Inter, sans-serif;">
+    <div class="max-w-[720px] mx-auto px-4 space-y-8 text-center">
+      <p class="text-sm uppercase tracking-[0.3em] text-[#F472B6]">Shop</p>
+      <h1 class="text-4xl md:text-5xl" style="font-family: 'Playfair Display', serif;">Coming Soon — T1D Den Merch</h1>
+      <p class="text-lg leading-8 text-[#999999]">The shop will eventually include thoughtfully designed apparel, accessories, and practical extras made for people who live with T1D and want gear that feels personal, useful, and genuinely cool.</p>
+      <section class="rounded-3xl border border-[#F472B6] bg-[#1A1A1A] p-8">
+        <h2 class="text-2xl mb-3" style="font-family: 'Playfair Display', serif;">Subscribe to be notified when the shop launches</h2>
+        <p class="mb-6 leading-8 text-[#999999]">Be first to hear about merch drops, launch details, and special early access.</p>
+        <NewsletterSignup heading="Get launch updates" subtext="No spam — just first notice when the shop goes live." />
+      </section>
+    </div>
+  </main>
+</BaseLayout>
