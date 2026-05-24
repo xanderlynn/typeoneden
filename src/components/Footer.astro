@@ -22,7 +22,7 @@ const navCols = [
 ];
 ---
 
-<footer style="border-top:1px solid #272727; background:#0A0A0A; padding-top:3.5rem; padding-bottom:2.5rem;">
+<footer style="border-top:1px solid var(--color-border); background:var(--color-bg); padding-top:3.5rem; padding-bottom:2.5rem;">
   <div class="wide-container px-4">
 
     <!-- Top row: brand + nav cols -->
@@ -34,14 +34,14 @@ const navCols = [
           <span style="display:flex; height:2rem; width:2rem; align-items:center; justify-content:center; border-radius:0.5rem; background:linear-gradient(135deg,#5E8C8A,#4A6F6D); font-size:9px; font-weight:900; color:#fff; letter-spacing:-0.05em; user-select:none; flex-shrink:0;">
             T1D
           </span>
-          <span style="font-weight:600; color:#F0F0F0; font-size:0.95rem; letter-spacing:-0.01em;">TypeOneDen</span>
+          <span style="font-weight:600; color:var(--color-text-primary); font-size:0.95rem; letter-spacing:-0.01em;">TypeOneDen</span>
         </a>
-        <p style="color:#555; font-size:0.875rem; line-height:1.65; margin:0 0 1.25rem;">Living boldly with Type 1 Diabetes. Real stories, honest reviews, and a community that gets it.</p>
+        <p style="color:var(--color-text-tertiary); font-size:0.875rem; line-height:1.65; margin:0 0 1.25rem;">Living boldly with Type 1 Diabetes. Real stories, honest reviews, and a community that gets it.</p>
         <!-- Social links -->
         <div style="display:flex; gap:0.5rem;">
           <a
             href="/youtube"
-            style="display:inline-flex; height:2.25rem; width:2.25rem; align-items:center; justify-content:center; border-radius:0.6rem; border:1px solid #272727; color:#666; text-decoration:none; transition:border-color 0.2s, color 0.2s;"
+            style="display:inline-flex; height:2.25rem; width:2.25rem; align-items:center; justify-content:center; border-radius:0.6rem; border:1px solid var(--color-border); color:var(--color-text-tertiary); text-decoration:none; transition:border-color 0.2s, color 0.2s;"
             aria-label="YouTube"
             class="social-icon"
           >
@@ -49,7 +49,7 @@ const navCols = [
               <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.7 31.7 0 0 0 0 12a31.7 31.7 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.7 31.7 0 0 0 24 12a31.7 31.7 0 0 0-.5-5.8ZM9.6 15.7V8.3l6.5 3.7-6.5 3.7Z" />
             </svg>
           </a>
-          <span style="display:inline-flex; height:2.25rem; align-items:center; justify-content:center; border-radius:0.6rem; border:1px dashed #272727; padding:0 0.65rem; font-size:0.7rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#444;">
+          <span style="display:inline-flex; height:2.25rem; align-items:center; justify-content:center; border-radius:0.6rem; border:1px dashed var(--color-border); padding:0 0.65rem; font-size:0.7rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-text-tertiary);">
             Instagram soon
           </span>
         </div>
@@ -58,11 +58,11 @@ const navCols = [
       <!-- Nav columns -->
       {navCols.map((col) => (
         <div>
-          <p style="font-size:0.7rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#444; margin:0 0 1rem;">{col.label}</p>
+          <p style="font-size:0.7rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--color-text-tertiary); margin:0 0 1rem;">{col.label}</p>
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.6rem;">
             {col.links.map((link) => (
               <li>
-                <a href={link.href} style="font-size:0.875rem; color:#666; text-decoration:none; transition:color 0.15s;" class="footer-link">
+                <a href={link.href} style="font-size:0.875rem; color:var(--color-text-secondary); text-decoration:none; transition:color 0.15s;" class="footer-link">
                   {link.label}
                 </a>
               </li>
@@ -81,7 +81,7 @@ const navCols = [
           { href: '/disclosure', label: 'Disclosure' },
           { href: '/terms', label: 'Terms' },
         ].map((l) => (
-          <a href={l.href} style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em; color:#444; text-decoration:none; transition:color 0.15s;" class="footer-link">
+          <a href={l.href} style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--color-text-tertiary); text-decoration:none; transition:color 0.15s;" class="footer-link">
             {l.label}
           </a>
         ))}
@@ -99,7 +99,7 @@ const navCols = [
       grid-template-columns: 1.8fr 1fr 1fr;
     }
   }
-  .footer-link:hover { color: #F0F0F0 !important; }
-  .social-icon:hover { border-color: #5E8C8A !important; color: #5E8C8A !important; }
+  .footer-link:hover { color: var(--color-text-primary) !important; }
+  .social-icon:hover { border-color: var(--color-accent) !important; color: var(--color-accent) !important; }
 </style>
 

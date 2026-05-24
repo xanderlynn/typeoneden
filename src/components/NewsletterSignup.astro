@@ -8,6 +8,12 @@ const {
   heading = 'Join the Den',
   subtext = 'Weekly dispatches from life with T1D — honest, practical, and never boring.',
 } = Astro.props;
+
+// Set PUBLIC_KIT_FORM_ID in your .env file to activate the newsletter form.
+// e.g.  PUBLIC_KIT_FORM_ID=1234567
+const formId = import.meta.env.PUBLIC_KIT_FORM_ID;
+const formAction = formId ? `https://app.kit.com/forms/${formId}/subscriptions` : null;
+const isDev = import.meta.env.DEV;
 ---
 
 <section class="rounded-2xl border border-[#2E2E2E] p-6" style="border-left: 4px solid #5E8C8A; background: var(--color-surface, #1A1A1A);">
@@ -17,8 +23,14 @@ const {
   </div>
 
   <!-- Update YOUR_FORM_ID in the action URL with your Kit form ID before going live. -->
+  {isDev && !formId && (
+    <p style="color:#F0883E;font-size:0.75rem;margin-bottom:0.5rem;">
+      ⚠ Dev: Set <code>PUBLIC_KIT_FORM_ID</code> in your <code>.env</code> to activate this form.
+    </p>
+  )}
+  {formAction ? (
   <form
-    action="https://app.kit.com/forms/YOUR_FORM_ID/subscriptions"
+    action={formAction}
     method="post"
     class="mt-6 flex flex-col gap-3 sm:flex-row"
   >
@@ -39,6 +51,9 @@ const {
       Subscribe
     </button>
   </form>
+  ) : (
+  <p style="color:var(--color-text-tertiary);font-size:0.875rem;margin-top:1.5rem;">Newsletter coming soon — stay tuned!</p>
+  )}
 
   <p class="mt-3 text-xs text-[#999999]">No spam. Unsubscribe anytime.</p>
 </section>

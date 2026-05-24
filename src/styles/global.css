@@ -9,7 +9,8 @@
   --color-border-subtle: #21262D;
   --color-text-primary: #E6EDF3;
   --color-text-secondary: #8B949E;
-  --color-text-tertiary: #484F58;
+  /* Raise contrast of tertiary text from #484F58 (2.1:1) to #768390 (5.2:1) to pass WCAG AA */
+  --color-text-tertiary: #768390;
   /* Dusty Teal accent — gender-neutral, health/wellness, modern */
   --color-accent: #5E8C8A;
   --color-accent-hover: #6E9E9C;
@@ -40,6 +41,10 @@
   --color-text-primary:    #1F2328;
   --color-text-secondary:  #636C76;
   --color-text-tertiary:   #848D97;
+  /* Darken accent for AA contrast on light backgrounds (#2E6B69 = 5.85:1 on white) */
+  --color-accent:          #2E6B69;
+  --color-accent-hover:    #3D8A87;
+  --color-accent-muted:    #255857;
 }
 
 [data-theme="light"] body,
@@ -444,6 +449,31 @@ button.button-accent {
 .fade-up-delay-2 { transition-delay: 0.2s; }
 .fade-up-delay-3 { transition-delay: 0.3s; }
 .fade-up-delay-4 { transition-delay: 0.4s; }
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .fade-up-delay-1,
+  .fade-up-delay-2,
+  .fade-up-delay-3,
+  .fade-up-delay-4 {
+    transition-delay: 0s;
+  }
+  .button-accent,
+  .button-outline,
+  .button-pink,
+  .card-link,
+  a {
+    transition: none;
+  }
+}
 
 /* Reading progress bar */
 #read-progress {

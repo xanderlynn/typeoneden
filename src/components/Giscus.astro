@@ -27,42 +27,47 @@ const { pathname = Astro.url.pathname } = Astro.props;
 </section>
 
 <script is:inline define:vars={{ pathname }}>
-  // Replace these values after running the Giscus configurator at https://giscus.app
   const REPO       = 'xanderlynn/typeoneden';
   const REPO_ID    = '';      // paste repo ID from giscus.app
   const CATEGORY   = 'Blog Comments';
   const CATEGORY_ID = '';     // paste category ID from giscus.app
 
-  function loadGiscus(theme) {
+  // Don't load the 500KB Giscus script if it hasn't been configured yet
+  if (!REPO_ID || !CATEGORY_ID) {
     const container = document.getElementById('giscus-container');
-    if (!container) return;
-    container.innerHTML = '';
+    if (container) {
+      container.innerHTML = '<p style="color:var(--color-text-tertiary,#656D76);font-size:0.875rem;text-align:center;padding:1rem 0;">Comments will appear here once Giscus is configured — see <code>src/components/Giscus.astro</code>.</p>';
+    }
+  } else {
+    function loadGiscus(theme) {
+      const container = document.getElementById('giscus-container');
+      if (!container) return;
+      container.innerHTML = '';
 
-    const s = document.createElement('script');
-    s.src = 'https://giscus.app/client.js';
-    s.dataset.repo        = REPO;
-    s.dataset.repoId      = REPO_ID;
-    s.dataset.category    = CATEGORY;
-    s.dataset.categoryId  = CATEGORY_ID;
-    s.dataset.mapping     = 'pathname';
-    s.dataset.term        = pathname;
-    s.dataset.strict      = '0';
-    s.dataset.reactionsEnabled = '1';
-    s.dataset.emitMetadata = '0';
-    s.dataset.inputPosition = 'top';
-    s.dataset.theme       = theme;
-    s.dataset.lang        = 'en';
-    s.crossOrigin         = 'anonymous';
-    s.async               = true;
-    container.appendChild(s);
+      const s = document.createElement('script');
+      s.src = 'https://giscus.app/client.js';
+      s.dataset.repo        = REPO;
+      s.dataset.repoId      = REPO_ID;
+      s.dataset.category    = CATEGORY;
+      s.dataset.categoryId  = CATEGORY_ID;
+      s.dataset.mapping     = 'pathname';
+      s.dataset.term        = pathname;
+      s.dataset.strict      = '0';
+      s.dataset.reactionsEnabled = '1';
+      s.dataset.emitMetadata = '0';
+      s.dataset.inputPosition = 'top';
+      s.dataset.theme       = theme;
+      s.dataset.lang        = 'en';
+      s.crossOrigin         = 'anonymous';
+      s.async               = true;
+      container.appendChild(s);
+    }
+
+    const isDark = document.documentElement.dataset.theme !== 'light';
+    loadGiscus(isDark ? 'transparent_dark' : 'light');
+
+    document.addEventListener('theme-change', (e) => {
+      loadGiscus(e.detail === 'light' ? 'light' : 'transparent_dark');
+    });
   }
-
-  // Sync with current color scheme preference
-  const isDark = document.documentElement.dataset.theme !== 'light';
-  loadGiscus(isDark ? 'transparent_dark' : 'light');
-
-  // Re-theme when user toggles dark/light mode
-  document.addEventListener('theme-change', (e) => {
-    loadGiscus(e.detail === 'light' ? 'light' : 'transparent_dark');
-  });
 </script>

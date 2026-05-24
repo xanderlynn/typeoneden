@@ -8,12 +8,15 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  /** Override og:type — use "article" for blog posts */
+  ogType?: 'website' | 'article';
 }
 
 const {
   title,
   description = 'TypeOneDen is a Type 1 Diabetes lifestyle site for women living boldly.',
   ogImage,
+  ogType = 'website',
 } = Astro.props;
 
 const siteName = 'TypeOneDen';
@@ -26,7 +29,6 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site ?? Astro.url).toString(
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content={siteName} />
@@ -36,7 +38,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site ?? Astro.url).toString(
     <link rel="alternate" type="application/rss+xml" title="TypeOneDen RSS" href="/rss.xml" />
 
     <meta property="og:site_name" content={siteName} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -51,14 +53,27 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site ?? Astro.url).toString(
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" />
 
+    <!-- Dark/light theme init: runs before paint to prevent flash of unstyled content -->
+    <script is:inline>
+      (function() {
+        const saved = localStorage.getItem('theme');
+        // Default to dark; only honour light if explicitly saved by user
+        const theme = saved || 'dark';
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+
+    <!-- Security meta tags -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
     <ViewTransitions />
   </head>
   <body class="page-main">
     <div class="flex min-h-screen flex-col">
       <Nav />
-      <main class="flex-1">
+      <div class="flex-1">
         <slot />
-      </main>
+      </div>
       <Footer />
     </div>
 
@@ -75,16 +90,6 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site ?? Astro.url).toString(
       }
       initFadeUp();
       document.addEventListener('astro:page-load', initFadeUp);
-    </script>
-
-    <!-- Dark/light theme init (prevents flash) -->
-    <script is:inline>
-      (function() {
-        const saved = localStorage.getItem('theme');
-        // Default to dark; only honour light if explicitly saved by user
-        const theme = saved || 'dark';
-        document.documentElement.dataset.theme = theme;
-      })();
     </script>
   </body>
 </html>

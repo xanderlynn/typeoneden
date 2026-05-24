@@ -22,7 +22,7 @@ const posts = (await getCollection('blog').catch(() => []))
     <!-- Page header -->
     <div style="border-bottom:1px solid #30363D; padding:4rem 0 3rem; position:relative; overflow:hidden;">
       <div class="dot-grid pointer-events-none absolute inset-0 opacity-20" aria-hidden="true"></div>
-      <div class="wide-container px-4" style="position:relative;" class="fade-up">
+      <div class="wide-container px-4 fade-up" style="position:relative;">
         <p class="section-label" style="margin-bottom:1rem;">All Articles</p>
         <h1 style="font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3rem); line-height:1.1; font-weight:700; color:#E6EDF3; margin:0 0 1rem;">
           Stories, guides &amp; honest T1D living
@@ -135,7 +135,7 @@ const posts = (await getCollection('blog').catch(() => []))
       min-height: 160px;
     }
     .featured-link:hover {
-      border-color: rgba(137,87,229,0.5);
+      border-color: rgba(94,140,138,0.5);
       box-shadow: 0 8px 32px rgba(0,0,0,0.5);
     }
     .featured-accent {

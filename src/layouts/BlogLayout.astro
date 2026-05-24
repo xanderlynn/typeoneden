@@ -44,7 +44,7 @@ const slug = Astro.url.pathname.replace(/^\/blog\//, '').replace(/\/$/, '');
 const computedOgImage = ogImage ?? (slug ? `/og/${slug}.svg` : undefined);
 ---
 
-<BaseLayout title={title} description={description} ogImage={computedOgImage}>
+<BaseLayout title={title} description={description} ogImage={computedOgImage} ogType="article">
   <!-- Reading progress bar -->
   <div id="read-progress" aria-hidden="true"></div>
 

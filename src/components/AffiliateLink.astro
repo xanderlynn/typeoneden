@@ -7,10 +7,13 @@ interface Props {
 }
 
 const { href, name, description, badge } = Astro.props;
+
+// Block javascript: and data: URIs to prevent XSS
+const safeHref = /^(javascript:|data:)/i.test(href) ? '#' : href;
 ---
 
 <a
-  href={href}
+  href={safeHref}
   target="_blank"
   rel="nofollow noopener noreferrer"
   data-affiliate="true"
