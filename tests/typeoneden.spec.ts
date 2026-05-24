@@ -87,7 +87,7 @@ test.describe('Homepage', () => {
     }
     console.log(`CTA color: ${result.color}, bg: ${result.bg}`);
     expect(result.color).toBe('rgb(255, 255, 255)');
-    expect(result.bg).toBe('rgb(166, 124, 138)');
+    expect(result.bg).toBe('rgb(156, 133, 133)');
   });
 
   test('homepage shows latest blog posts', async ({ page }) => {

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 @theme {
   /* Dark background (GitHub-inspired) */
@@ -11,12 +11,12 @@
   --color-text-secondary: #8B949E;
   --color-text-tertiary: #484F58;
   /* Muted rosy stone accent — grey-pink, modern, editorial */
-  --color-accent: #A67C8A;
-  --color-accent-hover: #B88E9C;
-  --color-accent-muted: #8A6070;
-  --color-accent-dim: rgba(166, 124, 138, 0.12);
+  --color-accent: #9C8585;
+  --color-accent-hover: #AE9696;
+  --color-accent-muted: #7A6868;
+  --color-accent-dim: rgba(156, 133, 133, 0.12);
   /* Category colors */
-  --cat-life:     #A67C8A;   /* rosy stone — Life with T1D */
+  --cat-life:     #9C8585;   /* rosy stone — Life with T1D */
   --cat-tech:     #58A6FF;   /* blue       — Tech & Gear   */
   --cat-nutrition:#3FB950;   /* green      — Nutrition     */
   --cat-advocacy: #9B8DB3;   /* muted lavender — Advocacy  */
@@ -177,7 +177,7 @@ pre {
 
 /* Gradient text utility */
 .text-gradient {
-  background: linear-gradient(135deg, #E6EDF3 30%, #B88E9C 100%);
+  background: linear-gradient(135deg, #E6EDF3 30%, #AE9696 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -334,7 +334,7 @@ button.button-accent {
   border-color: var(--color-accent-hover);
   color: #fff;
   transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(166, 124, 138, 0.35);
+  box-shadow: 0 4px 20px rgba(156, 133, 133, 0.35);
 }
 
 .prose {
@@ -451,7 +451,7 @@ button.button-accent {
   top: 0;
   left: 0;
   height: 2px;
-  background: linear-gradient(90deg, #A67C8A, #B88E9C);
+  background: linear-gradient(90deg, #9C8585, #AE9696);
   z-index: 9999;
   width: 0%;
   transition: width 0.08s linear;

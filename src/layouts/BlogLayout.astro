@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from './BaseLayout.astro';
 import Giscus from '../components/Giscus.astro';
 
@@ -31,13 +31,13 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
 });
 
 const categoryColors: Record<string, string> = {
-  'Life with T1D': '#A67C8A',
+  'Life with T1D': '#9C8585',
   'Tech & Gear':   '#58A6FF',
   'Nutrition':     '#3FB950',
   'Advocacy':      '#9B8DB3',
   'Mindset':       '#F0883E',
 };
-const catColor = categoryColors[category] ?? '#A67C8A';
+const catColor = categoryColors[category] ?? '#9C8585';
 
 // Derive slug from URL for OG image path
 const slug = Astro.url.pathname.replace(/^\/blog\//, '').replace(/\/$/, '');
