@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Giscus from '../components/Giscus.astro';
 
 interface Props {
   title: string;
@@ -8,6 +9,8 @@ interface Props {
   category: string;
   image?: string;
   author?: string;
+  readTime?: number;
+  ogImage?: string;
 }
 
 const {
@@ -17,6 +20,8 @@ const {
   category,
   image,
   author = 'Type One Den',
+  readTime,
+  ogImage,
 } = Astro.props;
 
 const formattedDate = pubDate.toLocaleDateString('en-US', {
@@ -24,23 +29,79 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
   day: 'numeric',
   year: 'numeric',
 });
+
+const categoryColors: Record<string, string> = {
+  'Life with T1D': '#E879A4',
+  'Tech & Gear':   '#58A6FF',
+  'Nutrition':     '#3FB950',
+  'Advocacy':      '#A78BFA',
+  'Mindset':       '#F0883E',
+};
+const catColor = categoryColors[category] ?? '#8957E5';
+
+// Derive slug from URL for OG image path
+const slug = Astro.url.pathname.replace(/^\/blog\//, '').replace(/\/$/, '');
+const computedOgImage = ogImage ?? (slug ? `/og/${slug}.svg` : undefined);
 ---
 
-<BaseLayout title={title} description={description} ogImage={image}>
-  <header class="site-container pt-16 pb-10">
-    <div class="space-y-5">
-      <span class="eyebrow">{category}</span>
-      <h1 class="text-4xl font-medium text-[#F5F5F5] md:text-6xl">{title}</h1>
-      <p class="text-sm text-[#999999] md:text-base">
-        {author} <span aria-hidden="true">•</span> <time datetime={pubDate.toISOString()}>{formattedDate}</time>
-      </p>
-      {description && <p class="max-w-2xl text-lg text-[#999999]">{description}</p>}
+<BaseLayout title={title} description={description} ogImage={computedOgImage}>
+  <!-- Reading progress bar -->
+  <div id="read-progress" aria-hidden="true"></div>
+
+  <header class="site-container pt-16 pb-10 fade-up">
+    <div style="display:flex; flex-direction:column; gap:1.25rem;">
+      <!-- Category eyebrow -->
+      <span class="eyebrow" style={`color:${catColor}; border-color:${catColor}44; background:${catColor}12;`}>
+        {category}
+      </span>
+
+      <h1 style="font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3rem); line-height:1.15; font-weight:700; color:#E6EDF3; margin:0;">
+        {title}
+      </h1>
+
+      <!-- Meta row -->
+      <div style="display:flex; align-items:center; flex-wrap:wrap; gap:0.5rem 1rem; font-size:0.85rem; color:#8B949E;">
+        <span>{author}</span>
+        <span aria-hidden="true" style="color:#30363D;">·</span>
+        <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+        {readTime && (
+          <>
+            <span aria-hidden="true" style="color:#30363D;">·</span>
+            <span>{readTime} min read</span>
+          </>
+        )}
+      </div>
+
+      {description && (
+        <p style="max-width:640px; font-size:1.05rem; line-height:1.75; color:#8B949E; margin:0;">
+          {description}
+        </p>
+      )}
     </div>
   </header>
+
+  <!-- Divider -->
+  <div class="site-container" style="border-top:1px solid #30363D; margin-bottom:3rem;"></div>
 
   <div class="site-container pb-16">
     <article class="prose">
       <slot />
     </article>
+
+    <Giscus pathname={Astro.url.pathname} />
   </div>
 </BaseLayout>
+
+<script is:inline>
+  // Reading progress bar
+  const bar = document.getElementById('read-progress');
+  function updateProgress() {
+    if (!bar) return;
+    const doc = document.documentElement;
+    const scrolled = doc.scrollTop / (doc.scrollHeight - doc.clientHeight);
+    bar.style.width = Math.min(scrolled * 100, 100) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  document.addEventListener('astro:page-load', updateProgress);
+</script>
+

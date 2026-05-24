@@ -6,9 +6,10 @@ interface Props {
   description: string;
   category: string;
   image?: string;
+  readTime?: number;
 }
 
-const { title, slug, pubDate, description, category, image } = Astro.props;
+const { title, slug, pubDate, description, category, image, readTime } = Astro.props;
 const formattedDate = pubDate.toLocaleDateString('en-US', {
   month: 'short',
   day: 'numeric',
@@ -28,7 +29,7 @@ const color = categoryColors[category] ?? '#8957E5';
 
 <a
   href={`/blog/${slug}`}
-  class="card-link group flex h-full flex-col overflow-hidden rounded-xl border border-[#30363D] bg-[#161B22]"
+  class="card-link fade-up group flex h-full flex-col overflow-hidden rounded-xl border border-[#30363D] bg-[#161B22]"
   style={`border-top: 3px solid ${color};`}
 >
   <!-- Optional photo cover — only shown when image prop is set -->
@@ -39,6 +40,9 @@ const color = categoryColors[category] ?? '#8957E5';
         alt=""
         class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         loading="lazy"
+        decoding="async"
+        width="640"
+        height="140"
       />
     </div>
   )}
@@ -61,7 +65,10 @@ const color = categoryColors[category] ?? '#8957E5';
     <p class="line-clamp-2 text-sm leading-relaxed text-[#8B949E]" style="margin:0;">{description}</p>
 
     <div class="mt-auto flex items-center justify-between" style="border-top:1px solid #21262D; padding-top:0.75rem; margin-top:0.5rem;">
-      <p class="text-[11px] font-medium text-[#484F58]">{formattedDate}</p>
+      <div style="display:flex; flex-direction:column; gap:0.1rem;">
+        <p class="text-[11px] font-medium text-[#484F58]">{formattedDate}</p>
+        {readTime && <p class="text-[11px] text-[#484F58]">{readTime} min read</p>}
+      </div>
       <span class="flex items-center gap-1 text-[11px] font-semibold text-[#484F58] transition-colors duration-200 group-hover:text-[#A78BFA]" aria-hidden="true">
         Read
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,11 +82,12 @@ const color = categoryColors[category] ?? '#8957E5';
 <style>
   .card-link {
     text-decoration: none;
-    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, opacity 0.6s ease;
   }
   .card-link:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 32px rgba(0,0,0,0.5);
   }
 </style>
+
 

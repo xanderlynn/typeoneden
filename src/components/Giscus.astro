@@ -1,0 +1,68 @@
+---
+/**
+ * Giscus comments widget (GitHub Discussions backed).
+ *
+ * Setup steps:
+ * 1. Enable GitHub Discussions on the typeoneden repo (Settings → Features → Discussions).
+ * 2. Go to https://giscus.app, pick "xanderlynn/typeoneden", generate config.
+ * 3. Paste the repo-id and category-id values into the constants below.
+ */
+
+interface Props {
+  /** Current page path — used to map comments to the right discussion. */
+  pathname?: string;
+}
+
+const { pathname = Astro.url.pathname } = Astro.props;
+---
+
+<section aria-label="Comments" style="margin-top:3rem;">
+  <div id="giscus-wrap"
+    style="border:1px solid #30363D; border-radius:1rem; background:#161B22; padding:2rem; overflow:hidden;">
+    <h2 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:#E6EDF3; margin:0 0 1.25rem;">
+      Join the conversation
+    </h2>
+    <div id="giscus-container"></div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ pathname }}>
+  // Replace these values after running the Giscus configurator at https://giscus.app
+  const REPO       = 'xanderlynn/typeoneden';
+  const REPO_ID    = '';      // paste repo ID from giscus.app
+  const CATEGORY   = 'Blog Comments';
+  const CATEGORY_ID = '';     // paste category ID from giscus.app
+
+  function loadGiscus(theme) {
+    const container = document.getElementById('giscus-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const s = document.createElement('script');
+    s.src = 'https://giscus.app/client.js';
+    s.dataset.repo        = REPO;
+    s.dataset.repoId      = REPO_ID;
+    s.dataset.category    = CATEGORY;
+    s.dataset.categoryId  = CATEGORY_ID;
+    s.dataset.mapping     = 'pathname';
+    s.dataset.term        = pathname;
+    s.dataset.strict      = '0';
+    s.dataset.reactionsEnabled = '1';
+    s.dataset.emitMetadata = '0';
+    s.dataset.inputPosition = 'top';
+    s.dataset.theme       = theme;
+    s.dataset.lang        = 'en';
+    s.crossOrigin         = 'anonymous';
+    s.async               = true;
+    container.appendChild(s);
+  }
+
+  // Sync with current color scheme preference
+  const isDark = document.documentElement.dataset.theme !== 'light';
+  loadGiscus(isDark ? 'transparent_dark' : 'light');
+
+  // Re-theme when user toggles dark/light mode
+  document.addEventListener('theme-change', (e) => {
+    loadGiscus(e.detail === 'light' ? 'light' : 'transparent_dark');
+  });
+</script>

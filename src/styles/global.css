@@ -29,6 +29,25 @@
   color-scheme: dark;
 }
 
+/* ─── Light theme overrides ─── */
+[data-theme="light"] {
+  color-scheme: light;
+  --color-bg:              #FFFFFF;
+  --color-surface:         #F6F8FA;
+  --color-surface-2:       #EAEEF2;
+  --color-border:          #D0D7DE;
+  --color-border-subtle:   #D8DEE4;
+  --color-text-primary:    #1F2328;
+  --color-text-secondary:  #636C76;
+  --color-text-tertiary:   #848D97;
+}
+
+[data-theme="light"] body,
+[data-theme="light"] html {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -65,7 +84,7 @@ a {
 }
 
 a:hover {
-  color: #fbb6d4;
+  color: var(--color-accent-hover);
 }
 
 button,
@@ -351,6 +370,23 @@ button.button-accent {
 .fade-up.visible {
   opacity: 1;
   transform: translateY(0);
+}
+.fade-up-delay-1 { transition-delay: 0.1s; }
+.fade-up-delay-2 { transition-delay: 0.2s; }
+.fade-up-delay-3 { transition-delay: 0.3s; }
+.fade-up-delay-4 { transition-delay: 0.4s; }
+
+/* Reading progress bar */
+#read-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #8957E5, #A78BFA);
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.08s linear;
+  pointer-events: none;
 }
 
 .prose figcaption {

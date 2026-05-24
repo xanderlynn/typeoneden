@@ -33,6 +33,7 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site ?? Astro.url).toString(
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="alternate" type="application/rss+xml" title="TypeOneDen RSS" href="/rss.xml" />
 
     <meta property="og:site_name" content={siteName} />
     <meta property="og:type" content="website" />
@@ -60,5 +61,30 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site ?? Astro.url).toString(
       </main>
       <Footer />
     </div>
+
+    <!-- Scroll entrance animation observer -->
+    <script is:inline>
+      function initFadeUp() {
+        const els = document.querySelectorAll('.fade-up:not(.visible)');
+        if (!els.length) return;
+        const observer = new IntersectionObserver(
+          (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+          { threshold: 0.08, rootMargin: '0px 0px -48px 0px' }
+        );
+        els.forEach((el) => observer.observe(el));
+      }
+      initFadeUp();
+      document.addEventListener('astro:page-load', initFadeUp);
+    </script>
+
+    <!-- Dark/light theme init (prevents flash) -->
+    <script is:inline>
+      (function() {
+        const saved = localStorage.getItem('theme');
+        // Default to dark; only honour light if explicitly saved by user
+        const theme = saved || 'dark';
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
   </body>
 </html>
