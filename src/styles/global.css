@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* GitHub / Copilot dark theme */
+  /* Dark background (GitHub-inspired) */
   --color-bg: #0D1117;
   --color-surface: #161B22;
   --color-surface-2: #1C2128;
@@ -10,16 +10,16 @@
   --color-text-primary: #E6EDF3;
   --color-text-secondary: #8B949E;
   --color-text-tertiary: #484F58;
-  /* Copilot purple accent */
-  --color-accent: #8957E5;
-  --color-accent-hover: #A78BFA;
-  --color-accent-muted: #6E40C9;
-  --color-accent-dim: rgba(137, 87, 229, 0.12);
-  /* Category colors (used as thin accents, not large fills) */
-  --cat-life:     #E879A4;   /* rose/pink  — Life with T1D */
+  /* Muted rosy stone accent — grey-pink, modern, editorial */
+  --color-accent: #A67C8A;
+  --color-accent-hover: #B88E9C;
+  --color-accent-muted: #8A6070;
+  --color-accent-dim: rgba(166, 124, 138, 0.12);
+  /* Category colors */
+  --cat-life:     #A67C8A;   /* rosy stone — Life with T1D */
   --cat-tech:     #58A6FF;   /* blue       — Tech & Gear   */
   --cat-nutrition:#3FB950;   /* green      — Nutrition     */
-  --cat-advocacy: #A78BFA;   /* violet     — Advocacy      */
+  --cat-advocacy: #9B8DB3;   /* muted lavender — Advocacy  */
   --cat-mindset:  #F0883E;   /* amber      — Mindset       */
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
@@ -177,7 +177,7 @@ pre {
 
 /* Gradient text utility */
 .text-gradient {
-  background: linear-gradient(135deg, #E6EDF3 30%, #A78BFA 100%);
+  background: linear-gradient(135deg, #E6EDF3 30%, #B88E9C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -266,6 +266,75 @@ button.button-accent {
 
 .muted {
   color: var(--color-text-secondary);
+}
+
+/* ─── Page-level layout helpers (used by static pages for theme-aware styling) ─── */
+.page-main {
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+}
+.page-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 1.5rem;
+  padding: 2rem;
+}
+.page-panel-inner {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.page-accent-border {
+  border-color: var(--color-accent);
+}
+.page-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.page-muted {
+  color: var(--color-text-secondary);
+  line-height: 2;
+}
+.page-input {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--color-text-primary);
+  width: 100%;
+}
+.page-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+.page-input:focus {
+  border-color: var(--color-accent);
+  outline: none;
+}
+.button-pink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 9999px;
+  padding: 0.65rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: var(--color-accent);
+  color: #fff;
+  border: 1px solid var(--color-accent);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.button-pink:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(166, 124, 138, 0.35);
 }
 
 .prose {
@@ -382,11 +451,24 @@ button.button-accent {
   top: 0;
   left: 0;
   height: 2px;
-  background: linear-gradient(90deg, #8957E5, #A78BFA);
+  background: linear-gradient(90deg, #A67C8A, #B88E9C);
   z-index: 9999;
   width: 0%;
   transition: width 0.08s linear;
   pointer-events: none;
+}
+
+/* Nav scroll state */
+.nav-bg-transparent {
+  background: transparent;
+  border-color: transparent;
+}
+.nav-scrolled {
+  background: color-mix(in srgb, var(--color-bg) 96%, transparent);
+  border-color: var(--color-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 12px rgba(0,0,0,0.4);
 }
 
 .prose figcaption {

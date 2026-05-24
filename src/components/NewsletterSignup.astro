@@ -10,7 +10,7 @@ const {
 } = Astro.props;
 ---
 
-<section class="rounded-2xl border border-[#2E2E2E] border-l-4 border-l-[#F472B6] bg-[#1A1A1A] p-6">
+<section class="rounded-2xl border border-[#2E2E2E] p-6" style="border-left: 4px solid #A67C8A; background: var(--color-surface, #1A1A1A);">
   <div class="space-y-3">
     <h2 class="text-3xl text-[#F5F5F5]" style="font-family: 'Playfair Display', serif;">{heading}</h2>
     <p class="text-sm leading-6 text-[#999999]">{subtext}</p>
@@ -30,11 +30,11 @@ const {
       autocomplete="email"
       required
       placeholder="you@example.com"
-      class="min-h-12 flex-1 rounded-xl border border-[#2E2E2E] bg-[#0F0F0F] px-4 text-[#F5F5F5] placeholder:text-[#999999] focus:border-[#F472B6] focus:outline-none"
+      class="min-h-12 flex-1 rounded-xl border border-[#2E2E2E] bg-[#0F0F0F] px-4 text-[#F5F5F5] placeholder:text-[#999999] focus:border-[#A67C8A] focus:outline-none"
     />
     <button
       type="submit"
-      class="min-h-12 rounded-xl bg-[#F472B6] px-5 font-semibold text-[#0F0F0F] transition-colors duration-200 hover:bg-[#ec5aa7]"
+      class="button-pink min-h-12 rounded-xl px-5"
     >
       Subscribe
     </button>

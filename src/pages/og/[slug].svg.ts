@@ -17,10 +17,10 @@ export async function getStaticPaths() {
 }
 
 const CAT_COLORS: Record<string, string> = {
-  'Life with T1D': '#E879A4',
+  'Life with T1D': '#A67C8A',
   'Tech & Gear':   '#58A6FF',
   'Nutrition':     '#3FB950',
-  'Advocacy':      '#A78BFA',
+  'Advocacy':      '#9B8DB3',
   'Mindset':       '#F0883E',
 };
 
@@ -45,7 +45,7 @@ export const GET: APIRoute = ({ props }) => {
   const { post } = props as { post: any };
   const title    = post.data.title as string;
   const category = post.data.category as string;
-  const color    = CAT_COLORS[category] ?? '#8957E5';
+  const color    = CAT_COLORS[category] ?? '#A67C8A';
 
   const titleLines = wrapText(title, 36);
   const lineHeight = 68;
@@ -88,7 +88,7 @@ export const GET: APIRoute = ({ props }) => {
 
   <!-- Bottom bar -->
   <rect x="0" y="570" width="1200" height="60" fill="#0D1117CC"/>
-  <text x="80" y="608" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#8957E5">TypeOneDen</text>
+  <text x="80" y="608" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#A67C8A">TypeOneDen</text>
   <text x="1120" y="608" text-anchor="end" font-family="Arial, sans-serif" font-size="18" fill="#484F58">typeoneden.com</text>
 </svg>`;
 

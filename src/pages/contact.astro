@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
@@ -6,38 +6,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="Contact | Type One Den"
   description="Get in touch with Type One Den for questions, feedback, and collaboration inquiries."
 >
-  <main class="bg-[#0F0F0F] py-16 text-[#F5F5F5]" style="font-family: Inter, sans-serif;">
+  <main class="page-main py-16">
     <div class="max-w-[720px] mx-auto px-4 space-y-10">
       <header class="space-y-5">
-        <p class="text-sm uppercase tracking-[0.3em] text-[#F472B6]">Contact</p>
+        <p class="page-eyebrow">Contact</p>
         <h1 class="text-4xl md:text-5xl" style="font-family: 'Playfair Display', serif;">Let&apos;s connect</h1>
-        <p class="text-lg leading-8 text-[#999999]">Questions, kind notes, media requests, or ideas you&apos;d love to see on the site are always welcome.</p>
-        <p class="text-lg"><a href="mailto:hello@typeoneden.com" class="text-[#F472B6] underline decoration-transparent underline-offset-4 transition hover:decoration-current">hello@typeoneden.com</a></p>
-        <p class="rounded-2xl border border-[#2E2E2E] bg-[#1A1A1A] p-4 leading-8 text-[#999999]">For partnership and affiliate inquiries, please include <span class="font-semibold text-[#F5F5F5]">&ldquo;Collaboration&rdquo;</span> in your subject line.</p>
+        <p class="text-lg page-muted">Questions, kind notes, media requests, or ideas you&apos;d love to see on the site are always welcome.</p>
+        <p class="text-lg"><a href="mailto:hello@typeoneden.com" class="underline decoration-transparent underline-offset-4 transition hover:decoration-current" style="color:var(--color-accent);">hello@typeoneden.com</a></p>
+        <p class="page-panel page-muted">For partnership and affiliate inquiries, please include <span class="font-semibold" style="color:var(--color-text-primary);">&ldquo;Collaboration&rdquo;</span> in your subject line.</p>
       </header>
 
-      <section class="rounded-3xl border border-[#2E2E2E] bg-[#1A1A1A] p-8">
+      <section class="page-panel">
         <form name="contact" method="post" action="#" class="space-y-5">
           <input type="hidden" name="form-note" value="Wire this form to Netlify Forms, Basin, or another form service before launch." />
           <div>
-            <label for="name" class="mb-2 block text-sm font-medium text-[#F5F5F5]">Name</label>
-            <input id="name" name="name" type="text" required class="w-full rounded-2xl border border-[#2E2E2E] bg-[#0F0F0F] px-4 py-3 text-[#F5F5F5] placeholder:text-[#999999] focus:border-[#F472B6] focus:outline-none" placeholder="Your name" />
+            <label for="name" class="mb-2 block text-sm font-medium" style="color:var(--color-text-primary);">Name</label>
+            <input id="name" name="name" type="text" required class="page-input" placeholder="Your name" />
           </div>
           <div>
-            <label for="email" class="mb-2 block text-sm font-medium text-[#F5F5F5]">Email</label>
-            <input id="email" name="email" type="email" required class="w-full rounded-2xl border border-[#2E2E2E] bg-[#0F0F0F] px-4 py-3 text-[#F5F5F5] placeholder:text-[#999999] focus:border-[#F472B6] focus:outline-none" placeholder="you@example.com" />
+            <label for="email" class="mb-2 block text-sm font-medium" style="color:var(--color-text-primary);">Email</label>
+            <input id="email" name="email" type="email" required class="page-input" placeholder="you@example.com" />
           </div>
           <div>
-            <label for="subject" class="mb-2 block text-sm font-medium text-[#F5F5F5]">Subject</label>
-            <input id="subject" name="subject" type="text" required class="w-full rounded-2xl border border-[#2E2E2E] bg-[#0F0F0F] px-4 py-3 text-[#F5F5F5] placeholder:text-[#999999] focus:border-[#F472B6] focus:outline-none" placeholder="How can I help?" />
+            <label for="subject" class="mb-2 block text-sm font-medium" style="color:var(--color-text-primary);">Subject</label>
+            <input id="subject" name="subject" type="text" required class="page-input" placeholder="How can I help?" />
           </div>
           <div>
-            <label for="message" class="mb-2 block text-sm font-medium text-[#F5F5F5]">Message</label>
-            <textarea id="message" name="message" rows="6" required class="w-full rounded-2xl border border-[#2E2E2E] bg-[#0F0F0F] px-4 py-3 text-[#F5F5F5] placeholder:text-[#999999] focus:border-[#F472B6] focus:outline-none" placeholder="Write your message here"></textarea>
+            <label for="message" class="mb-2 block text-sm font-medium" style="color:var(--color-text-primary);">Message</label>
+            <textarea id="message" name="message" rows="6" required class="page-input" placeholder="Write your message here"></textarea>
           </div>
           <div class="space-y-3">
-            <button type="submit" class="inline-flex rounded-full bg-[#F472B6] px-6 py-3 font-semibold text-[#0F0F0F] transition hover:opacity-90">Send message</button>
-            <p class="text-sm leading-7 text-[#999999]">Form submission is currently a placeholder using <code class="rounded bg-[#0F0F0F] px-2 py-1 text-[#F5F5F5]">action=&quot;#&quot;</code>. Wire it to Netlify Forms or your preferred form service before launch.</p>
+            <button type="submit" class="button-pink">Send message</button>
+            <p class="text-sm page-muted">Form submission is currently a placeholder. Wire it to Netlify Forms or your preferred form service before launch.</p>
           </div>
         </form>
       </section>

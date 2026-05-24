@@ -18,13 +18,13 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
 
 // Thin accent color per category (top border + pill)
 const categoryColors: Record<string, string> = {
-  'Life with T1D': '#E879A4',
+  'Life with T1D': '#A67C8A',
   'Tech & Gear':   '#58A6FF',
   'Nutrition':     '#3FB950',
-  'Advocacy':      '#A78BFA',
+  'Advocacy':      '#9B8DB3',
   'Mindset':       '#F0883E',
 };
-const color = categoryColors[category] ?? '#8957E5';
+const color = categoryColors[category] ?? '#A67C8A';
 ---
 
 <a
@@ -56,7 +56,7 @@ const color = categoryColors[category] ?? '#8957E5';
     </span>
 
     <h2
-      class="line-clamp-2 leading-snug text-[#E6EDF3] transition-colors duration-200 group-hover:text-[#A78BFA]"
+      class="line-clamp-2 leading-snug text-[#E6EDF3] transition-colors duration-200 group-hover:text-[#B88E9C]"
       style="font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:600; margin:0;"
       transition:name={`post-title-${slug}`}
     >
@@ -69,7 +69,7 @@ const color = categoryColors[category] ?? '#8957E5';
         <p class="text-[11px] font-medium text-[#484F58]">{formattedDate}</p>
         {readTime && <p class="text-[11px] text-[#484F58]">{readTime} min read</p>}
       </div>
-      <span class="flex items-center gap-1 text-[11px] font-semibold text-[#484F58] transition-colors duration-200 group-hover:text-[#A78BFA]" aria-hidden="true">
+      <span class="flex items-center gap-1 text-[11px] font-semibold text-[#484F58] transition-colors duration-200 group-hover:text-[#B88E9C]" aria-hidden="true">
         Read
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M2.5 7h9M8 3.5 11.5 7 8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
