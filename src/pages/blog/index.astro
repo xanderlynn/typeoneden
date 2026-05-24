@@ -209,6 +209,10 @@ const posts = (await getCollection('blog').catch(() => []))
     const initial = new URLSearchParams(window.location.search).get('category') || 'All';
     setFilter(initial);
 
-    btns.forEach(b => b.addEventListener('click', () => setFilter(b.dataset.cat || 'All')));
+    btns.forEach(b => b.addEventListener('click', () => {
+      // Clicking the already-active non-"All" button deactivates the filter
+      const alreadyActive = b.getAttribute('data-active') === 'true' && b.dataset.cat !== 'All';
+      setFilter(alreadyActive ? 'All' : (b.dataset.cat || 'All'));
+    }));
   </script>
 </BaseLayout>

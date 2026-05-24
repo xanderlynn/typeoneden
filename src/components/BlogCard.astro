@@ -46,7 +46,7 @@ const color = getCategoryVar(category);
   <div class="flex flex-1 flex-col gap-3 p-5">
     <!-- Category pill -->
     <span class="inline-flex w-fit items-center rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest"
-      style={`background: ${color}18; color: ${color}; border: 1px solid ${color}30;`}>
+      style={`background: color-mix(in srgb, ${color} 9%, transparent); color: ${color}; border: 1px solid color-mix(in srgb, ${color} 19%, transparent);`}>
       {category}
     </span>
 
@@ -64,7 +64,7 @@ const color = getCategoryVar(category);
         <p class="text-[11px] font-medium" style="color:var(--color-text-tertiary);">{formattedDate}</p>
         {readTime && <p class="text-[11px]" style="color:var(--color-text-tertiary);">{readTime} min read</p>}
       </div>
-      <span class="flex items-center gap-1 text-[11px] font-semibold transition-colors duration-200 group-hover:text-[var(--color-accent-hover)]" style="color:var(--color-text-tertiary);" aria-hidden="true">
+      <span class="flex items-center gap-1 text-[11px] font-semibold transition-colors duration-200 group-hover:text-[var(--color-accent-hover)]" style="color:var(--color-accent);" aria-hidden="true">
         Read
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M2.5 7h9M8 3.5 11.5 7 8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
