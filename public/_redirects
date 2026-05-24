@@ -1,0 +1,10 @@
+# Cloudflare Pages _redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Trailing slash normalization
+/blog/  /blog  301
+/about/ /about 301
+
+# Redirect old paths if domain was previously used elsewhere
+# Uncomment and update as needed:
+# /old-post-slug  /blog/new-post-slug  301

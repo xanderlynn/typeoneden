@@ -139,7 +139,7 @@ const heroVideoId = import.meta.env.PUBLIC_HERO_VIDEO_ID;
               {recentPosts.map((post) => (
                 <BlogCard
                   title={post.data.title}
-                  slug={post.slug}
+                  slug={post.id}
                   pubDate={post.data.pubDate}
                   description={post.data.description}
                   category={post.data.category}

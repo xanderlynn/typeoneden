@@ -8,21 +8,14 @@
  */
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
+import { getCategoryColor } from '../../utils/categoryColors';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts
     .filter((p) => !p.data.draft)
-    .map((post) => ({ params: { slug: post.slug }, props: { post } }));
+    .map((post) => ({ params: { slug: post.id }, props: { post } }));
 }
-
-const CAT_COLORS: Record<string, string> = {
-  'Life with T1D': '#5E8C8A',
-  'Tech & Gear':   '#58A6FF',
-  'Nutrition':     '#3FB950',
-  'Advocacy':      '#9B8DB3',
-  'Mindset':       '#F0883E',
-};
 
 /** Wrap text into lines no longer than `maxChars` characters. */
 function wrapText(text: string, maxChars: number): string[] {
@@ -45,7 +38,7 @@ export const GET: APIRoute = ({ props }) => {
   const { post } = props as { post: any };
   const title    = post.data.title as string;
   const category = post.data.category as string;
-  const color    = CAT_COLORS[category] ?? '#5E8C8A';
+  const color    = getCategoryColor(category);
 
   const titleLines = wrapText(title, 36);
   const lineHeight = 68;

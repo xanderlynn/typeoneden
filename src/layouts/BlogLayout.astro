@@ -1,6 +1,7 @@
 ﻿---
 import BaseLayout from './BaseLayout.astro';
 import Giscus from '../components/Giscus.astro';
+import { getCategoryVar } from '../utils/categoryColors';
 
 interface Props {
   title: string;
@@ -32,14 +33,7 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
   year: 'numeric',
 });
 
-const categoryColors: Record<string, string> = {
-  'Life with T1D': '#5E8C8A',
-  'Tech & Gear':   '#58A6FF',
-  'Nutrition':     '#3FB950',
-  'Advocacy':      '#9B8DB3',
-  'Mindset':       '#F0883E',
-};
-const catColor = categoryColors[category] ?? '#5E8C8A';
+const catColor = getCategoryVar(category);
 
 // Derive slug from URL for OG image path
 const slug = Astro.url.pathname.replace(/^\/blog\//, '').replace(/\/$/, '');
