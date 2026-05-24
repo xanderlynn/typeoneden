@@ -80,10 +80,10 @@ test.describe('Homepage', () => {
     );
     console.log(`CTA color: ${color}, bg: ${bg}`);
 
-    // Text should NOT be pink (rgb(244,114,182)) — it should be dark #0F0F0F
-    expect(color).not.toBe('rgb(244, 114, 182)');
-    // Background should be the pink accent
-    expect(bg).toBe('rgb(244, 114, 182)');
+    // Text should be white on purple background (Copilot theme)
+    expect(color).toBe('rgb(255, 255, 255)');
+    // Background should be the purple Copilot accent
+    expect(bg).toBe('rgb(137, 87, 229)');
   });
 
   test('homepage shows latest blog posts', async ({ page }) => {

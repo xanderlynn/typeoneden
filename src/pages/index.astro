@@ -19,15 +19,15 @@ const recentPosts = allPosts.slice(1, 3);
 >
   <main>
     <!-- ── Hero ─────────────────────────────────────────────── -->
-    <section class="relative overflow-hidden border-b border-[#272727]" style="min-height: 88vh; display: flex; align-items: center;">
+    <section class="relative overflow-hidden border-b border-[#30363D]" style="min-height: 88vh; display: flex; align-items: center;">
 
       <!-- Dot grid texture -->
-      <div class="dot-grid pointer-events-none absolute inset-0 opacity-30" aria-hidden="true"></div>
+      <div class="dot-grid pointer-events-none absolute inset-0 opacity-20" aria-hidden="true"></div>
 
-      <!-- Pink glow orbs -->
+      <!-- Purple glow orbs (Copilot-style) -->
       <div class="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div style="position:absolute; top:-120px; left:50%; transform:translateX(-50%); width:800px; height:500px; background:radial-gradient(ellipse, rgba(244,114,182,0.18) 0%, transparent 70%); filter:blur(40px);"></div>
-        <div style="position:absolute; bottom:0; right:-100px; width:400px; height:400px; background:radial-gradient(ellipse, rgba(244,114,182,0.08) 0%, transparent 70%);"></div>
+        <div style="position:absolute; top:-120px; left:50%; transform:translateX(-50%); width:800px; height:500px; background:radial-gradient(ellipse, rgba(137,87,229,0.2) 0%, transparent 70%); filter:blur(40px);"></div>
+        <div style="position:absolute; bottom:0; right:-100px; width:400px; height:400px; background:radial-gradient(ellipse, rgba(88,166,255,0.07) 0%, transparent 70%);"></div>
       </div>
 
       <div class="relative wide-container px-4 py-28 md:py-36">
@@ -36,7 +36,7 @@ const recentPosts = allPosts.slice(1, 3);
           <!-- Eyebrow -->
           <div>
             <span class="eyebrow">
-              <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#F472B6;"></span>
+              <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#8957E5;"></span>
               T1D Lifestyle &amp; Community
             </span>
           </div>
@@ -44,11 +44,11 @@ const recentPosts = allPosts.slice(1, 3);
           <!-- Headline -->
           <h1 style="font-family:'Playfair Display',serif; font-size:clamp(3rem,8vw,5.5rem); line-height:1.05; letter-spacing:-0.02em; font-weight:700;">
             <span class="text-gradient">Living Boldly</span><br/>
-            <span style="color:#F0F0F0;">with Type&nbsp;1</span>
+            <span style="color:#E6EDF3;">with Type&nbsp;1</span>
           </h1>
 
           <!-- Sub -->
-          <p style="font-size:clamp(1rem,2.5vw,1.2rem); color:#888; line-height:1.75; max-width:520px; margin-inline:auto;">
+          <p style="font-size:clamp(1rem,2.5vw,1.2rem); color:#8B949E; line-height:1.75; max-width:520px; margin-inline:auto;">
             Real stories, honest tech reviews, T1D nutrition, and a community
             that actually gets it. No sugar-coating — just real life.
           </p>
@@ -70,7 +70,7 @@ const recentPosts = allPosts.slice(1, 3);
               '🥗 T1D nutrition tips',
               '📢 Advocacy & access',
             ].map((pill) => (
-              <span style="border:1px solid #272727; background:#141414; border-radius:9999px; padding:0.3rem 0.85rem; font-size:0.75rem; color:#888; white-space:nowrap;">
+              <span style="border:1px solid #30363D; background:#161B22; border-radius:9999px; padding:0.3rem 0.85rem; font-size:0.75rem; color:#8B949E; white-space:nowrap;">
                 {pill}
               </span>
             ))}
@@ -82,11 +82,11 @@ const recentPosts = allPosts.slice(1, 3);
 
     <!-- ── Featured Post ──────────────────────────────────────── -->
     {featuredPost && (
-      <section style="padding-block:5rem; border-bottom:1px solid #272727;">
+      <section style="padding-block:5rem; border-bottom:1px solid #30363D;">
         <div class="wide-container px-4 space-y-8">
           <div style="display:flex; align-items:baseline; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
             <p class="section-label">Featured Post</p>
-            <a href="/blog" style="font-size:0.8rem; color:#888; text-decoration:none; display:flex; align-items:center; gap:0.3rem;" class="hover:text-[#F472B6]">
+            <a href="/blog" style="font-size:0.8rem; color:#8B949E; text-decoration:none; display:flex; align-items:center; gap:0.3rem;" class="hover:text-[#A78BFA]">
               All posts
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
             </a>
@@ -94,31 +94,31 @@ const recentPosts = allPosts.slice(1, 3);
 
           <a
             href={`/blog/${featuredPost.slug}`}
-            style="display:grid; gap:0; border:1px solid #272727; border-radius:1.25rem; overflow:hidden; background:#141414; text-decoration:none; transition:border-color 0.2s, box-shadow 0.2s;"
+            style="display:grid; gap:0; border:1px solid #30363D; border-radius:1.25rem; overflow:hidden; background:#161B22; text-decoration:none; transition:border-color 0.2s, box-shadow 0.2s;"
             class="group featured-card md:grid-cols-[1fr_1fr]"
           >
-            <!-- Gradient cover -->
-            <div style={`background: ${
-              {'Life with T1D':'linear-gradient(135deg,#F472B6,#9D174D)','Tech & Gear':'linear-gradient(135deg,#60A5FA,#1D4ED8)','Nutrition':'linear-gradient(135deg,#34D399,#065F46)','Advocacy':'linear-gradient(135deg,#A78BFA,#4C1D95)','Mindset':'linear-gradient(135deg,#FBBF24,#92400E)'}[featuredPost.data.category] ?? 'linear-gradient(135deg,#F472B6,#9D174D)'
-            }; min-height:280px; position:relative; overflow:hidden;`}>
-              <div style="position:absolute;inset:0;background:url('data:image/svg+xml,%3Csvg viewBox%3D%220 0 200 200%22 xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter id%3D%22n%22%3E%3CfeTurbulence type%3D%22fractalNoise%22 baseFrequency%3D%220.9%22 numOctaves%3D%224%22 stitchTiles%3D%22stitch%22/%3E%3C/filter%3E%3Crect width%3D%22100%25%22 height%3D%22100%25%22 filter%3D%22url(%23n)%22/%3E%3C/svg%3E') 0 0 / 150px;opacity:0.2;"></div>
-              <span style="position:absolute;bottom:1.25rem;left:1.25rem;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);border-radius:9999px;padding:0.3rem 0.85rem;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#fff;">
-                {featuredPost.data.category}
-              </span>
+            <!-- Accent panel (thin) + category info -->
+            <div style={`position:relative; min-height:220px; background:#1C2128; display:flex; align-items:flex-end; padding:1.5rem; border-right:1px solid #30363D;`}>
+              <div style={`position:absolute; left:0; top:0; bottom:0; width:5px; background:${ {'Life with T1D':'#E879A4','Tech & Gear':'#58A6FF','Nutrition':'#3FB950','Advocacy':'#A78BFA','Mindset':'#F0883E'}[featuredPost.data.category] ?? '#8957E5'};`} />
+              <div style="padding-left:1rem;">
+                <span style={`display:inline-flex;align-items:center;border-radius:9999px;padding:0.3rem 0.85rem;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em; background:${ {'Life with T1D':'#E879A418','Tech & Gear':'#58A6FF18','Nutrition':'#3FB95018','Advocacy':'#A78BFA18','Mindset':'#F0883E18'}[featuredPost.data.category] ?? '#8957E518'}; color:${ {'Life with T1D':'#E879A4','Tech & Gear':'#58A6FF','Nutrition':'#3FB950','Advocacy':'#A78BFA','Mindset':'#F0883E'}[featuredPost.data.category] ?? '#8957E5'};`}>
+                  {featuredPost.data.category}
+                </span>
+              </div>
             </div>
 
             <!-- Content -->
             <div style="padding:2rem 2.5rem; display:flex; flex-direction:column; justify-content:space-between; gap:1.5rem;">
-              <div style="space-y:1rem;">
-                <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#555;margin-bottom:0.85rem;">
+              <div>
+                <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#484F58;margin-bottom:0.85rem;">
                   {featuredPost.data.pubDate.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}
                 </p>
-                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.2;font-weight:700;color:#F0F0F0;margin:0 0 1rem;" class="group-hover:text-[#F472B6] transition-colors">
+                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.2;font-weight:700;color:#E6EDF3;margin:0 0 1rem;" class="group-hover:text-[#A78BFA] transition-colors">
                   {featuredPost.data.title}
                 </h2>
-                <p style="color:#888;font-size:0.95rem;line-height:1.7;margin:0;">{featuredPost.data.description}</p>
+                <p style="color:#8B949E;font-size:0.95rem;line-height:1.7;margin:0;">{featuredPost.data.description}</p>
               </div>
-              <span style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;color:#F472B6;">
+              <span style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;color:#8957E5;">
                 Read article
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
               </span>
@@ -145,12 +145,12 @@ const recentPosts = allPosts.slice(1, 3);
     )}
 
     <!-- ── YouTube ─────────────────────────────────────────────── -->
-    <section style="padding-block:5rem; border-bottom:1px solid #272727; background:#0A0A0A;">
+    <section style="padding-block:5rem; border-bottom:1px solid #30363D; background:#0D1117;">
       <div class="wide-container px-4" style="display:grid; gap:3rem;" class="md:grid-cols-[1fr_1.4fr]">
         <div style="space-y:1.25rem;">
           <p class="section-label" style="margin-bottom:1rem;">YouTube</p>
-          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.15;font-weight:700;color:#F0F0F0;margin:0 0 1rem;">Watch the latest video</h2>
-          <p style="color:#888;font-size:0.95rem;line-height:1.7;margin:0 0 1.5rem;">Real talk about life with T1D — tech breakdowns, day-in-the-life vlogs, and community conversations.</p>
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.15;font-weight:700;color:#E6EDF3;margin:0 0 1rem;">Watch the latest video</h2>
+          <p style="color:#8B949E;font-size:0.95rem;line-height:1.7;margin:0 0 1.5rem;">Real talk about life with T1D — tech breakdowns, day-in-the-life vlogs, and community conversations.</p>
           <a href="/youtube" class="button-outline">View all videos</a>
         </div>
         <YouTubeEmbed videoId="dQw4w9WgXcQ" title="Placeholder: Welcome to TypeOneDen" />

@@ -7,110 +7,94 @@ const categories = ['All', 'Life with T1D', 'Tech & Gear', 'Nutrition', 'Advocac
 const posts = (await getCollection('blog').catch(() => []))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-const featuredPost = posts[0];
-const gridPosts = posts.slice(1);
-
-const categoryGradients: Record<string, string> = {
-  'Life with T1D': 'linear-gradient(135deg, #F472B6 0%, #BE185D 100%)',
-  'Tech & Gear':   'linear-gradient(135deg, #38BDF8 0%, #0369A1 100%)',
-  'Nutrition':     'linear-gradient(135deg, #4ADE80 0%, #15803D 100%)',
-  'Advocacy':      'linear-gradient(135deg, #C084FC 0%, #6D28D9 100%)',
-  'Mindset':       'linear-gradient(135deg, #FCD34D 0%, #B45309 100%)',
-};
 ---
 
 <BaseLayout
   title="Blog | TypeOneDen"
   description="Browse the latest articles from TypeOneDen on life with type 1 diabetes, tech, nutrition, and advocacy."
 >
-  <main style="background:#0A0A0A; min-height:100vh;">
+  <main style="background:#0D1117; min-height:100vh;">
 
     <!-- Page header -->
-    <div style="border-bottom:1px solid #272727; padding:4rem 0 3rem; position:relative; overflow:hidden;">
-      <div class="dot-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden="true"></div>
+    <div style="border-bottom:1px solid #30363D; padding:4rem 0 3rem; position:relative; overflow:hidden;">
+      <div class="dot-grid pointer-events-none absolute inset-0 opacity-20" aria-hidden="true"></div>
       <div class="wide-container px-4" style="position:relative;">
         <p class="section-label" style="margin-bottom:1rem;">All Articles</p>
-        <h1 style="font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.2rem); line-height:1.1; font-weight:700; color:#F0F0F0; margin:0 0 1rem;">
+        <h1 style="font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3rem); line-height:1.1; font-weight:700; color:#E6EDF3; margin:0 0 1rem;">
           Stories, guides &amp; honest T1D living
         </h1>
-        <p style="color:#666; font-size:1rem; line-height:1.7; max-width:560px; margin:0;">
-          From everyday life with T1D to diabetes tech, food, and advocacy — real talk from someone who lives it.
+        <p style="color:#8B949E; font-size:0.95rem; line-height:1.7; max-width:520px; margin:0;">
+          Real talk on everyday life with T1D, diabetes tech, food, and advocacy — from someone who lives it daily.
         </p>
       </div>
     </div>
 
-    <div class="wide-container px-4" style="padding-block:3.5rem;">
-
-      <!-- Featured post -->
-      {featuredPost && (
-        <div style="margin-bottom:3.5rem;">
-          <p class="section-label" style="margin-bottom:1.25rem;">Featured</p>
-          <a
-            href={`/blog/${featuredPost.slug}`}
-            class="featured-hero group"
-          >
-            <div style={`background:${categoryGradients[featuredPost.data.category] ?? categoryGradients['Life with T1D']}; min-height:220px; position:relative; overflow:hidden; flex-shrink:0;`} class="featured-hero-img">
-              <div style="position:absolute;inset:0;background:url('data:image/svg+xml,%3Csvg viewBox%3D%220 0 200 200%22 xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter id%3D%22n%22%3E%3CfeTurbulence type%3D%22fractalNoise%22 baseFrequency%3D%220.9%22 numOctaves%3D%224%22 stitchTiles%3D%22stitch%22/%3E%3C/filter%3E%3Crect width%3D%22100%25%22 height%3D%22100%25%22 filter%3D%22url(%23n)%22/%3E%3C/svg%3E') 0 0 / 150px;opacity:0.15;"></div>
-              <span style="position:absolute;bottom:1rem;left:1rem;background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);border-radius:9999px;padding:0.25rem 0.75rem;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#fff;">
-                {featuredPost.data.category}
-              </span>
-            </div>
-            <div style="padding:2rem 2.5rem; display:flex; flex-direction:column; justify-content:center; gap:1rem;">
-              <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#444;margin:0;">
-                {featuredPost.data.pubDate.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}
-              </p>
-              <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);line-height:1.2;font-weight:700;color:#F0F0F0;margin:0;" class="group-hover:text-[#F472B6] transition-colors">
-                {featuredPost.data.title}
-              </h2>
-              <p style="color:#666;font-size:0.9rem;line-height:1.7;margin:0;">{featuredPost.data.description}</p>
-              <span style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:#F472B6;margin-top:0.25rem;">
-                Read article
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-              </span>
-            </div>
-          </a>
-        </div>
-      )}
+    <div class="wide-container px-4" style="padding-block:3rem;">
 
       <!-- Category filter -->
-      <div style="margin-bottom:2rem;">
-        <div class="flex flex-wrap gap-2" aria-label="Filter posts by category">
-          {categories.map((category) => (
-            <button
-              type="button"
-              class:list={[
-                'category-tab rounded-full border px-4 py-1.5 text-xs font-semibold tracking-wide transition-all duration-150',
-                category === 'All'
-                  ? 'border-[#F472B6] bg-[#F472B6] text-[#0A0A0A]'
-                  : 'border-[#272727] bg-[#141414] text-[#666] hover:border-[#444] hover:text-[#F0F0F0]',
-              ]}
-              data-category={category}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+      <div style="margin-bottom:2rem; display:flex; flex-wrap:wrap; gap:0.5rem;" role="group" aria-label="Filter posts by category">
+        {categories.map((cat) => (
+          <button
+            type="button"
+            class="cat-btn"
+            data-cat={cat}
+            data-active={cat === 'All' ? 'true' : 'false'}
+          >
+            {cat}
+          </button>
+        ))}
       </div>
 
-      <!-- Grid -->
-      {gridPosts.length > 0 ? (
-        <div id="blog-grid" style="display:grid; gap:1.25rem;" class="blog-grid-cols">
-          {gridPosts.map((post) => (
-            <div class="post-card" data-category={post.data.category}>
-              <BlogCard
-                title={post.data.title}
-                slug={post.slug}
-                pubDate={post.data.pubDate}
-                description={post.data.description}
-                category={post.data.category}
-                image={post.data.image}
-              />
+      <!-- Unified grid — ALL posts, first one is wide -->
+      {posts.length > 0 ? (
+        <div id="blog-grid" class="blog-grid">
+          {posts.map((post, i) => (
+            <div
+              class:list={['post-card', i === 0 && 'post-card--featured']}
+              data-cat={post.data.category}
+            >
+              {i === 0 ? (
+                /* Featured first post — horizontal layout */
+                <a
+                  href={`/blog/${post.slug}`}
+                  class="featured-link group"
+                >
+                  <div class="featured-accent" style={`background: ${{
+                    'Life with T1D':'#E879A4','Tech & Gear':'#58A6FF',
+                    'Nutrition':'#3FB950','Advocacy':'#A78BFA','Mindset':'#F0883E',
+                  }[post.data.category] ?? '#8957E5'};`} />
+                  <div class="featured-body">
+                    <div>
+                      <p style="font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#484F58;margin:0 0 0.75rem;">
+                        {post.data.pubDate.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}
+                        &nbsp;·&nbsp;Featured
+                      </p>
+                      <h2 class="featured-title group-hover:text-[#A78BFA]">
+                        {post.data.title}
+                      </h2>
+                      <p style="color:#8B949E;font-size:0.9rem;line-height:1.7;margin:0.75rem 0 0;">{post.data.description}</p>
+                    </div>
+                    <span style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:#8957E5;margin-top:1.25rem;">
+                      Read article
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+                    </span>
+                  </div>
+                </a>
+              ) : (
+                <BlogCard
+                  title={post.data.title}
+                  slug={post.slug}
+                  pubDate={post.data.pubDate}
+                  description={post.data.description}
+                  category={post.data.category}
+                  image={post.data.image}
+                />
+              )}
             </div>
           ))}
         </div>
       ) : (
-        <div style="border:1px dashed #272727; border-radius:1rem; background:#141414; padding:3rem; text-align:center; color:#555;">
+        <div style="border:1px dashed #30363D;border-radius:1rem;background:#161B22;padding:3rem;text-align:center;color:#484F58;">
           Posts will appear here once the blog collection is populated.
         </div>
       )}
@@ -118,63 +102,99 @@ const categoryGradients: Record<string, string> = {
   </main>
 
   <style>
-    .featured-hero {
+    .blog-grid {
       display: grid;
-      border: 1px solid #272727;
-      border-radius: 1.25rem;
+      gap: 1.25rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 640px) {
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .blog-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .post-card--featured {
+      grid-column: 1 / -1;
+    }
+
+    /* Featured card */
+    .featured-link {
+      display: grid;
+      grid-template-columns: 6px 1fr;
+      border: 1px solid #30363D;
+      border-radius: 0.875rem;
       overflow: hidden;
-      background: #141414;
+      background: #161B22;
       text-decoration: none;
       transition: border-color 0.2s, box-shadow 0.2s;
+      min-height: 160px;
     }
-    .featured-hero:hover {
-      border-color: rgba(244,114,182,0.4);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    .featured-link:hover {
+      border-color: rgba(137,87,229,0.5);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
     }
-    .featured-hero-img { min-height: 220px; }
-    @media (min-width: 768px) {
-      .featured-hero { grid-template-columns: 1fr 1.2fr; }
-      .featured-hero-img { min-height: 280px; }
+    .featured-accent {
+      width: 6px;
+      flex-shrink: 0;
     }
-    .blog-grid-cols { grid-template-columns: 1fr; }
-    @media (min-width: 640px) { .blog-grid-cols { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .blog-grid-cols { grid-template-columns: repeat(3, 1fr); } }
+    .featured-body {
+      padding: 1.75rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .featured-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      line-height: 1.2;
+      font-weight: 700;
+      color: #E6EDF3;
+      margin: 0;
+      transition: color 0.2s;
+    }
+
+    /* Filter buttons */
+    .cat-btn {
+      border: 1px solid #30363D;
+      background: #161B22;
+      color: #8B949E;
+      border-radius: 9999px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      letter-spacing: 0.02em;
+    }
+    .cat-btn:hover {
+      border-color: #8957E5;
+      color: #E6EDF3;
+    }
+    .cat-btn[data-active="true"] {
+      border-color: #8957E5;
+      background: rgba(137,87,229,0.15);
+      color: #A78BFA;
+    }
   </style>
 
   <script is:inline>
-    const tabs = Array.from(document.querySelectorAll('.category-tab'));
+    const btns = Array.from(document.querySelectorAll('.cat-btn'));
     const cards = Array.from(document.querySelectorAll('.post-card'));
-    const params = new URLSearchParams(window.location.search);
-    const initialCategory = params.get('category') || 'All';
 
-    const setCategory = (category) => {
-      tabs.forEach((tab) => {
-        const isActive = tab.dataset.category === category;
-        if (isActive) {
-          tab.classList.add('border-[#F472B6]', 'bg-[#F472B6]', 'text-[#0A0A0A]');
-          tab.classList.remove('border-[#272727]', 'bg-[#141414]', 'text-[#666]');
-        } else {
-          tab.classList.remove('border-[#F472B6]', 'bg-[#F472B6]', 'text-[#0A0A0A]');
-          tab.classList.add('border-[#272727]', 'bg-[#141414]', 'text-[#666]');
-        }
+    function setFilter(cat) {
+      btns.forEach(b => b.setAttribute('data-active', b.dataset.cat === cat ? 'true' : 'false'));
+      cards.forEach(c => {
+        const matches = cat === 'All' || c.dataset.cat === cat;
+        c.style.display = matches ? '' : 'none';
       });
-      cards.forEach((card) => {
-        const matches = category === 'All' || card.dataset.category === category;
-        card.style.display = matches ? '' : 'none';
-      });
-    };
+      const url = new URL(window.location.href);
+      cat === 'All' ? url.searchParams.delete('category') : url.searchParams.set('category', cat);
+      window.history.replaceState({}, '', url);
+    }
 
-    setCategory(initialCategory);
+    const initial = new URLSearchParams(window.location.search).get('category') || 'All';
+    setFilter(initial);
 
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        const category = tab.dataset.category || 'All';
-        const url = new URL(window.location.href);
-        category === 'All' ? url.searchParams.delete('category') : url.searchParams.set('category', category);
-        window.history.replaceState({}, '', url);
-        setCategory(category);
-      });
-    });
+    btns.forEach(b => b.addEventListener('click', () => setFilter(b.dataset.cat || 'All')));
   </script>
 </BaseLayout>
-

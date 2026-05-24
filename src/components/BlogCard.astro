@@ -15,57 +15,54 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
   year: 'numeric',
 });
 
-const categoryGradients: Record<string, string> = {
-  'Life with T1D': 'linear-gradient(135deg, #F472B6 0%, #BE185D 100%)',
-  'Tech & Gear':   'linear-gradient(135deg, #38BDF8 0%, #0369A1 100%)',
-  'Nutrition':     'linear-gradient(135deg, #4ADE80 0%, #15803D 100%)',
-  'Advocacy':      'linear-gradient(135deg, #C084FC 0%, #6D28D9 100%)',
-  'Mindset':       'linear-gradient(135deg, #FCD34D 0%, #B45309 100%)',
+// Thin accent color per category (top border + pill)
+const categoryColors: Record<string, string> = {
+  'Life with T1D': '#E879A4',
+  'Tech & Gear':   '#58A6FF',
+  'Nutrition':     '#3FB950',
+  'Advocacy':      '#A78BFA',
+  'Mindset':       '#F0883E',
 };
-
-const gradient = categoryGradients[category] ?? categoryGradients['Life with T1D'];
+const color = categoryColors[category] ?? '#8957E5';
 ---
 
 <a
   href={`/blog/${slug}`}
-  class="card-link group flex h-full flex-col overflow-hidden rounded-2xl border border-[#272727] bg-[#141414]"
+  class="card-link group flex h-full flex-col overflow-hidden rounded-xl border border-[#30363D] bg-[#161B22]"
+  style={`border-top: 3px solid ${color};`}
 >
-  <!-- Cover -->
-  <div class="cover-wrap relative shrink-0 overflow-hidden" style="height:160px;">
-    {image ? (
+  <!-- Optional photo cover — only shown when image prop is set -->
+  {image && (
+    <div class="relative shrink-0 overflow-hidden" style="height:140px;">
       <img
         src={image}
         alt=""
         class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         loading="lazy"
       />
-    ) : (
-      <div
-        class="h-full w-full transition-transform duration-700 group-hover:scale-110"
-        style={`background: ${gradient}`}
-      />
-    )}
-    <div class="noise-overlay absolute inset-0 opacity-[0.15]" aria-hidden="true" />
-    <!-- category pill -->
-    <span class="absolute bottom-3 left-3 rounded-full bg-black/55 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest text-white backdrop-blur-sm">
-      {category}
-    </span>
-  </div>
+    </div>
+  )}
 
   <!-- Content -->
   <div class="flex flex-1 flex-col gap-3 p-5">
+    <!-- Category pill -->
+    <span class="inline-flex w-fit items-center rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest"
+      style={`background: ${color}18; color: ${color}; border: 1px solid ${color}30;`}>
+      {category}
+    </span>
+
     <h2
-      class="line-clamp-2 leading-snug text-[#F0F0F0] transition-colors duration-200 group-hover:text-[#F472B6]"
+      class="line-clamp-2 leading-snug text-[#E6EDF3] transition-colors duration-200 group-hover:text-[#A78BFA]"
       style="font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:600; margin:0;"
       transition:name={`post-title-${slug}`}
     >
       {title}
     </h2>
-    <p class="line-clamp-2 text-sm leading-relaxed text-[#666]" style="margin:0;">{description}</p>
+    <p class="line-clamp-2 text-sm leading-relaxed text-[#8B949E]" style="margin:0;">{description}</p>
 
-    <div class="mt-auto flex items-center justify-between pt-2" style="border-top:1px solid #1E1E1E; padding-top:0.75rem; margin-top:0.5rem;">
-      <p class="text-[11px] font-medium uppercase tracking-[0.12em] text-[#444]">{formattedDate}</p>
-      <span class="read-more flex items-center gap-1 text-[11px] font-semibold text-[#555] transition-colors duration-200 group-hover:text-[#F472B6]" aria-hidden="true">
+    <div class="mt-auto flex items-center justify-between" style="border-top:1px solid #21262D; padding-top:0.75rem; margin-top:0.5rem;">
+      <p class="text-[11px] font-medium text-[#484F58]">{formattedDate}</p>
+      <span class="flex items-center gap-1 text-[11px] font-semibold text-[#484F58] transition-colors duration-200 group-hover:text-[#A78BFA]" aria-hidden="true">
         Read
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M2.5 7h9M8 3.5 11.5 7 8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -81,13 +78,8 @@ const gradient = categoryGradients[category] ?? categoryGradients['Life with T1D
     transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .card-link:hover {
-    border-color: rgba(244, 114, 182, 0.4);
     transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(244,114,182,0.1);
-  }
-  .noise-overlay {
-    background-image: url('data:image/svg+xml,%3Csvg viewBox%3D%220 0 200 200%22 xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cfilter id%3D%22n%22%3E%3CfeTurbulence type%3D%22fractalNoise%22 baseFrequency%3D%220.9%22 numOctaves%3D%224%22 stitchTiles%3D%22stitch%22%2F%3E%3C%2Ffilter%3E%3Crect width%3D%22100%25%22 height%3D%22100%25%22 filter%3D%22url(%23n)%22%2F%3E%3C%2Fsvg%3E');
-    background-size: 150px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
   }
 </style>
 

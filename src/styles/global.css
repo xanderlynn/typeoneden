@@ -1,18 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0A0A0A;
-  --color-surface: #141414;
-  --color-surface-2: #1C1C1C;
-  --color-border: #272727;
-  --color-border-subtle: #1E1E1E;
-  --color-text-primary: #F0F0F0;
-  --color-text-secondary: #888888;
-  --color-text-tertiary: #555555;
-  --color-accent: #F472B6;
-  --color-accent-hover: #f9a8d4;
-  --color-accent-muted: #9D174D;
-  --color-accent-dim: rgba(244, 114, 182, 0.08);
+  /* GitHub / Copilot dark theme */
+  --color-bg: #0D1117;
+  --color-surface: #161B22;
+  --color-surface-2: #1C2128;
+  --color-border: #30363D;
+  --color-border-subtle: #21262D;
+  --color-text-primary: #E6EDF3;
+  --color-text-secondary: #8B949E;
+  --color-text-tertiary: #484F58;
+  /* Copilot purple accent */
+  --color-accent: #8957E5;
+  --color-accent-hover: #A78BFA;
+  --color-accent-muted: #6E40C9;
+  --color-accent-dim: rgba(137, 87, 229, 0.12);
+  /* Category colors (used as thin accents, not large fills) */
+  --cat-life:     #E879A4;   /* rose/pink  — Life with T1D */
+  --cat-tech:     #58A6FF;   /* blue       — Tech & Gear   */
+  --cat-nutrition:#3FB950;   /* green      — Nutrition     */
+  --cat-advocacy: #A78BFA;   /* violet     — Advocacy      */
+  --cat-mindset:  #F0883E;   /* amber      — Mindset       */
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
 }
@@ -150,7 +158,7 @@ pre {
 
 /* Gradient text utility */
 .text-gradient {
-  background: linear-gradient(135deg, #F0F0F0 30%, #F472B6 100%);
+  background: linear-gradient(135deg, #E6EDF3 30%, #A78BFA 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -196,20 +204,20 @@ pre {
 .button-accent {
   border: 1px solid var(--color-accent);
   background: var(--color-accent);
-  color: #0A0A0A !important;
+  color: #ffffff !important;
 }
 
 a.button-accent,
 button.button-accent {
-  color: #0A0A0A !important;
+  color: #ffffff !important;
 }
 
 .button-accent:hover {
   background: var(--color-accent-hover);
   border-color: var(--color-accent-hover);
-  color: #0A0A0A !important;
+  color: #ffffff !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(244, 114, 182, 0.35);
+  box-shadow: 0 4px 20px rgba(137, 87, 229, 0.4);
 }
 
 .button-accent:active {
