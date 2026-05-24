@@ -204,8 +204,9 @@ pre {
 
 .button-accent {
   border: 1px solid var(--color-accent);
-  background: var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-muted) 100%);
   color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.08) inset;
 }
 
 a.button-accent,
@@ -214,36 +215,39 @@ button.button-accent {
 }
 
 .button-accent:hover {
-  background: var(--color-accent-hover);
+  background: linear-gradient(135deg, var(--color-accent-hover) 0%, var(--color-accent) 100%);
   border-color: var(--color-accent-hover);
   color: #ffffff !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(176, 112, 122, 0.4);
+  box-shadow: 0 6px 20px rgba(176, 112, 122, 0.35), 0 1px 0 rgba(255,255,255,0.1) inset;
 }
 
 .button-accent:active {
   transform: translateY(0);
-  background: var(--color-accent-muted);
+  background: linear-gradient(135deg, var(--color-accent-muted) 0%, color-mix(in srgb, var(--color-accent-muted) 80%, #000) 100%);
   border-color: var(--color-accent-muted);
   color: var(--color-text-primary) !important;
-  box-shadow: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4) inset;
 }
 
 .button-outline {
   border: 1px solid var(--color-border);
   color: var(--color-text-secondary);
-  background: transparent;
+  background: color-mix(in srgb, var(--color-surface) 60%, transparent);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .button-outline:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
   background: var(--color-accent-dim);
+  box-shadow: 0 2px 8px rgba(176, 112, 122, 0.15);
 }
 
 .button-outline:active {
   border-color: var(--color-accent-muted);
   color: var(--color-accent-muted);
+  box-shadow: none;
 }
 
 .muted {
@@ -305,18 +309,19 @@ button.button-accent {
   padding: 0.65rem 1.5rem;
   font-size: 0.875rem;
   font-weight: 600;
-  background: var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-muted) 100%);
   color: #fff;
   border: 1px solid var(--color-accent);
   transition: all 0.2s ease;
   text-decoration: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.08) inset;
 }
 .button-pink:hover {
-  background: var(--color-accent-hover);
+  background: linear-gradient(135deg, var(--color-accent-hover) 0%, var(--color-accent) 100%);
   border-color: var(--color-accent-hover);
   color: #fff;
   transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(176, 112, 122, 0.35);
+  box-shadow: 0 6px 20px rgba(176, 112, 122, 0.35);
 }
 
 .prose {
@@ -466,33 +471,39 @@ button.button-accent {
 }
 
 /* Nav scroll state */
+/* Nav transparent state (top of page) */
 .nav-bg-transparent {
   background: transparent;
   border-color: transparent;
+  box-shadow: none;
 }
-.nav-scrolled {
-  background: color-mix(in srgb, var(--color-bg) 88%, transparent);
-  border-color: var(--color-border);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.04) inset;
-  will-change: transform;
-}
-
-.nav-pill-active .wide-container {
-  max-width: 900px;
-  background: color-mix(in srgb, var(--color-surface) 80%, transparent);
-  border: 1px solid var(--color-border);
-  border-radius: 9999px;
-  padding-inline: 1.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 .nav-bg-transparent .wide-container {
   max-width: 1200px;
   background: transparent;
   border: none;
   border-radius: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Nav scrolled state — the NAV ELEMENT itself stays transparent,
+   only the pill container gets the background */
+.nav-scrolled {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  will-change: transform;
+}
+
+/* Pill container: only active when scrolled */
+.nav-pill-active .wide-container {
+  max-width: 900px;
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  padding-inline: 1.5rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.04) inset;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
