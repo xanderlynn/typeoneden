@@ -2,7 +2,6 @@
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 
 const links = [
-  { href: '/', label: 'Home' },
   { href: '/blog', label: 'Blog' },
   { href: '/resources', label: 'Resources' },
   { href: '/youtube', label: 'YouTube' },
@@ -17,51 +16,55 @@ const isActive = (href: string) => {
 
 <nav
   id="site-nav"
-  class="sticky top-0 z-50 border-b border-transparent bg-[#0F0F0F]/0 transition-all duration-300 ease-in-out"
+  class="sticky top-0 z-50 border-b border-transparent bg-[#0A0A0A]/0 transition-all duration-300 ease-in-out"
   data-nav
 >
-  <div class="site-container">
+  <div class="wide-container px-4">
     <div class="flex items-center justify-between gap-6 py-4">
-      <a href="/" class="flex items-center gap-2 group" aria-label="TypeOneDen home">
-        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#F472B6] text-xs font-black text-[#0F0F0F] tracking-tight select-none">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2.5 group shrink-0" aria-label="TypeOneDen home">
+        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[10px] font-black tracking-tighter select-none transition-all duration-200 group-hover:scale-105"
+          style="background: linear-gradient(135deg, #F472B6, #BE185D); color: #0A0A0A; letter-spacing:-0.05em;">
           T1D
         </span>
-        <span class="font-semibold text-lg tracking-tight text-[#F5F5F5] group-hover:text-[#F472B6] transition-colors" style="font-family: 'Inter', sans-serif;">
+        <span class="font-semibold text-base tracking-tight text-[#F0F0F0] transition-colors group-hover:text-[#F472B6]">
           TypeOneDen
         </span>
       </a>
 
+      <!-- Mobile toggle -->
       <button
         type="button"
-        class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#2E2E2E] text-[#F5F5F5] md:hidden"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#272727] text-[#F0F0F0] md:hidden transition-colors hover:border-[#F472B6]"
         aria-expanded="false"
         aria-controls="primary-navigation"
         aria-label="Toggle navigation"
         data-nav-toggle
       >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-4 w-4">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
         </svg>
       </button>
 
+      <!-- Desktop links -->
       <div
         id="primary-navigation"
-        class="hidden w-full flex-col gap-6 pt-4 md:flex md:w-auto md:flex-row md:items-center md:gap-8 md:pt-0"
+        class="hidden w-full flex-col gap-4 pt-4 md:flex md:w-auto md:flex-row md:items-center md:gap-1 md:pt-0"
         data-nav-menu
       >
-        <ul class="flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
+        <ul class="flex flex-col gap-3 md:flex-row md:items-center md:gap-1">
           {links.map((link) => {
             const active = isActive(link.href);
-
             return (
               <li>
                 <a
                   href={link.href}
                   class:list={[
-                    'border-b pb-1 text-sm font-medium tracking-wide transition-colors',
+                    'nav-link relative inline-flex items-center rounded-full px-3.5 py-1.5 text-sm font-medium tracking-wide transition-all duration-200',
                     active
-                      ? 'border-[#F472B6] text-[#F5F5F5]'
-                      : 'border-transparent text-[#999999] hover:text-[#F5F5F5]',
+                      ? 'bg-[#1C1C1C] text-[#F0F0F0] border border-[#272727]'
+                      : 'text-[#666] hover:text-[#F0F0F0] hover:bg-[#141414]',
                   ]}
                   aria-current={active ? 'page' : undefined}
                 >
@@ -72,9 +75,11 @@ const isActive = (href: string) => {
           })}
         </ul>
 
-        <a href="/newsletter" class="button-outline w-full text-center md:w-auto">
-          Subscribe
-        </a>
+        <div class="pl-2 md:pl-3 border-t border-[#1E1E1E] md:border-t-0 md:border-l md:border-[#272727] pt-3 md:pt-0 md:ml-1">
+          <a href="/newsletter" class="button-accent text-sm py-[0.5rem] px-4">
+            Subscribe
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -85,15 +90,14 @@ const isActive = (href: string) => {
   const menu = document.querySelector('[data-nav-menu]');
   const nav = document.querySelector('[data-nav]') as HTMLElement | null;
 
-  // Scroll-aware frosted glass
   const updateNav = () => {
     if (!nav) return;
     if (window.scrollY > 20) {
-      nav.classList.add('border-[#2E2E2E]', 'bg-[#0F0F0F]/95', 'backdrop-blur-md', 'shadow-sm', 'shadow-black/40');
-      nav.classList.remove('border-transparent', 'bg-[#0F0F0F]/0');
+      nav.classList.add('border-[#272727]', 'bg-[#0A0A0A]/96', 'backdrop-blur-xl', 'shadow-sm', 'shadow-black/60');
+      nav.classList.remove('border-transparent', 'bg-[#0A0A0A]/0');
     } else {
-      nav.classList.remove('border-[#2E2E2E]', 'bg-[#0F0F0F]/95', 'backdrop-blur-md', 'shadow-sm', 'shadow-black/40');
-      nav.classList.add('border-transparent', 'bg-[#0F0F0F]/0');
+      nav.classList.remove('border-[#272727]', 'bg-[#0A0A0A]/96', 'backdrop-blur-xl', 'shadow-sm', 'shadow-black/60');
+      nav.classList.add('border-transparent', 'bg-[#0A0A0A]/0');
     }
   };
   updateNav();
@@ -104,36 +108,23 @@ const isActive = (href: string) => {
       toggle.setAttribute('aria-expanded', 'false');
       menu.classList.add('hidden');
     };
-
     const openMenu = () => {
       toggle.setAttribute('aria-expanded', 'true');
       menu.classList.remove('hidden');
     };
-
     closeMenu();
-
     toggle.addEventListener('click', () => {
-      const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      if (expanded) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
+      toggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
     });
-
     document.addEventListener('click', (event) => {
       if (window.innerWidth >= 768) return;
       const target = event.target;
       if (!(target instanceof Node)) return;
-      if (!menu.contains(target) && !toggle.contains(target)) {
-        closeMenu();
-      }
+      if (!menu.contains(target) && !toggle.contains(target)) closeMenu();
     });
-
     window.addEventListener('resize', () => {
       if (window.innerWidth >= 768) {
         menu.classList.remove('hidden');
-        toggle.setAttribute('aria-expanded', 'true');
       } else {
         menu.classList.add('hidden');
         toggle.setAttribute('aria-expanded', 'false');
@@ -141,3 +132,4 @@ const isActive = (href: string) => {
     });
   }
 </script>
+

@@ -5,76 +5,191 @@ import BlogCard from '../components/BlogCard.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
 import YouTubeEmbed from '../components/YouTubeEmbed.astro';
 
-const latestPosts = (await getCollection('blog').catch(() => []))
+const allPosts = (await getCollection('blog').catch(() => []))
   .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const featuredPost = allPosts[0];
+const recentPosts = allPosts.slice(1, 3);
 ---
 
 <BaseLayout
-  title="Type One Den"
-  description="Type One Den is your guide to thriving with T1D through honest stories, practical resources, and real community."
+  title="TypeOneDen — Living Boldly with Type 1"
+  description="TypeOneDen is your guide to thriving with T1D through honest stories, practical resources, and real community."
 >
-  <main class="bg-[#0F0F0F] text-[#F5F5F5]" style="font-family: Inter, sans-serif;">
-    <!-- Hero -->
-    <section class="relative overflow-hidden border-b border-[#2E2E2E] py-24 md:py-32">
-      <!-- Subtle pink glow from top -->
-      <div class="pointer-events-none absolute inset-x-0 top-0 h-[500px]" style="background: radial-gradient(ellipse 70% 40% at 50% -5%, oklch(0.55 0.18 330 / 0.22), transparent);" aria-hidden="true" />
-      <div class="relative max-w-[760px] mx-auto px-4 text-center space-y-7">
-        <span class="eyebrow">Type 1 Diabetes</span>
-        <h1 class="text-5xl md:text-7xl leading-[1.1] tracking-tight" style="font-family: 'Playfair Display', serif;">Living Boldly<br/>with Type&nbsp;1</h1>
-        <p class="text-lg md:text-xl leading-8 text-[#999999] max-w-[540px] mx-auto">Your guide to thriving with T1D — real talk, real resources, real community.</p>
-        <div class="flex flex-col justify-center gap-4 sm:flex-row pt-2">
-          <a href="/blog" class="button-accent">Read the Blog</a>
-          <a href="/start" class="button-outline">Start Here</a>
-        </div>
+  <main>
+    <!-- ── Hero ─────────────────────────────────────────────── -->
+    <section class="relative overflow-hidden border-b border-[#272727]" style="min-height: 88vh; display: flex; align-items: center;">
+
+      <!-- Dot grid texture -->
+      <div class="dot-grid pointer-events-none absolute inset-0 opacity-30" aria-hidden="true"></div>
+
+      <!-- Pink glow orbs -->
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div style="position:absolute; top:-120px; left:50%; transform:translateX(-50%); width:800px; height:500px; background:radial-gradient(ellipse, rgba(244,114,182,0.18) 0%, transparent 70%); filter:blur(40px);"></div>
+        <div style="position:absolute; bottom:0; right:-100px; width:400px; height:400px; background:radial-gradient(ellipse, rgba(244,114,182,0.08) 0%, transparent 70%);"></div>
       </div>
-    </section>
 
-    <section class="py-16">
-      <div class="max-w-6xl mx-auto px-4 space-y-8">
-        <div class="max-w-[720px] space-y-3">
-          <p class="text-sm uppercase tracking-[0.3em] text-[#F472B6]">Latest Posts</p>
-          <h2 class="text-3xl md:text-4xl" style="font-family: 'Playfair Display', serif;">Fresh from the blog</h2>
-          <p class="leading-8 text-[#999999]">New stories, practical guides, and honest notes from real life with T1D.</p>
-        </div>
+      <div class="relative wide-container px-4 py-28 md:py-36">
+        <div class="mx-auto max-w-[780px] space-y-8 text-center">
 
-        {latestPosts.length > 0 ? (
-          <div class="grid gap-6 lg:grid-cols-3 md:grid-cols-2">
-            {latestPosts.map((post) => (
-              <BlogCard
-                title={post.data.title}
-                slug={post.slug}
-                pubDate={post.data.pubDate}
-                description={post.data.description}
-                category={post.data.category}
-                image={post.data.image}
-              />
+          <!-- Eyebrow -->
+          <div>
+            <span class="eyebrow">
+              <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#F472B6;"></span>
+              T1D Lifestyle &amp; Community
+            </span>
+          </div>
+
+          <!-- Headline -->
+          <h1 style="font-family:'Playfair Display',serif; font-size:clamp(3rem,8vw,5.5rem); line-height:1.05; letter-spacing:-0.02em; font-weight:700;">
+            <span class="text-gradient">Living Boldly</span><br/>
+            <span style="color:#F0F0F0;">with Type&nbsp;1</span>
+          </h1>
+
+          <!-- Sub -->
+          <p style="font-size:clamp(1rem,2.5vw,1.2rem); color:#888; line-height:1.75; max-width:520px; margin-inline:auto;">
+            Real stories, honest tech reviews, T1D nutrition, and a community
+            that actually gets it. No sugar-coating — just real life.
+          </p>
+
+          <!-- CTAs -->
+          <div style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; padding-top:0.5rem;">
+            <a href="/blog" class="button-accent">
+              Read the Blog
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+            <a href="/start" class="button-outline">Start Here</a>
+          </div>
+
+          <!-- Social proof pills -->
+          <div style="display:flex; gap:0.6rem; justify-content:center; flex-wrap:wrap; padding-top:0.75rem;">
+            {[
+              '💉 Real T1D experiences',
+              '⌚ CGM & pump reviews',
+              '🥗 T1D nutrition tips',
+              '📢 Advocacy & access',
+            ].map((pill) => (
+              <span style="border:1px solid #272727; background:#141414; border-radius:9999px; padding:0.3rem 0.85rem; font-size:0.75rem; color:#888; white-space:nowrap;">
+                {pill}
+              </span>
             ))}
           </div>
-        ) : (
-          <div class="rounded-3xl border border-dashed border-[#2E2E2E] bg-[#1A1A1A] p-8 text-center text-[#999999]">
-            Blog posts will show up here once the collection is populated.
-          </div>
-        )}
-      </div>
-    </section>
 
-    <section class="border-y border-[#2E2E2E] bg-[#1A1A1A] py-16">
-      <div class="max-w-[720px] mx-auto px-4 space-y-5">
-        <div class="space-y-3">
-          <p class="text-sm uppercase tracking-[0.3em] text-[#F472B6]">Featured Video</p>
-          <h2 class="text-3xl md:text-4xl" style="font-family: 'Playfair Display', serif;">Featured YouTube Video</h2>
-          <p class="leading-8 text-[#999999]">A placeholder feature until the first Type One Den video goes live on YouTube.</p>
         </div>
-        <YouTubeEmbed videoId="dQw4w9WgXcQ" title="Placeholder: Welcome to Type One Den" />
       </div>
     </section>
 
-    <section class="py-16">
-      <div class="max-w-[720px] mx-auto px-4">
-        <NewsletterSignup heading="Join the Den newsletter" subtext="Get weekly T1D stories, practical tips, and the first look at new resources." />
+    <!-- ── Featured Post ──────────────────────────────────────── -->
+    {featuredPost && (
+      <section style="padding-block:5rem; border-bottom:1px solid #272727;">
+        <div class="wide-container px-4 space-y-8">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+            <p class="section-label">Featured Post</p>
+            <a href="/blog" style="font-size:0.8rem; color:#888; text-decoration:none; display:flex; align-items:center; gap:0.3rem;" class="hover:text-[#F472B6]">
+              All posts
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+
+          <a
+            href={`/blog/${featuredPost.slug}`}
+            style="display:grid; gap:0; border:1px solid #272727; border-radius:1.25rem; overflow:hidden; background:#141414; text-decoration:none; transition:border-color 0.2s, box-shadow 0.2s;"
+            class="group featured-card md:grid-cols-[1fr_1fr]"
+          >
+            <!-- Gradient cover -->
+            <div style={`background: ${
+              {'Life with T1D':'linear-gradient(135deg,#F472B6,#9D174D)','Tech & Gear':'linear-gradient(135deg,#60A5FA,#1D4ED8)','Nutrition':'linear-gradient(135deg,#34D399,#065F46)','Advocacy':'linear-gradient(135deg,#A78BFA,#4C1D95)','Mindset':'linear-gradient(135deg,#FBBF24,#92400E)'}[featuredPost.data.category] ?? 'linear-gradient(135deg,#F472B6,#9D174D)'
+            }; min-height:280px; position:relative; overflow:hidden;`}>
+              <div style="position:absolute;inset:0;background:url('data:image/svg+xml,%3Csvg viewBox%3D%220 0 200 200%22 xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter id%3D%22n%22%3E%3CfeTurbulence type%3D%22fractalNoise%22 baseFrequency%3D%220.9%22 numOctaves%3D%224%22 stitchTiles%3D%22stitch%22/%3E%3C/filter%3E%3Crect width%3D%22100%25%22 height%3D%22100%25%22 filter%3D%22url(%23n)%22/%3E%3C/svg%3E') 0 0 / 150px;opacity:0.2;"></div>
+              <span style="position:absolute;bottom:1.25rem;left:1.25rem;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);border-radius:9999px;padding:0.3rem 0.85rem;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#fff;">
+                {featuredPost.data.category}
+              </span>
+            </div>
+
+            <!-- Content -->
+            <div style="padding:2rem 2.5rem; display:flex; flex-direction:column; justify-content:space-between; gap:1.5rem;">
+              <div style="space-y:1rem;">
+                <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#555;margin-bottom:0.85rem;">
+                  {featuredPost.data.pubDate.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}
+                </p>
+                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.2;font-weight:700;color:#F0F0F0;margin:0 0 1rem;" class="group-hover:text-[#F472B6] transition-colors">
+                  {featuredPost.data.title}
+                </h2>
+                <p style="color:#888;font-size:0.95rem;line-height:1.7;margin:0;">{featuredPost.data.description}</p>
+              </div>
+              <span style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;color:#F472B6;">
+                Read article
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Two recent posts below featured -->
+          {recentPosts.length > 0 && (
+            <div style="display:grid; gap:1.25rem;" class="md:grid-cols-2">
+              {recentPosts.map((post) => (
+                <BlogCard
+                  title={post.data.title}
+                  slug={post.slug}
+                  pubDate={post.data.pubDate}
+                  description={post.data.description}
+                  category={post.data.category}
+                  image={post.data.image}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    )}
+
+    <!-- ── YouTube ─────────────────────────────────────────────── -->
+    <section style="padding-block:5rem; border-bottom:1px solid #272727; background:#0A0A0A;">
+      <div class="wide-container px-4" style="display:grid; gap:3rem;" class="md:grid-cols-[1fr_1.4fr]">
+        <div style="space-y:1.25rem;">
+          <p class="section-label" style="margin-bottom:1rem;">YouTube</p>
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.15;font-weight:700;color:#F0F0F0;margin:0 0 1rem;">Watch the latest video</h2>
+          <p style="color:#888;font-size:0.95rem;line-height:1.7;margin:0 0 1.5rem;">Real talk about life with T1D — tech breakdowns, day-in-the-life vlogs, and community conversations.</p>
+          <a href="/youtube" class="button-outline">View all videos</a>
+        </div>
+        <YouTubeEmbed videoId="dQw4w9WgXcQ" title="Placeholder: Welcome to TypeOneDen" />
+      </div>
+    </section>
+
+    <!-- ── Newsletter ──────────────────────────────────────────── -->
+    <section style="padding-block:5rem; position:relative; overflow:hidden;">
+      <div class="dot-grid pointer-events-none absolute inset-0 opacity-20" aria-hidden="true"></div>
+      <div class="wide-container px-4" style="position:relative;">
+        <NewsletterSignup heading="Join the Den newsletter" subtext="Weekly T1D stories, practical tips, and the first look at new resources — straight to your inbox." />
       </div>
     </section>
   </main>
 </BaseLayout>
+
+<style>
+  .featured-card {
+    display: grid;
+  }
+  @media (min-width: 768px) {
+    .featured-card {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .featured-card:hover {
+    border-color: #F472B6 !important;
+    box-shadow: 0 8px 40px rgba(244,114,182,0.12);
+  }
+  .md\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) {
+    .md\:grid-cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .md\:grid-cols-\[1fr_1\.4fr\] {
+      grid-template-columns: 1fr 1.4fr;
+    }
+  }
+</style>
+

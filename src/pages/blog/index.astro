@@ -3,34 +3,87 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogCard from '../../components/BlogCard.astro';
 
-const categories = ['All', 'Life with T1D', 'Tech & Gear', 'Nutrition', 'Advocacy'];
+const categories = ['All', 'Life with T1D', 'Tech & Gear', 'Nutrition', 'Advocacy', 'Mindset'];
 const posts = (await getCollection('blog').catch(() => []))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const featuredPost = posts[0];
+const gridPosts = posts.slice(1);
+
+const categoryGradients: Record<string, string> = {
+  'Life with T1D': 'linear-gradient(135deg, #F472B6 0%, #BE185D 100%)',
+  'Tech & Gear':   'linear-gradient(135deg, #38BDF8 0%, #0369A1 100%)',
+  'Nutrition':     'linear-gradient(135deg, #4ADE80 0%, #15803D 100%)',
+  'Advocacy':      'linear-gradient(135deg, #C084FC 0%, #6D28D9 100%)',
+  'Mindset':       'linear-gradient(135deg, #FCD34D 0%, #B45309 100%)',
+};
 ---
 
 <BaseLayout
-  title="Blog | Type One Den"
-  description="Browse the latest articles from Type One Den on life with type 1 diabetes, tech, nutrition, and advocacy."
+  title="Blog | TypeOneDen"
+  description="Browse the latest articles from TypeOneDen on life with type 1 diabetes, tech, nutrition, and advocacy."
 >
-  <main class="bg-[#0F0F0F] py-16 text-[#F5F5F5]" style="font-family: Inter, sans-serif;">
-    <div class="max-w-6xl mx-auto px-4 space-y-10">
-      <header class="max-w-[720px] space-y-5">
-        <p class="text-sm uppercase tracking-[0.3em] text-[#F472B6]">Blog</p>
-        <h1 class="text-4xl md:text-5xl" style="font-family: 'Playfair Display', serif;">Stories, guides, and honest T1D living</h1>
-        <p class="text-lg leading-8 text-[#999999]">Explore articles on everyday life with T1D, diabetes tech, food, advocacy, and the messy middle of trying to live well with a condition that never really clocks out.</p>
-      </header>
+  <main style="background:#0A0A0A; min-height:100vh;">
 
-      <section class="space-y-6">
-        <div class="flex flex-wrap gap-3" aria-label="Filter posts by category">
+    <!-- Page header -->
+    <div style="border-bottom:1px solid #272727; padding:4rem 0 3rem; position:relative; overflow:hidden;">
+      <div class="dot-grid pointer-events-none absolute inset-0 opacity-25" aria-hidden="true"></div>
+      <div class="wide-container px-4" style="position:relative;">
+        <p class="section-label" style="margin-bottom:1rem;">All Articles</p>
+        <h1 style="font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.2rem); line-height:1.1; font-weight:700; color:#F0F0F0; margin:0 0 1rem;">
+          Stories, guides &amp; honest T1D living
+        </h1>
+        <p style="color:#666; font-size:1rem; line-height:1.7; max-width:560px; margin:0;">
+          From everyday life with T1D to diabetes tech, food, and advocacy — real talk from someone who lives it.
+        </p>
+      </div>
+    </div>
+
+    <div class="wide-container px-4" style="padding-block:3.5rem;">
+
+      <!-- Featured post -->
+      {featuredPost && (
+        <div style="margin-bottom:3.5rem;">
+          <p class="section-label" style="margin-bottom:1.25rem;">Featured</p>
+          <a
+            href={`/blog/${featuredPost.slug}`}
+            class="featured-hero group"
+          >
+            <div style={`background:${categoryGradients[featuredPost.data.category] ?? categoryGradients['Life with T1D']}; min-height:220px; position:relative; overflow:hidden; flex-shrink:0;`} class="featured-hero-img">
+              <div style="position:absolute;inset:0;background:url('data:image/svg+xml,%3Csvg viewBox%3D%220 0 200 200%22 xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter id%3D%22n%22%3E%3CfeTurbulence type%3D%22fractalNoise%22 baseFrequency%3D%220.9%22 numOctaves%3D%224%22 stitchTiles%3D%22stitch%22/%3E%3C/filter%3E%3Crect width%3D%22100%25%22 height%3D%22100%25%22 filter%3D%22url(%23n)%22/%3E%3C/svg%3E') 0 0 / 150px;opacity:0.15;"></div>
+              <span style="position:absolute;bottom:1rem;left:1rem;background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);border-radius:9999px;padding:0.25rem 0.75rem;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#fff;">
+                {featuredPost.data.category}
+              </span>
+            </div>
+            <div style="padding:2rem 2.5rem; display:flex; flex-direction:column; justify-content:center; gap:1rem;">
+              <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#444;margin:0;">
+                {featuredPost.data.pubDate.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}
+              </p>
+              <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);line-height:1.2;font-weight:700;color:#F0F0F0;margin:0;" class="group-hover:text-[#F472B6] transition-colors">
+                {featuredPost.data.title}
+              </h2>
+              <p style="color:#666;font-size:0.9rem;line-height:1.7;margin:0;">{featuredPost.data.description}</p>
+              <span style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:#F472B6;margin-top:0.25rem;">
+                Read article
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      )}
+
+      <!-- Category filter -->
+      <div style="margin-bottom:2rem;">
+        <div class="flex flex-wrap gap-2" aria-label="Filter posts by category">
           {categories.map((category) => (
             <button
               type="button"
               class:list={[
-                'category-tab rounded-full border px-4 py-2 text-sm transition',
+                'category-tab rounded-full border px-4 py-1.5 text-xs font-semibold tracking-wide transition-all duration-150',
                 category === 'All'
-                  ? 'border-[#F472B6] bg-[#F472B6] text-[#0F0F0F]'
-                  : 'border-[#2E2E2E] bg-[#1A1A1A] text-[#999999] hover:text-[#F5F5F5]',
+                  ? 'border-[#F472B6] bg-[#F472B6] text-[#0A0A0A]'
+                  : 'border-[#272727] bg-[#141414] text-[#666] hover:border-[#444] hover:text-[#F0F0F0]',
               ]}
               data-category={category}
             >
@@ -38,30 +91,55 @@ const posts = (await getCollection('blog').catch(() => []))
             </button>
           ))}
         </div>
+      </div>
 
-        {posts.length > 0 ? (
-          <div id="blog-grid" class="grid gap-6 lg:grid-cols-3 md:grid-cols-2">
-            {posts.map((post) => (
-              <div class="post-card" data-category={post.data.category}>
-                <BlogCard
-                  title={post.data.title}
-                  slug={post.slug}
-                  pubDate={post.data.pubDate}
-                  description={post.data.description}
-                  category={post.data.category}
-                  image={post.data.image}
-                />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div class="rounded-3xl border border-dashed border-[#2E2E2E] bg-[#1A1A1A] p-8 text-center text-[#999999]">
-            Posts will appear here once the blog collection is populated.
-          </div>
-        )}
-      </section>
+      <!-- Grid -->
+      {gridPosts.length > 0 ? (
+        <div id="blog-grid" style="display:grid; gap:1.25rem;" class="blog-grid-cols">
+          {gridPosts.map((post) => (
+            <div class="post-card" data-category={post.data.category}>
+              <BlogCard
+                title={post.data.title}
+                slug={post.slug}
+                pubDate={post.data.pubDate}
+                description={post.data.description}
+                category={post.data.category}
+                image={post.data.image}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div style="border:1px dashed #272727; border-radius:1rem; background:#141414; padding:3rem; text-align:center; color:#555;">
+          Posts will appear here once the blog collection is populated.
+        </div>
+      )}
     </div>
   </main>
+
+  <style>
+    .featured-hero {
+      display: grid;
+      border: 1px solid #272727;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: #141414;
+      text-decoration: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .featured-hero:hover {
+      border-color: rgba(244,114,182,0.4);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+    .featured-hero-img { min-height: 220px; }
+    @media (min-width: 768px) {
+      .featured-hero { grid-template-columns: 1fr 1.2fr; }
+      .featured-hero-img { min-height: 280px; }
+    }
+    .blog-grid-cols { grid-template-columns: 1fr; }
+    @media (min-width: 640px) { .blog-grid-cols { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .blog-grid-cols { grid-template-columns: repeat(3, 1fr); } }
+  </style>
 
   <script is:inline>
     const tabs = Array.from(document.querySelectorAll('.category-tab'));
@@ -72,17 +150,17 @@ const posts = (await getCollection('blog').catch(() => []))
     const setCategory = (category) => {
       tabs.forEach((tab) => {
         const isActive = tab.dataset.category === category;
-        tab.classList.toggle('border-[#F472B6]', isActive);
-        tab.classList.toggle('bg-[#F472B6]', isActive);
-        tab.classList.toggle('text-[#0F0F0F]', isActive);
-        tab.classList.toggle('border-[#2E2E2E]', !isActive);
-        tab.classList.toggle('bg-[#1A1A1A]', !isActive);
-        tab.classList.toggle('text-[#999999]', !isActive);
+        if (isActive) {
+          tab.classList.add('border-[#F472B6]', 'bg-[#F472B6]', 'text-[#0A0A0A]');
+          tab.classList.remove('border-[#272727]', 'bg-[#141414]', 'text-[#666]');
+        } else {
+          tab.classList.remove('border-[#F472B6]', 'bg-[#F472B6]', 'text-[#0A0A0A]');
+          tab.classList.add('border-[#272727]', 'bg-[#141414]', 'text-[#666]');
+        }
       });
-
       cards.forEach((card) => {
         const matches = category === 'All' || card.dataset.category === category;
-        card.classList.toggle('hidden', !matches);
+        card.style.display = matches ? '' : 'none';
       });
     };
 
@@ -92,16 +170,11 @@ const posts = (await getCollection('blog').catch(() => []))
       tab.addEventListener('click', () => {
         const category = tab.dataset.category || 'All';
         const url = new URL(window.location.href);
-
-        if (category === 'All') {
-          url.searchParams.delete('category');
-        } else {
-          url.searchParams.set('category', category);
-        }
-
+        category === 'All' ? url.searchParams.delete('category') : url.searchParams.set('category', category);
         window.history.replaceState({}, '', url);
         setCategory(category);
       });
     });
   </script>
 </BaseLayout>
+

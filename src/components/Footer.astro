@@ -1,41 +1,105 @@
 ---
 const year = new Date().getFullYear();
+
+const navCols = [
+  {
+    label: 'Explore',
+    links: [
+      { href: '/blog', label: 'Blog' },
+      { href: '/resources', label: 'Resources' },
+      { href: '/start', label: 'Start Here' },
+      { href: '/youtube', label: 'YouTube' },
+    ],
+  },
+  {
+    label: 'Community',
+    links: [
+      { href: '/about', label: 'About' },
+      { href: '/newsletter', label: 'Newsletter' },
+      { href: '/contact', label: 'Contact' },
+    ],
+  },
+];
 ---
 
-<footer class="border-t border-[#2E2E2E] bg-[#0F0F0F]">
-  <div class="site-container flex flex-col gap-6 py-10 text-sm text-[#999999] md:flex-row md:items-end md:justify-between">
-    <div class="space-y-3">
-      <div class="flex items-center gap-2">
-        <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-[#F472B6] text-[10px] font-black text-[#0F0F0F] tracking-tight select-none">
-          T1D
-        </span>
-        <span class="font-semibold text-[#F5F5F5] tracking-tight" style="font-family: 'Inter', sans-serif;">TypeOneDen</span>
+<footer style="border-top:1px solid #272727; background:#0A0A0A; padding-top:3.5rem; padding-bottom:2.5rem;">
+  <div class="wide-container px-4">
+
+    <!-- Top row: brand + nav cols -->
+    <div style="display:grid; gap:3rem; margin-bottom:3rem;" class="footer-grid">
+
+      <!-- Brand -->
+      <div style="space-y:1rem; max-width:300px;">
+        <a href="/" style="display:inline-flex; align-items:center; gap:0.6rem; text-decoration:none; margin-bottom:1rem;" aria-label="TypeOneDen home">
+          <span style="display:flex; height:2rem; width:2rem; align-items:center; justify-content:center; border-radius:0.5rem; background:linear-gradient(135deg,#F472B6,#BE185D); font-size:9px; font-weight:900; color:#0A0A0A; letter-spacing:-0.05em; user-select:none; flex-shrink:0;">
+            T1D
+          </span>
+          <span style="font-weight:600; color:#F0F0F0; font-size:0.95rem; letter-spacing:-0.01em;">TypeOneDen</span>
+        </a>
+        <p style="color:#555; font-size:0.875rem; line-height:1.65; margin:0 0 1.25rem;">Living boldly with Type 1 Diabetes. Real stories, honest reviews, and a community that gets it.</p>
+        <!-- Social links -->
+        <div style="display:flex; gap:0.5rem;">
+          <a
+            href="/youtube"
+            style="display:inline-flex; height:2.25rem; width:2.25rem; align-items:center; justify-content:center; border-radius:0.6rem; border:1px solid #272727; color:#666; text-decoration:none; transition:border-color 0.2s, color 0.2s;"
+            aria-label="YouTube"
+            class="social-icon"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:1rem;height:1rem;">
+              <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.7 31.7 0 0 0 0 12a31.7 31.7 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.7 31.7 0 0 0 24 12a31.7 31.7 0 0 0-.5-5.8ZM9.6 15.7V8.3l6.5 3.7-6.5 3.7Z" />
+            </svg>
+          </a>
+          <span style="display:inline-flex; height:2.25rem; align-items:center; justify-content:center; border-radius:0.6rem; border:1px dashed #272727; padding:0 0.65rem; font-size:0.7rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#444;">
+            Instagram soon
+          </span>
+        </div>
       </div>
-      <p class="text-base text-[#999999]">Living boldly with Type 1 Diabetes.</p>
-      <p>© {year} TypeOneDen</p>
-      <div class="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.14em]">
-        <a href="/privacy" class="text-[#999999] hover:text-[#F5F5F5]">Privacy</a>
-        <a href="/disclosure" class="text-[#999999] hover:text-[#F5F5F5]">Disclosure</a>
-        <a href="/terms" class="text-[#999999] hover:text-[#F5F5F5]">Terms</a>
-      </div>
+
+      <!-- Nav columns -->
+      {navCols.map((col) => (
+        <div>
+          <p style="font-size:0.7rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#444; margin:0 0 1rem;">{col.label}</p>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.6rem;">
+            {col.links.map((link) => (
+              <li>
+                <a href={link.href} style="font-size:0.875rem; color:#666; text-decoration:none; transition:color 0.15s;" class="footer-link">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
 
-    <div class="flex items-center gap-3">
-      <a
-        href="/youtube"
-        class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#2E2E2E] text-[#F5F5F5] transition-colors hover:border-[#F472B6] hover:text-[#F472B6]"
-        aria-label="YouTube"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-          <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.7 31.7 0 0 0 0 12a31.7 31.7 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.7 31.7 0 0 0 24 12a31.7 31.7 0 0 0-.5-5.8ZM9.6 15.7V8.3l6.5 3.7-6.5 3.7Z" />
-        </svg>
-      </a>
-      <span class="inline-flex h-10 items-center justify-center rounded-full border border-dashed border-[#2E2E2E] px-3 text-xs uppercase tracking-[0.14em] text-[#999999]">
-        Instagram
-      </span>
-      <span class="inline-flex h-10 items-center justify-center rounded-full border border-dashed border-[#2E2E2E] px-3 text-xs uppercase tracking-[0.14em] text-[#999999]">
-        TikTok
-      </span>
+    <!-- Bottom row -->
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; border-top:1px solid #1E1E1E; padding-top:1.5rem;">
+      <p style="font-size:0.75rem; color:#444; margin:0;">© {year} TypeOneDen — Not medical advice.</p>
+      <div style="display:flex; gap:1.25rem;">
+        {[
+          { href: '/privacy', label: 'Privacy' },
+          { href: '/disclosure', label: 'Disclosure' },
+          { href: '/terms', label: 'Terms' },
+        ].map((l) => (
+          <a href={l.href} style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em; color:#444; text-decoration:none; transition:color 0.15s;" class="footer-link">
+            {l.label}
+          </a>
+        ))}
+      </div>
     </div>
   </div>
 </footer>
+
+<style>
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .footer-grid {
+      grid-template-columns: 1.8fr 1fr 1fr;
+    }
+  }
+  .footer-link:hover { color: #F0F0F0 !important; }
+  .social-icon:hover { border-color: #F472B6 !important; color: #F472B6 !important; }
+</style>
+

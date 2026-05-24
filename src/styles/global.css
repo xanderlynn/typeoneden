@@ -1,14 +1,19 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @theme {
-  --color-bg: #0F0F0F;
-  --color-surface: #1A1A1A;
-  --color-border: #2E2E2E;
-  --color-text-primary: #F5F5F5;
-  --color-text-secondary: #999999;
+  --color-bg: #0A0A0A;
+  --color-surface: #141414;
+  --color-surface-2: #1C1C1C;
+  --color-border: #272727;
+  --color-border-subtle: #1E1E1E;
+  --color-text-primary: #F0F0F0;
+  --color-text-secondary: #888888;
+  --color-text-tertiary: #555555;
   --color-accent: #F472B6;
+  --color-accent-hover: #f9a8d4;
   --color-accent-muted: #9D174D;
+  --color-accent-dim: rgba(244, 114, 182, 0.08);
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
 }
@@ -113,14 +118,25 @@ pre {
 }
 
 .site-container {
-  width: min(100% - 2rem, 720px);
+  width: min(100% - 2rem, 760px);
   margin-inline: auto;
 }
 
 @media (min-width: 768px) {
   .site-container {
-    width: min(100% - 3rem, 720px);
+    width: min(100% - 3rem, 760px);
   }
+}
+
+.wide-container {
+  width: min(100% - 2rem, 1200px);
+  margin-inline: auto;
+}
+
+/* Dot-grid background texture */
+.dot-grid {
+  background-image: radial-gradient(circle, var(--color-border) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
 .surface-panel {
@@ -130,7 +146,15 @@ pre {
 }
 
 .section-spacing {
-  padding-block: 4rem;
+  padding-block: 5rem;
+}
+
+/* Gradient text utility */
+.text-gradient {
+  background: linear-gradient(135deg, #F0F0F0 30%, #F472B6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .eyebrow {
@@ -138,12 +162,20 @@ pre {
   align-items: center;
   gap: 0.5rem;
   border-radius: 9999px;
-  border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
-  background: color-mix(in srgb, var(--color-accent) 14%, transparent);
-  padding: 0.35rem 0.85rem;
-  font-size: 0.8rem;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  padding: 0.3rem 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-accent);
 }
@@ -153,44 +185,52 @@ pre {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.4rem;
   border-radius: 9999px;
-  padding: 0.7rem 1.1rem;
-  font-size: 0.95rem;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.875rem;
   font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: all 0.2s ease;
 }
 
 .button-accent {
   border: 1px solid var(--color-accent);
   background: var(--color-accent);
-  color: #0F0F0F !important;
+  color: #0A0A0A !important;
 }
 
 a.button-accent,
 button.button-accent {
-  color: #0F0F0F !important;
+  color: #0A0A0A !important;
 }
 
 .button-accent:hover {
-  background: #f9a8d4;
-  border-color: #f9a8d4;
-  color: #0F0F0F !important;
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: #0A0A0A !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(244, 114, 182, 0.35);
 }
 
 .button-accent:active {
+  transform: translateY(0);
   background: var(--color-accent-muted);
   border-color: var(--color-accent-muted);
-  color: var(--color-text-primary);
+  color: var(--color-text-primary) !important;
+  box-shadow: none;
 }
 
 .button-outline {
-  border: 1px solid var(--color-accent);
-  color: var(--color-accent);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
   background: transparent;
 }
 
 .button-outline:hover {
-  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
-  color: #fbb6d4;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-accent-dim);
 }
 
 .button-outline:active {
