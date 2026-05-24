@@ -76,7 +76,7 @@ const posts = (await getCollection('blog').catch(() => []))
                       </h2>
                       <p style="color:#8B949E;font-size:0.9rem;line-height:1.7;margin:0.75rem 0 0;">{post.data.description}</p>
                     </div>
-                    <span style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:#5E8C8A;margin-top:1.25rem;">
+                    <span style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:var(--color-accent);margin-top:1.25rem;">
                       Read article
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
                     </span>
@@ -101,6 +101,9 @@ const posts = (await getCollection('blog').catch(() => []))
           Posts will appear here once the blog collection is populated.
         </div>
       )}
+      <div id="no-results" style="display:none; text-align:center; padding:4rem 2rem; color:var(--color-text-secondary); border:1px dashed var(--color-border); border-radius:1rem; margin-top:1rem;">
+        No posts in this category yet — check back soon.
+      </div>
     </div>
   </main>
 
@@ -170,13 +173,13 @@ const posts = (await getCollection('blog').catch(() => []))
       letter-spacing: 0.02em;
     }
     .cat-btn:hover {
-      border-color: #5E8C8A;
+      border-color: var(--color-accent);
       color: #E6EDF3;
     }
     .cat-btn[data-active="true"] {
-      border-color: #5E8C8A;
-      background: rgba(94,140,138,0.15);
-      color: #6E9E9C;
+      border-color: var(--color-accent);
+      background: var(--color-accent-dim);
+      color: var(--color-accent-hover);
     }
   </style>
 
@@ -186,10 +189,14 @@ const posts = (await getCollection('blog').catch(() => []))
 
     function setFilter(cat) {
       btns.forEach(b => b.setAttribute('data-active', b.dataset.cat === cat ? 'true' : 'false'));
+      let visibleCount = 0;
       cards.forEach(c => {
         const matches = cat === 'All' || c.dataset.cat === cat;
         c.style.display = matches ? '' : 'none';
+        if (matches) visibleCount++;
       });
+      const noResults = document.getElementById('no-results');
+      if (noResults) noResults.style.display = visibleCount === 0 ? '' : 'none';
       const url = new URL(window.location.href);
       cat === 'All' ? url.searchParams.delete('category') : url.searchParams.set('category', cat);
       window.history.replaceState({}, '', url);

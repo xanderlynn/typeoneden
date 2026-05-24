@@ -2,8 +2,9 @@
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 
 const links = [
+  { href: '/', label: 'Home' },
   { href: '/blog', label: 'Blog' },
-  { href: '/resources', label: 'Resources' },
+  { href: '/resources', label: 'What I Use' },
   { href: '/youtube', label: 'YouTube' },
   { href: '/about', label: 'About' },
 ];
@@ -25,7 +26,7 @@ const isActive = (href: string) => {
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2.5 group shrink-0" aria-label="TypeOneDen home">
         <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[10px] font-black tracking-tighter select-none transition-all duration-200 group-hover:scale-105"
-          style="background: linear-gradient(135deg, #5E8C8A, #4A6F6D); color: #ffffff; letter-spacing:-0.05em;">
+          style="background: linear-gradient(135deg, #B0707A, #8E5660); color: #ffffff; letter-spacing:-0.05em;">
           T1D
         </span>
         <span class="font-semibold text-base tracking-tight transition-colors" style="color:var(--color-text-primary);">
@@ -36,7 +37,7 @@ const isActive = (href: string) => {
       <!-- Mobile toggle -->
       <button
         type="button"
-      class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#30363D] text-[#E6EDF3] md:hidden transition-colors hover:border-[#5E8C8A]"
+      class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#30363D] text-[#E6EDF3] md:hidden transition-colors hover:border-[var(--color-accent)]"
         aria-expanded="false"
         aria-controls="primary-navigation"
         aria-label="Toggle navigation"
@@ -76,19 +77,6 @@ const isActive = (href: string) => {
         </ul>
 
         <div class="pl-2 md:pl-3 border-t border-[#21262D] md:border-t-0 md:border-l md:border-[#30363D] pt-3 md:pt-0 md:ml-1 flex items-center gap-2">
-          <!-- Dark/light toggle -->
-          <button
-            id="theme-toggle"
-            type="button"
-            aria-label="Toggle light/dark mode"
-            aria-pressed="false"
-            class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#30363D] text-[#8B949E] transition-colors hover:border-[#5E8C8A] hover:text-[#6E9E9C]"
-          >
-            <!-- Sun (shown in dark mode) -->
-            <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-            <!-- Moon (shown in light mode) -->
-            <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          </button>
           <a href="/newsletter" class="button-accent text-sm py-[0.5rem] px-4">
             Subscribe
           </a>
@@ -105,11 +93,11 @@ const isActive = (href: string) => {
 
   const updateNav = () => {
     if (!nav) return;
-    if (window.scrollY > 20) {
-      nav.classList.add('nav-scrolled');
+    if (window.scrollY > 60) {
+      nav.classList.add('nav-scrolled', 'nav-pill-active');
       nav.classList.remove('nav-bg-transparent');
     } else {
-      nav.classList.remove('nav-scrolled');
+      nav.classList.remove('nav-scrolled', 'nav-pill-active');
       nav.classList.add('nav-bg-transparent');
     }
   };
@@ -170,34 +158,5 @@ const isActive = (href: string) => {
       }
     });
   }
-
-  // ── Dark / light toggle ────────────────────────────────────────────
-  const themeBtn  = document.getElementById('theme-toggle') as HTMLButtonElement | null;
-  const iconSun   = document.getElementById('icon-sun');
-  const iconMoon  = document.getElementById('icon-moon');
-
-  function applyTheme(theme: string) {
-    document.documentElement.dataset.theme = theme;
-    localStorage.setItem('theme', theme);
-    const isDark = theme === 'dark';
-    if (iconSun)  iconSun.style.display  = isDark ? 'block' : 'none';
-    if (iconMoon) iconMoon.style.display = isDark ? 'none'  : 'block';
-    if (themeBtn) themeBtn.setAttribute('aria-pressed', String(!isDark));
-    document.dispatchEvent(new CustomEvent('theme-change', { detail: theme }));
-  }
-
-  // Set initial icon and aria-pressed state
-  applyTheme(document.documentElement.dataset.theme || 'dark');
-
-  themeBtn?.addEventListener('click', () => {
-    const current = document.documentElement.dataset.theme || 'dark';
-    applyTheme(current === 'dark' ? 'light' : 'dark');
-  });
-
-  // Restore aria-pressed after View Transitions
-  document.addEventListener('astro:page-load', () => {
-    const btn = document.getElementById('theme-toggle');
-    if (btn) btn.setAttribute('aria-pressed', String((document.documentElement.dataset.theme || 'dark') === 'light'));
-  });
 </script>
 

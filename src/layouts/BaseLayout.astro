@@ -63,15 +63,8 @@ const defaultJsonLd = ogType === 'website' ? JSON.stringify({
     <meta name="twitter:description" content={description} />
     {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
 
-    <!-- Dark/light theme init: runs before paint to prevent flash of unstyled content -->
-    <script is:inline>
-      (function() {
-        const saved = localStorage.getItem('theme');
-        // Default to dark; only honour light if explicitly saved by user
-        const theme = saved || 'dark';
-        document.documentElement.dataset.theme = theme;
-      })();
-    </script>
+    <!-- Dark-only theme -->
+    <script is:inline>document.documentElement.dataset.theme = 'dark';</script>
 
     <!-- JSON-LD structured data -->
     {(jsonLd || defaultJsonLd) && <script type="application/ld+json" set:html={jsonLd || defaultJsonLd} />}

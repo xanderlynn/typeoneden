@@ -11,13 +11,13 @@
   --color-text-secondary: #8B949E;
   /* Raise contrast of tertiary text from #484F58 (2.1:1) to #768390 (5.2:1) to pass WCAG AA */
   --color-text-tertiary: #768390;
-  /* Dusty Teal accent — gender-neutral, health/wellness, modern */
-  --color-accent: #5E8C8A;
-  --color-accent-hover: #6E9E9C;
-  --color-accent-muted: #4A6F6D;
-  --color-accent-dim: rgba(94, 140, 138, 0.12);
+  /* Muted Rose accent */
+  --color-accent: #B0707A;
+  --color-accent-hover: #C4838D;
+  --color-accent-muted: #8E5660;
+  --color-accent-dim: rgba(176, 112, 122, 0.12);
   /* Category colors */
-  --cat-life:     #5E8C8A;   /* dusty teal  — Life with T1D */
+  --cat-life:     #E8956B;   /* warm amber  — Life with T1D */
   --cat-tech:     #58A6FF;   /* blue       — Tech & Gear   */
   --cat-nutrition:#3FB950;   /* green      — Nutrition     */
   --cat-advocacy: #9B8DB3;   /* muted lavender — Advocacy  */
@@ -30,30 +30,7 @@
   color-scheme: dark;
 }
 
-/* ─── Light theme overrides ─── */
-[data-theme="light"] {
-  color-scheme: light;
-  --color-bg:              #FFFFFF;
-  --color-surface:         #F6F8FA;
-  --color-surface-2:       #EAEEF2;
-  --color-border:          #D0D7DE;
-  --color-border-subtle:   #D8DEE4;
-  --color-text-primary:    #1F2328;
-  --color-text-secondary:  #636C76;
-  --color-text-tertiary:   #848D97;
-  /* Darken accent for AA contrast on light backgrounds (#2E6B69 = 5.85:1 on white) */
-  --color-accent:          #2E6B69;
-  --color-accent-hover:    #3D8A87;
-  --color-accent-muted:    #255857;
-}
-
-[data-theme="light"] body,
-[data-theme="light"] html {
-  background-color: var(--color-bg);
-  color: var(--color-text-primary);
-}
-
-* {
+*{
   box-sizing: border-box;
 }
 
@@ -182,7 +159,7 @@ pre {
 
 /* Gradient text utility */
 .text-gradient {
-  background: linear-gradient(135deg, #E6EDF3 30%, #6E9E9C 100%);
+  background: linear-gradient(135deg, #E6EDF3 30%, #C4838D 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -241,7 +218,7 @@ button.button-accent {
   border-color: var(--color-accent-hover);
   color: #ffffff !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(94, 140, 138, 0.4);
+  box-shadow: 0 4px 20px rgba(176, 112, 122, 0.4);
 }
 
 .button-accent:active {
@@ -339,7 +316,7 @@ button.button-accent {
   border-color: var(--color-accent-hover);
   color: #fff;
   transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(94, 140, 138, 0.35);
+  box-shadow: 0 4px 20px rgba(176, 112, 122, 0.35);
 }
 
 .prose {
@@ -481,7 +458,7 @@ button.button-accent {
   top: 0;
   left: 0;
   height: 2px;
-  background: linear-gradient(90deg, #5E8C8A, #6E9E9C);
+  background: linear-gradient(90deg, #B0707A, #C4838D);
   z-index: 9999;
   width: 0%;
   transition: width 0.08s linear;
@@ -494,12 +471,29 @@ button.button-accent {
   border-color: transparent;
 }
 .nav-scrolled {
-  background: color-mix(in srgb, var(--color-bg) 96%, transparent);
+  background: color-mix(in srgb, var(--color-bg) 88%, transparent);
   border-color: var(--color-border);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 1px 12px rgba(0,0,0,0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.04) inset;
   will-change: transform;
+}
+
+.nav-pill-active .wide-container {
+  max-width: 900px;
+  background: color-mix(in srgb, var(--color-surface) 80%, transparent);
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  padding-inline: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-bg-transparent .wide-container {
+  max-width: 1200px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .prose figcaption {

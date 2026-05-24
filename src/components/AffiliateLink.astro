@@ -1,49 +1,204 @@
-﻿---
+---
 interface Props {
   href: string;
   name: string;
   description?: string;
   badge?: string;
+  image?: string;
+  details?: string;
 }
 
-const { href, name, description, badge } = Astro.props;
-
-// Block javascript: and data: URIs to prevent XSS
+const { href, name, description, badge, image, details } = Astro.props;
 const safeHref = /^(javascript:|data:)/i.test(href) ? '#' : href;
+const id = `item-${name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`;
 ---
 
-<a
-  href={safeHref}
-  target="_blank"
-  rel="nofollow noopener noreferrer"
-  data-affiliate="true"
-  class="group flex items-start justify-between gap-4 rounded-2xl border border-[#2E2E2E] bg-[#1A1A1A] p-4 text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-[#5E8C8A]"
->
-  <div class="min-w-0 space-y-2">
-    <div class="flex flex-wrap items-center gap-2">
-      <span class="text-base font-semibold text-[#F5F5F5]">{name}</span>
-      {badge && (
-        <span class="rounded-full px-2.5 py-1 text-xs font-medium" style="background:rgba(94,140,138,0.2); color:#5E8C8A;">
-          {badge}
-        </span>
-      )}
+<div class="affiliate-item">
+  <div class="affiliate-main">
+    {image && (
+      <img src={image} alt={name} width="64" height="64" class="affiliate-img" loading="lazy" />
+    )}
+    <div class="affiliate-content">
+      <div class="affiliate-header">
+        <span class="affiliate-name">{name}</span>
+        {badge && (
+          <span class="affiliate-badge">{badge}</span>
+        )}
+      </div>
+      {description && <p class="affiliate-desc">{description}</p>}
     </div>
-
-    {description && <p class="text-sm leading-6 text-[#999999]">{description}</p>}
+    <div class="affiliate-actions">
+      {details && (
+        <button
+          type="button"
+          class="expand-btn"
+          aria-expanded="false"
+          aria-controls={id}
+        >
+          <span class="expand-label">More</span>
+          <svg class="expand-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+        </button>
+      )}
+      <a
+        href={safeHref}
+        target="_blank"
+        rel="nofollow noopener noreferrer"
+        data-affiliate="true"
+        aria-label={`Visit ${name} (opens in new tab)`}
+        class="affiliate-link-btn"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5H19.5V10.5" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 13.5L19.5 4.5" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13V18.75C19.5 19.1642 19.1642 19.5 18.75 19.5H5.25C4.83579 19.5 4.5 19.1642 4.5 18.75V5.25C4.5 4.83579 4.83579 4.5 5.25 4.5H11" />
+        </svg>
+      </a>
+    </div>
   </div>
+  {details && (
+    <div id={id} class="affiliate-details hidden">
+      <p>{details}</p>
+    </div>
+  )}
+</div>
 
-  <span class="mt-0.5 shrink-0" style="color:#5E8C8A;" aria-hidden="true">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="1.75"
-      class="size-5"
-    >
-      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5H19.5V10.5" />
-      <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 13.5L19.5 4.5" />
-      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13V18.75C19.5 19.1642 19.1642 19.5 18.75 19.5H5.25C4.83579 19.5 4.5 19.1642 4.5 18.75V5.25C4.5 4.83579 4.83579 4.5 5.25 4.5H11" />
-    </svg>
-  </span>
-</a>
+<style>
+  .affiliate-item {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .affiliate-item:hover {
+    border-color: var(--color-accent-muted);
+  }
+  .affiliate-main {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .affiliate-img {
+    width: 64px;
+    height: 64px;
+    border-radius: 0.75rem;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid var(--color-border);
+  }
+  .affiliate-content {
+    flex: 1;
+    min-width: 0;
+  }
+  .affiliate-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.375rem;
+  }
+  .affiliate-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+  .affiliate-badge {
+    border-radius: 9999px;
+    padding: 0.15rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: var(--color-accent-dim);
+    color: var(--color-accent);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 25%, transparent);
+  }
+  .affiliate-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+  .affiliate-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+  .expand-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .expand-btn:hover {
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+    background: var(--color-surface-2);
+  }
+  .expand-icon {
+    width: 10px;
+    height: 10px;
+    transition: transform 0.2s;
+  }
+  .affiliate-link-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+  .affiliate-link-btn:hover {
+    border-color: var(--color-accent-muted);
+    color: var(--color-accent);
+    background: var(--color-accent-dim);
+  }
+  .affiliate-link-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+  .affiliate-details {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg);
+    padding: 0.875rem 1rem;
+  }
+  .affiliate-details p {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+  .hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.expand-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      const targetId = btn.getAttribute('aria-controls');
+      const panel = targetId ? document.getElementById(targetId) : null;
+      const label = btn.querySelector('.expand-label');
+      const icon = btn.querySelector('.expand-icon');
+      if (!panel) return;
+      btn.setAttribute('aria-expanded', String(!isExpanded));
+      panel.classList.toggle('hidden', isExpanded);
+      if (label) label.textContent = isExpanded ? 'More' : 'Less';
+      if (icon instanceof SVGElement) icon.style.transform = isExpanded ? '' : 'rotate(180deg)';
+    });
+  });
+</script>

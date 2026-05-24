@@ -4,48 +4,110 @@ import NewsletterSignup from '../components/NewsletterSignup.astro';
 ---
 
 <BaseLayout
-  title="About | Type One Den"
-  description="Meet the woman behind Type One Den and learn why this space exists for bold, honest life with type 1 diabetes."
+  title="About | TypeOneDen"
+  description="Meet the woman behind TypeOneDen and learn why this space exists for bold, honest life with type 1 diabetes."
 >
-  <main class="page-main py-16">
-    <div class="max-w-[720px] mx-auto px-4 space-y-12">
-      <section class="space-y-5">
-        <p class="page-eyebrow">About Type One Den</p>
-        <h1 class="text-4xl md:text-5xl leading-tight" style="font-family: 'Playfair Display', serif;">Hi, I&apos;m the woman behind the Den.</h1>
-        <p class="text-lg page-muted">I&apos;m a woman living with type 1 diabetes, learning every day how to balance blood sugars, ambition, joy, burnout, snacks, hormones, and real life. This page is intentionally personal for now, with placeholder copy that can be tailored to your exact story, voice, and diagnosis journey later.</p>
-      </section>
+  <main style="background:var(--color-bg); min-height:100vh;">
 
-      <section class="page-panel space-y-4">
-        <h2 class="text-2xl" style="font-family: 'Playfair Display', serif;">My Story</h2>
-        <p class="page-muted">I was diagnosed with T1D and quickly learned that life doesn&apos;t pause for carb counts, low alerts, or infusion set changes. I had to figure out how to move through work, relationships, travel, and everyday routines while carrying the invisible mental load that comes with this condition. Type One Den began as a way to turn that lived experience into something useful, honest, and comforting for other people navigating the same road.</p>
-      </section>
+    <!-- Hero -->
+    <section style="padding:5rem 0 4rem; border-bottom:1px solid var(--color-border); position:relative; overflow:hidden;">
+      <div class="dot-grid pointer-events-none absolute inset-0 opacity-10" aria-hidden="true"></div>
+      <div class="wide-container px-4" style="position:relative;">
+        <div style="max-width:780px;">
+          <p class="eyebrow" style="margin-bottom:1.5rem;">About the Den</p>
+          <h1 style="font-family:var(--font-serif); font-size:clamp(2.2rem,5vw,3.5rem); line-height:1.1; font-weight:700; color:var(--color-text-primary); margin:0 0 1.5rem;">
+            Living with T1D,<br/>honestly.
+          </h1>
+          <p style="font-size:1.1rem; line-height:1.9; color:var(--color-text-secondary); max-width:560px; margin:0;">
+            I'm a woman with type 1 diabetes navigating work, relationships, hormones, snacks, and a pancreas that checked out years ago. This is the place I wish I had when I was figuring it all out.
+          </p>
+        </div>
+      </div>
+    </section>
 
-      <section class="page-panel space-y-4">
-        <h2 class="text-2xl" style="font-family: 'Playfair Display', serif;">Living with T1D</h2>
-        <p class="page-muted">Living with T1D is both deeply practical and deeply emotional. It&apos;s managing devices, trends, prescriptions, and meals, while also protecting your confidence, identity, and peace of mind. I believe we deserve resources that acknowledge both sides: the data and the feelings, the technology and the humanity.</p>
-      </section>
+    <!-- Story section -->
+    <section style="padding:5rem 0;">
+      <div class="wide-container px-4">
+        <div style="display:grid; grid-template-columns:1fr; gap:3rem; max-width:920px; margin:0 auto;">
 
-      <section class="page-panel space-y-4">
-        <h2 class="text-2xl" style="font-family: 'Playfair Display', serif;">Why I Started This Blog</h2>
-        <p class="page-muted">I started Type One Den because I wanted a place that felt less clinical and more like a trusted friend. A place for grounded advice, product recommendations with integrity, and stories that make you feel less alone. Not every day with T1D is inspiring, but every day deserves support.</p>
-      </section>
+          <div style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:1.5rem; align-items:start;">
+            <!-- Photo placeholder -->
+            <div style="aspect-ratio:4/5; background:var(--color-surface); border:1px solid var(--color-border); border-radius:1.5rem; display:flex; align-items:center; justify-content:center; color:var(--color-text-tertiary); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; text-align:center; padding:1rem;">
+              Your photo here
+            </div>
+            <!-- Stat cards -->
+            <div style="display:flex; flex-direction:column; gap:1rem; padding-top:0.5rem;">
+              <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:1rem; padding:1.25rem;">
+                <p style="font-size:1.75rem; font-weight:700; color:var(--color-text-primary); margin:0; font-family:var(--font-serif);">T1D</p>
+                <p style="font-size:0.72rem; color:var(--color-text-tertiary); margin:0.25rem 0 0; text-transform:uppercase; letter-spacing:0.1em;">Since diagnosis</p>
+              </div>
+              <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:1rem; padding:1.25rem;">
+                <p style="font-size:1.75rem; font-weight:700; color:var(--color-accent); margin:0; font-family:var(--font-serif);">Real</p>
+                <p style="font-size:0.72rem; color:var(--color-text-tertiary); margin:0.25rem 0 0; text-transform:uppercase; letter-spacing:0.1em;">Talk only</p>
+              </div>
+              <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:1rem; padding:1.25rem;">
+                <p style="font-size:1.75rem; font-weight:700; color:var(--color-text-primary); margin:0; font-family:var(--font-serif);">You</p>
+                <p style="font-size:0.72rem; color:var(--color-text-tertiary); margin:0.25rem 0 0; text-transform:uppercase; letter-spacing:0.1em;">Are not alone</p>
+              </div>
+            </div>
+          </div>
 
-      <section class="page-panel space-y-4">
-        <h2 class="text-2xl" style="font-family: 'Playfair Display', serif;">What You&apos;ll Find Here</h2>
-        <ul class="space-y-3 page-muted">
-          <li>â€¢ Real-life reflections on the emotional side of T1D</li>
-          <li>â€¢ Practical guides for tech, gear, routines, and food</li>
-          <li>â€¢ Resources for new diagnoses, long-time T1Ds, and families</li>
-          <li>â€¢ Honest recommendations for products I use or genuinely trust</li>
-          <li>â€¢ A warm, judgment-free community vibe</li>
-        </ul>
-      </section>
+          <!-- Story text -->
+          <div style="display:flex; flex-direction:column; gap:2rem;">
+            <div>
+              <h2 style="font-family:var(--font-serif); font-size:1.5rem; color:var(--color-text-primary); margin:0 0 0.75rem;">My story</h2>
+              <p style="color:var(--color-text-secondary); line-height:1.9; margin:0;">I was diagnosed with T1D and quickly learned that life doesn't pause for carb counts, low alerts, or infusion set changes. I had to figure out how to move through work, relationships, travel, and everyday routines while carrying the invisible mental load that comes with this condition. TypeOneDen began as a way to turn that lived experience into something useful, honest, and comforting for others on the same road.</p>
+            </div>
+            <div>
+              <h2 style="font-family:var(--font-serif); font-size:1.5rem; color:var(--color-text-primary); margin:0 0 0.75rem;">Why the Den exists</h2>
+              <p style="color:var(--color-text-secondary); line-height:1.9; margin:0;">I started TypeOneDen because I wanted a place that felt less clinical and more like a trusted friend. A place for grounded advice, product recommendations with integrity, and stories that make you feel less alone. Not every day with T1D is inspiring — but every day deserves support.</p>
+            </div>
+          </div>
 
-      <section class="page-panel page-accent-border text-center" style="border-color:var(--color-accent);">
-        <h2 class="text-2xl mb-3" style="font-family: 'Playfair Display', serif;">Want to stay close to the Den?</h2>
-        <p class="mb-6 page-muted">Subscribe for new posts, practical T1D tips, and first access to the resources I&apos;m building for this community.</p>
-        <NewsletterSignup heading="Subscribe to the newsletter" subtext="Real talk, useful resources, and encouragement delivered straight to your inbox." />
-      </section>
-    </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What's here — cards -->
+    <section style="padding:4rem 0 5rem; border-top:1px solid var(--color-border); background:var(--color-surface);">
+      <div class="wide-container px-4">
+        <p class="section-label" style="margin-bottom:0.75rem;">What's here</p>
+        <h2 style="font-family:var(--font-serif); font-size:clamp(1.5rem,3vw,2rem); color:var(--color-text-primary); margin:0 0 2rem;">Everything you actually need</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:1rem;">
+          <div style="background:var(--color-bg); border:1px solid var(--color-border); border-radius:1.25rem; padding:1.5rem;">
+            <span style="font-size:1.5rem; display:block; margin-bottom:0.75rem;" aria-hidden="true">??</span>
+            <h3 style="font-size:0.9rem; font-weight:600; color:var(--color-text-primary); margin:0 0 0.4rem;">Real talk</h3>
+            <p style="font-size:0.82rem; color:var(--color-text-secondary); line-height:1.6; margin:0;">Emotional honesty on the mental load of T1D</p>
+          </div>
+          <div style="background:var(--color-bg); border:1px solid var(--color-border); border-radius:1.25rem; padding:1.5rem;">
+            <span style="font-size:1.5rem; display:block; margin-bottom:0.75rem;" aria-hidden="true">??</span>
+            <h3 style="font-size:0.9rem; font-weight:600; color:var(--color-text-primary); margin:0 0 0.4rem;">Practical guides</h3>
+            <p style="font-size:0.82rem; color:var(--color-text-secondary); line-height:1.6; margin:0;">Tech, gear, routines, and food that actually works</p>
+          </div>
+          <div style="background:var(--color-bg); border:1px solid var(--color-border); border-radius:1.25rem; padding:1.5rem;">
+            <span style="font-size:1.5rem; display:block; margin-bottom:0.75rem;" aria-hidden="true">??</span>
+            <h3 style="font-size:0.9rem; font-weight:600; color:var(--color-text-primary); margin:0 0 0.4rem;">Trusted picks</h3>
+            <p style="font-size:0.82rem; color:var(--color-text-secondary); line-height:1.6; margin:0;">Honest recs — nothing I wouldn't use myself</p>
+          </div>
+          <div style="background:var(--color-bg); border:1px solid var(--color-border); border-radius:1.25rem; padding:1.5rem;">
+            <span style="font-size:1.5rem; display:block; margin-bottom:0.75rem;" aria-hidden="true">??</span>
+            <h3 style="font-size:0.9rem; font-weight:600; color:var(--color-text-primary); margin:0 0 0.4rem;">Community</h3>
+            <p style="font-size:0.82rem; color:var(--color-text-secondary); line-height:1.6; margin:0;">Warm, judgment-free space for every kind of T1D day</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section style="padding:5rem 0; border-top:1px solid var(--color-border);">
+      <div class="wide-container px-4">
+        <div style="max-width:520px; margin:0 auto; text-align:center;">
+          <h2 style="font-family:var(--font-serif); font-size:clamp(1.4rem,3vw,1.9rem); color:var(--color-text-primary); margin:0 0 0.75rem;">Stay close to the Den</h2>
+          <p style="color:var(--color-text-secondary); margin:0 0 2rem; line-height:1.8;">Real talk, useful resources, and encouragement delivered straight to your inbox.</p>
+          <NewsletterSignup heading="Subscribe to the newsletter" subtext="" />
+        </div>
+      </div>
+    </section>
+
   </main>
 </BaseLayout>
