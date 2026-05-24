@@ -24,7 +24,7 @@ const color = getCategoryVar(category);
 
 <a
   href={`/blog/${slug}`}
-  class="card-link fade-up group flex h-full flex-col overflow-hidden rounded-xl border border-[#30363D] bg-[#161B22]"
+  class="card-link fade-up group flex h-full flex-col overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]"
   style={`border-top: 3px solid ${color};`}
 >
   <!-- Optional photo cover — only shown when image prop is set -->
@@ -51,20 +51,20 @@ const color = getCategoryVar(category);
     </span>
 
     <h2
-      class="line-clamp-2 leading-snug text-[#E6EDF3] transition-colors duration-200 group-hover:text-[#6E9E9C]"
+      class="line-clamp-2 leading-snug text-[var(--color-text-primary)] transition-colors duration-200 group-hover:text-[var(--color-accent-hover)]"
       style="font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:600; margin:0;"
       transition:name={`post-title-${slug}`}
     >
       {title}
     </h2>
-    <p class="line-clamp-2 text-sm leading-relaxed text-[#8B949E]" style="margin:0;">{description}</p>
+    <p class="line-clamp-2 text-sm leading-relaxed text-[var(--color-text-secondary)]" style="margin:0;">{description}</p>
 
-    <div class="mt-auto flex items-center justify-between" style="border-top:1px solid #21262D; padding-top:0.75rem; margin-top:0.5rem;">
+    <div class="mt-auto flex items-center justify-between" style="border-top:1px solid var(--color-border-subtle); padding-top:0.75rem; margin-top:0.5rem;">
       <div style="display:flex; flex-direction:column; gap:0.1rem;">
         <p class="text-[11px] font-medium" style="color:var(--color-text-tertiary);">{formattedDate}</p>
         {readTime && <p class="text-[11px]" style="color:var(--color-text-tertiary);">{readTime} min read</p>}
       </div>
-      <span class="flex items-center gap-1 text-[11px] font-semibold transition-colors duration-200 group-hover:text-[#6E9E9C]" style="color:var(--color-text-tertiary);" aria-hidden="true">
+      <span class="flex items-center gap-1 text-[11px] font-semibold transition-colors duration-200 group-hover:text-[var(--color-accent-hover)]" style="color:var(--color-text-tertiary);" aria-hidden="true">
         Read
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M2.5 7h9M8 3.5 11.5 7 8 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

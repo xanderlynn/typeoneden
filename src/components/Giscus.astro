@@ -18,8 +18,8 @@ const { pathname = Astro.url.pathname } = Astro.props;
 
 <section aria-label="Comments" style="margin-top:3rem;">
   <div id="giscus-wrap"
-    style="border:1px solid #30363D; border-radius:1rem; background:#161B22; padding:2rem; overflow:hidden;">
-    <h2 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:#E6EDF3; margin:0 0 1.25rem;">
+    style="border:1px solid var(--color-border); border-radius:1rem; background:var(--color-surface); padding:2rem; overflow:hidden;">
+    <h2 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--color-text-primary); margin:0 0 1.25rem;">
       Join the conversation
     </h2>
     <div id="giscus-container"></div>

@@ -79,7 +79,7 @@ const heroVideoId = import.meta.env.PUBLIC_HERO_VIDEO_ID;
 
     <!-- ── Featured Post ──────────────────────────────────────── -->
     {featuredPost && (
-      <section style="padding-block:5rem; border-bottom:1px solid #30363D;">
+      <section style="padding-block:5rem; border-bottom:1px solid var(--color-border);">
         <div class="wide-container px-4 space-y-8">
           <div style="display:flex; align-items:baseline; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
             <p class="section-label">Featured Post</p>
@@ -91,14 +91,14 @@ const heroVideoId = import.meta.env.PUBLIC_HERO_VIDEO_ID;
 
           <a
             href={`/blog/${featuredPost.slug}`}
-            style="display:grid; gap:0; border:1px solid #30363D; border-radius:1.25rem; overflow:hidden; background:#161B22; text-decoration:none; transition:border-color 0.2s, box-shadow 0.2s;"
+            style="display:grid; gap:0; border:1px solid var(--color-border); border-radius:1.25rem; overflow:hidden; background:var(--color-surface); text-decoration:none; transition:border-color 0.2s, box-shadow 0.2s;"
             class="group featured-card md:grid-cols-[1fr_1fr]"
           >
             <!-- Accent panel (thin) + category info -->
-            <div style={`position:relative; min-height:220px; background:#1C2128; display:flex; align-items:flex-end; padding:1.5rem; border-right:1px solid #30363D;`}>
-              <div style={`position:absolute; left:0; top:0; bottom:0; width:5px; background:${ {'Life with T1D':'#5E8C8A','Tech & Gear':'#58A6FF','Nutrition':'#3FB950','Advocacy':'#9B8DB3','Mindset':'#F0883E'}[featuredPost.data.category] ?? '#5E8C8A'};`} />
+            <div style={`position:relative; min-height:220px; background:var(--color-surface-2); display:flex; align-items:flex-end; padding:1.5rem; border-right:1px solid var(--color-border);`}>
+              <div style={`position:absolute; left:0; top:0; bottom:0; width:5px; background:${ {'Life with T1D':'var(--color-accent)','Tech & Gear':'#58A6FF','Nutrition':'#3FB950','Advocacy':'#9B8DB3','Mindset':'#F0883E'}[featuredPost.data.category] ?? 'var(--color-accent)'};`} />
               <div style="padding-left:1rem;">
-                <span style={`display:inline-flex;align-items:center;border-radius:9999px;padding:0.3rem 0.85rem;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em; background:${ {'Life with T1D':'#5E8C8A18','Tech & Gear':'#58A6FF18','Nutrition':'#3FB95018','Advocacy':'#9B8DB318','Mindset':'#F0883E18'}[featuredPost.data.category] ?? '#5E8C8A18'}; color:${ {'Life with T1D':'#5E8C8A','Tech & Gear':'#58A6FF','Nutrition':'#3FB950','Advocacy':'#9B8DB3','Mindset':'#F0883E'}[featuredPost.data.category] ?? '#5E8C8A'};`}>
+                <span style={`display:inline-flex;align-items:center;border-radius:9999px;padding:0.3rem 0.85rem;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em; background:${ {'Life with T1D':'var(--color-accent-dim)','Tech & Gear':'#58A6FF18','Nutrition':'#3FB95018','Advocacy':'#9B8DB318','Mindset':'#F0883E18'}[featuredPost.data.category] ?? 'var(--color-accent-dim)'}; color:${ {'Life with T1D':'var(--color-accent)','Tech & Gear':'#58A6FF','Nutrition':'#3FB950','Advocacy':'#9B8DB3','Mindset':'#F0883E'}[featuredPost.data.category] ?? 'var(--color-accent)'};`}>
                   {featuredPost.data.category}
                 </span>
               </div>
@@ -107,13 +107,13 @@ const heroVideoId = import.meta.env.PUBLIC_HERO_VIDEO_ID;
             <!-- Content -->
             <div style="padding:2rem 2.5rem; display:flex; flex-direction:column; justify-content:space-between; gap:1.5rem;">
               <div>
-                <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#484F58;margin-bottom:0.85rem;">
+                <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:0.85rem;">
                   {featuredPost.data.pubDate.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}
                 </p>
                 <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.2;font-weight:700;color:var(--color-text-primary);margin:0 0 1rem;" class="group-hover:text-[var(--color-accent)] transition-colors">
                   {featuredPost.data.title}
                 </h2>
-                <p style="color:#8B949E;font-size:0.95rem;line-height:1.7;margin:0;">{featuredPost.data.description}</p>
+                <p style="color:var(--color-text-secondary);font-size:0.95rem;line-height:1.7;margin:0;">{featuredPost.data.description}</p>
               </div>
               <span style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;color:var(--color-accent);">
                 Read article
@@ -144,12 +144,12 @@ const heroVideoId = import.meta.env.PUBLIC_HERO_VIDEO_ID;
 
     <!-- ── YouTube ─────────────────────────────────────────────── -->
     {heroVideoId && (
-    <section style="padding-block:5rem; border-bottom:1px solid #30363D; background:#0D1117;">
+    <section style="padding-block:5rem; border-bottom:1px solid var(--color-border); background:var(--color-bg);">
       <div class="wide-container px-4 md:grid-cols-[1fr_1.4fr]" style="display:grid; gap:3rem;">
         <div style="space-y:1.25rem;">
           <p class="section-label" style="margin-bottom:1rem;">YouTube</p>
-          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.15;font-weight:700;color:#E6EDF3;margin:0 0 1rem;">Watch the latest video</h2>
-          <p style="color:#8B949E;font-size:0.95rem;line-height:1.7;margin:0 0 1.5rem;">Real talk about life with T1D — tech breakdowns, day-in-the-life vlogs, and community conversations.</p>
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.15;font-weight:700;color:var(--color-text-primary);margin:0 0 1rem;">Watch the latest video</h2>
+          <p style="color:var(--color-text-secondary);font-size:0.95rem;line-height:1.7;margin:0 0 1.5rem;">Real talk about life with T1D — tech breakdowns, day-in-the-life vlogs, and community conversations.</p>
           <a href="/youtube" class="button-outline">View all videos</a>
         </div>
         <YouTubeEmbed videoId={heroVideoId} title="Latest TypeOneDen video" />
