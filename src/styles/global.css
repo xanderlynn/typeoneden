@@ -391,7 +391,7 @@ button.button-accent {
   background: var(--color-surface);
   padding: 0.15rem 0.45rem;
   font-size: 0.9em;
-  color: #fbcfe8;
+  color: var(--color-accent);
 }
 
 .prose pre {

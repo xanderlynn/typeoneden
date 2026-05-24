@@ -168,28 +168,9 @@ const heroVideoId = import.meta.env.PUBLIC_HERO_VIDEO_ID;
 </BaseLayout>
 
 <style>
-  .featured-card {
-    display: grid;
-  }
-  @media (min-width: 768px) {
-    .featured-card {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
   .featured-card:hover {
     border-color: var(--color-accent) !important;
     box-shadow: 0 8px 40px rgba(200,168,122,0.12);
-  }
-  .md\:grid-cols-2 {
-    grid-template-columns: 1fr;
-  }
-  @media (min-width: 768px) {
-    .md\:grid-cols-2 {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .md\:grid-cols-\[1fr_1\.4fr\] {
-      grid-template-columns: 1fr 1.4fr;
-    }
   }
 </style>
 
