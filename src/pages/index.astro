@@ -40,7 +40,7 @@ const recentPosts = allPosts.slice(1, 3);
           <!-- Eyebrow -->
           <div>
             <span class="eyebrow">
-              <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#9C8585;"></span>
+              <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#5E8C8A;"></span>
               T1D Lifestyle &amp; Community
             </span>
           </div>
@@ -90,7 +90,7 @@ const recentPosts = allPosts.slice(1, 3);
         <div class="wide-container px-4 space-y-8">
           <div style="display:flex; align-items:baseline; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
             <p class="section-label">Featured Post</p>
-            <a href="/blog" style="font-size:0.8rem; color:#8B949E; text-decoration:none; display:flex; align-items:center; gap:0.3rem;" class="hover:text-[#AE9696]">
+            <a href="/blog" style="font-size:0.8rem; color:#8B949E; text-decoration:none; display:flex; align-items:center; gap:0.3rem;" class="hover:text-[#6E9E9C]">
               All posts
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
             </a>
@@ -103,9 +103,9 @@ const recentPosts = allPosts.slice(1, 3);
           >
             <!-- Accent panel (thin) + category info -->
             <div style={`position:relative; min-height:220px; background:#1C2128; display:flex; align-items:flex-end; padding:1.5rem; border-right:1px solid #30363D;`}>
-              <div style={`position:absolute; left:0; top:0; bottom:0; width:5px; background:${ {'Life with T1D':'#9C8585','Tech & Gear':'#58A6FF','Nutrition':'#3FB950','Advocacy':'#9B8DB3','Mindset':'#F0883E'}[featuredPost.data.category] ?? '#9C8585'};`} />
+              <div style={`position:absolute; left:0; top:0; bottom:0; width:5px; background:${ {'Life with T1D':'#5E8C8A','Tech & Gear':'#58A6FF','Nutrition':'#3FB950','Advocacy':'#9B8DB3','Mindset':'#F0883E'}[featuredPost.data.category] ?? '#5E8C8A'};`} />
               <div style="padding-left:1rem;">
-                <span style={`display:inline-flex;align-items:center;border-radius:9999px;padding:0.3rem 0.85rem;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em; background:${ {'Life with T1D':'#9C858518','Tech & Gear':'#58A6FF18','Nutrition':'#3FB95018','Advocacy':'#9B8DB318','Mindset':'#F0883E18'}[featuredPost.data.category] ?? '#9C858518'}; color:${ {'Life with T1D':'#9C8585','Tech & Gear':'#58A6FF','Nutrition':'#3FB950','Advocacy':'#9B8DB3','Mindset':'#F0883E'}[featuredPost.data.category] ?? '#9C8585'};`}>
+                <span style={`display:inline-flex;align-items:center;border-radius:9999px;padding:0.3rem 0.85rem;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em; background:${ {'Life with T1D':'#5E8C8A18','Tech & Gear':'#58A6FF18','Nutrition':'#3FB95018','Advocacy':'#9B8DB318','Mindset':'#F0883E18'}[featuredPost.data.category] ?? '#5E8C8A18'}; color:${ {'Life with T1D':'#5E8C8A','Tech & Gear':'#58A6FF','Nutrition':'#3FB950','Advocacy':'#9B8DB3','Mindset':'#F0883E'}[featuredPost.data.category] ?? '#5E8C8A'};`}>
                   {featuredPost.data.category}
                 </span>
               </div>
@@ -117,12 +117,12 @@ const recentPosts = allPosts.slice(1, 3);
                 <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#484F58;margin-bottom:0.85rem;">
                   {featuredPost.data.pubDate.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}
                 </p>
-                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.2;font-weight:700;color:#E6EDF3;margin:0 0 1rem;" class="group-hover:text-[#AE9696] transition-colors">
+                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.2;font-weight:700;color:#E6EDF3;margin:0 0 1rem;" class="group-hover:text-[#6E9E9C] transition-colors">
                   {featuredPost.data.title}
                 </h2>
                 <p style="color:#8B949E;font-size:0.95rem;line-height:1.7;margin:0;">{featuredPost.data.description}</p>
               </div>
-              <span style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;color:#9C8585;">
+              <span style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;color:#5E8C8A;">
                 Read article
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
               </span>
@@ -182,8 +182,8 @@ const recentPosts = allPosts.slice(1, 3);
     }
   }
   .featured-card:hover {
-    border-color: #9C8585 !important;
-    box-shadow: 0 8px 40px rgba(156,133,133,0.15);
+    border-color: #5E8C8A !important;
+    box-shadow: 0 8px 40px rgba(94,140,138,0.15);
   }
   .md\:grid-cols-2 {
     grid-template-columns: 1fr;
