@@ -1,4 +1,6 @@
 ---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/playfair-display';
 import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
@@ -10,6 +12,8 @@ interface Props {
   ogImage?: string;
   /** Override og:type — use "article" for blog posts */
   ogType?: 'website' | 'article';
+  /** JSON-LD structured data (pass as stringified JSON) */
+  jsonLd?: string;
 }
 
 const {
@@ -17,12 +21,22 @@ const {
   description = 'TypeOneDen is a Type 1 Diabetes lifestyle site for women living boldly.',
   ogImage,
   ogType = 'website',
+  jsonLd,
 } = Astro.props;
 
 const siteName = 'TypeOneDen';
 const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
 const canonical = new URL(`${Astro.url.pathname}${Astro.url.search}`, Astro.site ?? Astro.url).toString();
 const ogImageUrl = ogImage ? new URL(ogImage, Astro.site ?? Astro.url).toString() : undefined;
+
+// Fallback Organization JSON-LD for homepage
+const defaultJsonLd = ogType === 'website' ? JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": siteName,
+  "url": "https://typeoneden.com",
+  "description": description
+}) : null;
 ---
 
 <html lang="en">
@@ -49,10 +63,6 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site ?? Astro.url).toString(
     <meta name="twitter:description" content={description} />
     {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" />
-
     <!-- Dark/light theme init: runs before paint to prevent flash of unstyled content -->
     <script is:inline>
       (function() {
@@ -62,6 +72,9 @@ const ogImageUrl = ogImage ? new URL(ogImage, Astro.site ?? Astro.url).toString(
         document.documentElement.dataset.theme = theme;
       })();
     </script>
+
+    <!-- JSON-LD structured data -->
+    {(jsonLd || defaultJsonLd) && <script type="application/ld+json" set:html={jsonLd || defaultJsonLd} />}
 
     <!-- Security meta tags -->
     <meta name="referrer" content="strict-origin-when-cross-origin" />

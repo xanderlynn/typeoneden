@@ -22,8 +22,8 @@
   --cat-nutrition:#3FB950;   /* green      — Nutrition     */
   --cat-advocacy: #9B8DB3;   /* muted lavender — Advocacy  */
   --cat-mindset:  #F0883E;   /* amber      — Mindset       */
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Playfair Display Variable', Georgia, serif;
+  --font-sans: 'Inter Variable', system-ui, sans-serif;
 }
 
 :root {
@@ -499,6 +499,7 @@ button.button-accent {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 1px 12px rgba(0,0,0,0.4);
+  will-change: transform;
 }
 
 .prose figcaption {

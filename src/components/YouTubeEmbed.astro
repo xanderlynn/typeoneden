@@ -3,22 +3,85 @@ interface Props {
   videoId: string;
   title: string;
 }
-
 const { videoId, title } = Astro.props;
-const src = `https://www.youtube-nocookie.com/embed/${videoId}`;
+const thumbUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 ---
 
-<div class="overflow-hidden rounded-2xl bg-[#1A1A1A]">
-  <div class="aspect-video w-full">
-    <iframe
-      class="h-full w-full"
-      src={src}
-      title={title}
-      loading="lazy"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-      referrerpolicy="strict-origin-when-cross-origin"
-    />
+<div class="yt-facade" data-video-id={videoId} role="button" tabindex="0"
+     aria-label={`Play video: ${title}`}
+     style={`background-image: url('${thumbUrl}');`}>
+  <div class="yt-play-btn" aria-hidden="true">
+    <svg viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg">
+      <path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.9 0 34 0 34 0S12.1 0 7.5 1.7a8.5 8.5 0 0 0-6 6C0 12.3 0 24 0 24s0 11.7 1.5 16.3a8.5 8.5 0 0 0 6 6C12.1 48 34 48 34 48s21.9 0 26.5-1.7a8.5 8.5 0 0 0 6-6C68 35.7 68 24 68 24s0-11.7-1.5-16.3z" fill="#f00"/>
+      <path d="M45 24 27 14v20z" fill="#fff"/>
+    </svg>
   </div>
-  <p class="px-4 py-3 text-sm text-[#999999]">{title}</p>
+  <span class="sr-only">{title}</span>
 </div>
+
+<script>
+  document.querySelectorAll('.yt-facade').forEach((el) => {
+    function activate() {
+      const id = (el as HTMLElement).dataset.videoId;
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      iframe.title = el.querySelector('.sr-only')?.textContent || 'YouTube video';
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+      (el as HTMLElement).style.cssText = '';
+      (el as HTMLElement).removeAttribute('role');
+      (el as HTMLElement).removeAttribute('tabindex');
+      (el as HTMLElement).replaceWith(iframe);
+    }
+    el.addEventListener('click', activate);
+    el.addEventListener('keydown', (e) => { if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') { e.preventDefault(); activate(); }});
+  });
+</script>
+
+<style>
+  .yt-facade {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    cursor: pointer;
+    background-color: #000;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  .yt-play-btn {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.2);
+    transition: background 0.2s;
+  }
+  .yt-facade:hover .yt-play-btn,
+  .yt-facade:focus .yt-play-btn {
+    background: rgba(0,0,0,0.1);
+  }
+  .yt-play-btn svg {
+    width: 68px;
+    height: 48px;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+  }
+  .yt-facade:focus {
+    outline: 2px solid #5E8C8A;
+    outline-offset: 3px;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+</style>

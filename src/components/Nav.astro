@@ -81,6 +81,7 @@ const isActive = (href: string) => {
             id="theme-toggle"
             type="button"
             aria-label="Toggle light/dark mode"
+            aria-pressed="false"
             class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#30363D] text-[#8B949E] transition-colors hover:border-[#5E8C8A] hover:text-[#6E9E9C]"
           >
             <!-- Sun (shown in dark mode) -->
@@ -116,23 +117,49 @@ const isActive = (href: string) => {
   window.addEventListener('scroll', updateNav, { passive: true });
 
   if (toggle instanceof HTMLButtonElement && menu instanceof HTMLElement) {
-    const closeMenu = () => {
+    let removeTrap: (() => void) | null = null;
+
+    function trapFocus(container: HTMLElement) {
+      const focusable = Array.from(container.querySelectorAll<HTMLElement>(
+        'a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])'
+      ));
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      function trap(e: KeyboardEvent) {
+        if (e.key !== 'Tab') return;
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      }
+      container.addEventListener('keydown', trap);
+      return () => container.removeEventListener('keydown', trap);
+    }
+
+    const closeMenu = (returnFocus = false) => {
       toggle.setAttribute('aria-expanded', 'false');
       menu.classList.add('hidden');
+      if (removeTrap) { removeTrap(); removeTrap = null; }
+      if (returnFocus) toggle.focus();
     };
     const openMenu = () => {
       toggle.setAttribute('aria-expanded', 'true');
       menu.classList.remove('hidden');
+      removeTrap = trapFocus(menu);
     };
     closeMenu();
     toggle.addEventListener('click', () => {
-      toggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+      toggle.getAttribute('aria-expanded') === 'true' ? closeMenu(true) : openMenu();
     });
     document.addEventListener('click', (event) => {
       if (window.innerWidth >= 768) return;
       const target = event.target;
       if (!(target instanceof Node)) return;
       if (!menu.contains(target) && !toggle.contains(target)) closeMenu();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') closeMenu(true);
     });
     window.addEventListener('resize', () => {
       if (window.innerWidth >= 768) {
@@ -145,7 +172,7 @@ const isActive = (href: string) => {
   }
 
   // ── Dark / light toggle ────────────────────────────────────────────
-  const themeBtn  = document.getElementById('theme-toggle');
+  const themeBtn  = document.getElementById('theme-toggle') as HTMLButtonElement | null;
   const iconSun   = document.getElementById('icon-sun');
   const iconMoon  = document.getElementById('icon-moon');
 
@@ -155,15 +182,22 @@ const isActive = (href: string) => {
     const isDark = theme === 'dark';
     if (iconSun)  iconSun.style.display  = isDark ? 'block' : 'none';
     if (iconMoon) iconMoon.style.display = isDark ? 'none'  : 'block';
+    if (themeBtn) themeBtn.setAttribute('aria-pressed', String(!isDark));
     document.dispatchEvent(new CustomEvent('theme-change', { detail: theme }));
   }
 
-  // Set initial icon state
+  // Set initial icon and aria-pressed state
   applyTheme(document.documentElement.dataset.theme || 'dark');
 
   themeBtn?.addEventListener('click', () => {
     const current = document.documentElement.dataset.theme || 'dark';
     applyTheme(current === 'dark' ? 'light' : 'dark');
+  });
+
+  // Restore aria-pressed after View Transitions
+  document.addEventListener('astro:page-load', () => {
+    const btn = document.getElementById('theme-toggle');
+    if (btn) btn.setAttribute('aria-pressed', String((document.documentElement.dataset.theme || 'dark') === 'light'));
   });
 </script>
 

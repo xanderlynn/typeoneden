@@ -6,6 +6,7 @@ interface Props {
   title: string;
   description?: string;
   pubDate: Date;
+  updatedDate?: Date;
   category: string;
   image?: string;
   author?: string;
@@ -17,6 +18,7 @@ const {
   title,
   description,
   pubDate,
+  updatedDate,
   category,
   image,
   author = 'Type One Den',
@@ -42,9 +44,33 @@ const catColor = categoryColors[category] ?? '#5E8C8A';
 // Derive slug from URL for OG image path
 const slug = Astro.url.pathname.replace(/^\/blog\//, '').replace(/\/$/, '');
 const computedOgImage = ogImage ?? (slug ? `/og/${slug}.svg` : undefined);
+
+// Build Article JSON-LD
+const articleJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description ?? '',
+  "datePublished": pubDate.toISOString(),
+  "dateModified": (updatedDate ?? pubDate).toISOString(),
+  "author": {
+    "@type": "Person",
+    "name": author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TypeOneDen",
+    "url": "https://typeoneden.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://typeoneden.com/blog/${slug}`
+  },
+  ...(computedOgImage ? { "image": `https://typeoneden.com${computedOgImage}` } : {})
+});
 ---
 
-<BaseLayout title={title} description={description} ogImage={computedOgImage} ogType="article">
+<BaseLayout title={title} description={description} ogImage={computedOgImage} ogType="article" jsonLd={articleJsonLd}>
   <!-- Reading progress bar -->
   <div id="read-progress" aria-hidden="true"></div>
 
