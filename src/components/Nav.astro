@@ -87,24 +87,32 @@ const isActive = (href: string) => {
 </nav>
 
 <script>
-  const toggle = document.querySelector('[data-nav-toggle]');
-  const menu = document.querySelector('[data-nav-menu]');
-  const nav = document.querySelector('[data-nav]') as HTMLElement | null;
+  function initNav() {
+    const nav = document.querySelector('[data-nav]') as HTMLElement | null;
+    const toggle = document.querySelector('[data-nav-toggle]');
+    const menu = document.querySelector('[data-nav-menu]');
 
-  const updateNav = () => {
     if (!nav) return;
-    if (window.scrollY > 60) {
-      nav.classList.add('nav-scrolled', 'nav-pill-active');
-      nav.classList.remove('nav-bg-transparent');
-    } else {
-      nav.classList.remove('nav-scrolled', 'nav-pill-active');
-      nav.classList.add('nav-bg-transparent');
-    }
-  };
-  updateNav();
-  window.addEventListener('scroll', updateNav, { passive: true });
 
-  if (toggle instanceof HTMLButtonElement && menu instanceof HTMLElement) {
+    // Sync pill state immediately on every page load
+    const updateNav = () => {
+      if (window.scrollY > 60) {
+        nav.classList.add('nav-scrolled', 'nav-pill-active');
+        nav.classList.remove('nav-bg-transparent');
+      } else {
+        nav.classList.remove('nav-scrolled', 'nav-pill-active');
+        nav.classList.add('nav-bg-transparent');
+      }
+    };
+    updateNav();
+
+    // Remove any previous scroll listener before adding a new one
+    window.removeEventListener('scroll', (window as any).__navScrollHandler);
+    (window as any).__navScrollHandler = updateNav;
+    window.addEventListener('scroll', updateNav, { passive: true });
+
+    if (!(toggle instanceof HTMLButtonElement) || !(menu instanceof HTMLElement)) return;
+
     let removeTrap: (() => void) | null = null;
 
     function trapFocus(container: HTMLElement) {
@@ -137,27 +145,36 @@ const isActive = (href: string) => {
       removeTrap = trapFocus(menu);
     };
     closeMenu();
-    toggle.addEventListener('click', () => {
-      toggle.getAttribute('aria-expanded') === 'true' ? closeMenu(true) : openMenu();
+
+    // Clone toggle to remove stale event listeners from previous page
+    const freshToggle = toggle.cloneNode(true) as HTMLButtonElement;
+    toggle.replaceWith(freshToggle);
+
+    freshToggle.addEventListener('click', () => {
+      freshToggle.getAttribute('aria-expanded') === 'true' ? closeMenu(true) : openMenu();
     });
     document.addEventListener('click', (event) => {
       if (window.innerWidth >= 768) return;
       const target = event.target;
       if (!(target instanceof Node)) return;
-      if (!menu.contains(target) && !toggle.contains(target)) closeMenu();
+      if (!menu.contains(target) && !freshToggle.contains(target)) closeMenu();
     });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') closeMenu(true);
+      if (e.key === 'Escape' && freshToggle.getAttribute('aria-expanded') === 'true') closeMenu(true);
     });
     window.addEventListener('resize', () => {
       if (window.innerWidth >= 768) {
         menu.classList.remove('hidden');
       } else {
         menu.classList.add('hidden');
-        toggle.setAttribute('aria-expanded', 'false');
+        freshToggle.setAttribute('aria-expanded', 'false');
       }
     });
   }
+
+  // Run on first load and after every view transition
+  initNav();
+  document.addEventListener('astro:page-load', initNav);
 </script>
 
 <style>
