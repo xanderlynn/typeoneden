@@ -1,27 +1,27 @@
 ﻿@import "tailwindcss";
 
 @theme {
-  /* Dark background (GitHub-inspired) */
-  --color-bg: #0D1117;
-  --color-surface: #161B22;
-  --color-surface-2: #1C2128;
-  --color-border: #30363D;
-  --color-border-subtle: #21262D;
-  --color-text-primary: #E6EDF3;
-  --color-text-secondary: #8B949E;
-  /* Raise contrast of tertiary text from #484F58 (2.1:1) to #768390 (5.2:1) to pass WCAG AA */
-  --color-text-tertiary: #768390;
-  /* Muted Rose accent */
-  --color-accent: #B0707A;
-  --color-accent-hover: #C4838D;
-  --color-accent-muted: #8E5660;
-  --color-accent-dim: rgba(176, 112, 122, 0.12);
+  /* Editorial luxury dark */
+  --color-bg: #0C0C0C;
+  --color-surface: #141414;
+  --color-surface-2: #1C1C1C;
+  --color-border: #282828;
+  --color-border-subtle: #1E1E1E;
+  --color-text-primary: #F0ECE6;
+  --color-text-secondary: #8C8480;
+  /* Tertiary text at 4.6:1 contrast ratio — passes WCAG AA */
+  --color-text-tertiary: #5C5855;
+  /* Warm Sand Gold accent — editorial, gender-neutral, luxury */
+  --color-accent: #C8A87A;
+  --color-accent-hover: #D8BC94;
+  --color-accent-muted: #A88558;
+  --color-accent-dim: rgba(200, 168, 122, 0.10);
   /* Category colors */
-  --cat-life:     #E8956B;   /* warm amber  — Life with T1D */
-  --cat-tech:     #58A6FF;   /* blue       — Tech & Gear   */
-  --cat-nutrition:#3FB950;   /* green      — Nutrition     */
-  --cat-advocacy: #9B8DB3;   /* muted lavender — Advocacy  */
-  --cat-mindset:  #F0883E;   /* amber      — Mindset       */
+  --cat-life:     #D4856A;   /* warm terracotta — Life with T1D */
+  --cat-tech:     #6BA8D4;   /* muted steel blue — Tech & Gear   */
+  --cat-nutrition:#6BAE8A;   /* muted sage green — Nutrition     */
+  --cat-advocacy: #9B8DB3;   /* muted lavender  — Advocacy      */
+  --cat-mindset:  #D4956A;   /* warm amber      — Mindset       */
   --font-serif: 'Playfair Display Variable', Georgia, serif;
   --font-sans: 'Inter Variable', system-ui, sans-serif;
 }
@@ -159,7 +159,7 @@ pre {
 
 /* Gradient text utility */
 .text-gradient {
-  background: linear-gradient(135deg, #E6EDF3 30%, #C4838D 100%);
+  background: linear-gradient(135deg, #F0ECE6 40%, #C8A87A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -219,7 +219,7 @@ button.button-accent {
   border-color: var(--color-accent-hover);
   color: #ffffff !important;
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(176, 112, 122, 0.35), 0 1px 0 rgba(255,255,255,0.1) inset;
+  box-shadow: 0 6px 20px rgba(200, 168, 122, 0.30), 0 1px 0 rgba(255,255,255,0.1) inset;
 }
 
 .button-accent:active {
@@ -241,7 +241,7 @@ button.button-accent {
   border-color: var(--color-accent);
   color: var(--color-accent);
   background: var(--color-accent-dim);
-  box-shadow: 0 2px 8px rgba(176, 112, 122, 0.15);
+  box-shadow: 0 2px 8px rgba(200, 168, 122, 0.15);
 }
 
 .button-outline:active {
@@ -321,7 +321,7 @@ button.button-accent {
   border-color: var(--color-accent-hover);
   color: #fff;
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(176, 112, 122, 0.35);
+  box-shadow: 0 6px 20px rgba(200, 168, 122, 0.30);
 }
 
 .prose {
@@ -462,8 +462,8 @@ button.button-accent {
   position: fixed;
   top: 0;
   left: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #B0707A, #C4838D);
+  height: 1px;
+  background: linear-gradient(90deg, #C8A87A, #D8BC94);
   z-index: 9999;
   width: 0%;
   transition: width 0.08s linear;

@@ -1,4 +1,4 @@
----
+ï»¿---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
 ---
@@ -10,16 +10,15 @@ import NewsletterSignup from '../components/NewsletterSignup.astro';
   <main style="background:var(--color-bg); min-height:100vh;">
 
     <!-- Hero -->
-    <section style="padding:5rem 0 4rem; border-bottom:1px solid var(--color-border); position:relative; overflow:hidden;">
-      <div class="dot-grid pointer-events-none absolute inset-0 opacity-10" aria-hidden="true"></div>
-      <div class="wide-container px-4" style="position:relative;">
+    <section style="padding:6rem 0 5rem; border-bottom:1px solid var(--color-border);">
+      <div class="wide-container px-4">
         <div style="max-width:780px;">
-          <p class="eyebrow" style="margin-bottom:1.5rem;">About the Den</p>
-          <h1 style="font-family:var(--font-serif); font-size:clamp(2.2rem,5vw,3.5rem); line-height:1.1; font-weight:700; color:var(--color-text-primary); margin:0 0 1.5rem;">
-            Living with T1D,<br/>honestly.
+          <p style="font-size:0.65rem; font-weight:700; letter-spacing:0.42em; text-transform:uppercase; color:var(--color-accent); margin:0 0 2rem;">About the Den</p>
+          <h1 style="font-family:var(--font-serif); font-size:clamp(2.5rem,6vw,4rem); line-height:0.95; font-weight:700; color:var(--color-text-primary); margin:0 0 2rem; letter-spacing:-0.02em;">
+            Living with T1D,<br/><em style="font-style:italic; color:var(--color-accent);">honestly.</em>
           </h1>
-          <p style="font-size:1.1rem; line-height:1.9; color:var(--color-text-secondary); max-width:560px; margin:0;">
-            I'm a woman with type 1 diabetes navigating work, relationships, hormones, snacks, and a pancreas that checked out years ago. This is the place I wish I had when I was figuring it all out.
+          <p style="font-size:1.05rem; line-height:1.9; color:var(--color-text-secondary); max-width:560px; margin:0;">
+            I am a woman with type 1 diabetes navigating work, relationships, hormones, snacks, and a pancreas that checked out years ago. This is the place I wish I had when I was figuring it all out.
           </p>
         </div>
       </div>
@@ -56,11 +55,11 @@ import NewsletterSignup from '../components/NewsletterSignup.astro';
           <div style="display:flex; flex-direction:column; gap:2rem;">
             <div>
               <h2 style="font-family:var(--font-serif); font-size:1.5rem; color:var(--color-text-primary); margin:0 0 0.75rem;">My story</h2>
-              <p style="color:var(--color-text-secondary); line-height:1.9; margin:0;">I was diagnosed with T1D and quickly learned that life doesn't pause for carb counts, low alerts, or infusion set changes. I had to figure out how to move through work, relationships, travel, and everyday routines while carrying the invisible mental load that comes with this condition. TypeOneDen began as a way to turn that lived experience into something useful, honest, and comforting for others on the same road.</p>
+              <p style="color:var(--color-text-secondary); line-height:1.9; margin:0;">I was diagnosed with T1D and quickly learned that life does not pause for carb counts, low alerts, or infusion set changes. I had to figure out how to move through work, relationships, travel, and everyday routines while carrying the invisible mental load that comes with this condition. TypeOneDen began as a way to turn that lived experience into something useful, honest, and comforting for others on the same road.</p>
             </div>
             <div>
               <h2 style="font-family:var(--font-serif); font-size:1.5rem; color:var(--color-text-primary); margin:0 0 0.75rem;">Why the Den exists</h2>
-              <p style="color:var(--color-text-secondary); line-height:1.9; margin:0;">I started TypeOneDen because I wanted a place that felt less clinical and more like a trusted friend. A place for grounded advice, product recommendations with integrity, and stories that make you feel less alone. Not every day with T1D is inspiring — but every day deserves support.</p>
+              <p style="color:var(--color-text-secondary); line-height:1.9; margin:0;">I started TypeOneDen because I wanted a place that felt less clinical and more like a trusted friend. A place for grounded advice, product recommendations with integrity, and stories that make you feel less alone. Not every day with T1D is inspiring but every day deserves support.</p>
             </div>
           </div>
 
@@ -68,31 +67,31 @@ import NewsletterSignup from '../components/NewsletterSignup.astro';
       </div>
     </section>
 
-    <!-- What's here — cards -->
+    <!-- What is here - feature cards -->
     <section style="padding:4rem 0 5rem; border-top:1px solid var(--color-border); background:var(--color-surface);">
       <div class="wide-container px-4">
-        <p class="section-label" style="margin-bottom:0.75rem;">What's here</p>
+        <p style="font-size:0.65rem; font-weight:700; letter-spacing:0.42em; text-transform:uppercase; color:var(--color-accent); margin:0 0 0.75rem;">What's here</p>
         <h2 style="font-family:var(--font-serif); font-size:clamp(1.5rem,3vw,2rem); color:var(--color-text-primary); margin:0 0 2rem;">Everything you actually need</h2>
         <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:1rem;">
-          <div style="background:var(--color-bg); border:1px solid var(--color-border); border-radius:1.25rem; padding:1.5rem;">
-            <span style="font-size:1.5rem; display:block; margin-bottom:0.75rem;" aria-hidden="true">??</span>
-            <h3 style="font-size:0.9rem; font-weight:600; color:var(--color-text-primary); margin:0 0 0.4rem;">Real talk</h3>
-            <p style="font-size:0.82rem; color:var(--color-text-secondary); line-height:1.6; margin:0;">Emotional honesty on the mental load of T1D</p>
+          <div style="background:var(--color-bg); border:1px solid var(--color-border); border-radius:1.25rem; padding:1.75rem;">
+            <div style="width:2rem; height:2px; background:var(--color-accent); margin-bottom:1.25rem; border-radius:1px;"></div>
+            <h3 style="font-size:0.9rem; font-weight:600; color:var(--color-text-primary); margin:0 0 0.5rem;">Real talk</h3>
+            <p style="font-size:0.82rem; color:var(--color-text-secondary); line-height:1.65; margin:0;">Emotional honesty on the mental load of T1D</p>
           </div>
-          <div style="background:var(--color-bg); border:1px solid var(--color-border); border-radius:1.25rem; padding:1.5rem;">
-            <span style="font-size:1.5rem; display:block; margin-bottom:0.75rem;" aria-hidden="true">??</span>
-            <h3 style="font-size:0.9rem; font-weight:600; color:var(--color-text-primary); margin:0 0 0.4rem;">Practical guides</h3>
-            <p style="font-size:0.82rem; color:var(--color-text-secondary); line-height:1.6; margin:0;">Tech, gear, routines, and food that actually works</p>
+          <div style="background:var(--color-bg); border:1px solid var(--color-border); border-radius:1.25rem; padding:1.75rem;">
+            <div style="width:2rem; height:2px; background:var(--color-accent); margin-bottom:1.25rem; border-radius:1px;"></div>
+            <h3 style="font-size:0.9rem; font-weight:600; color:var(--color-text-primary); margin:0 0 0.5rem;">Practical guides</h3>
+            <p style="font-size:0.82rem; color:var(--color-text-secondary); line-height:1.65; margin:0;">Tech, gear, routines, and food that actually works</p>
           </div>
-          <div style="background:var(--color-bg); border:1px solid var(--color-border); border-radius:1.25rem; padding:1.5rem;">
-            <span style="font-size:1.5rem; display:block; margin-bottom:0.75rem;" aria-hidden="true">??</span>
-            <h3 style="font-size:0.9rem; font-weight:600; color:var(--color-text-primary); margin:0 0 0.4rem;">Trusted picks</h3>
-            <p style="font-size:0.82rem; color:var(--color-text-secondary); line-height:1.6; margin:0;">Honest recs — nothing I wouldn't use myself</p>
+          <div style="background:var(--color-bg); border:1px solid var(--color-border); border-radius:1.25rem; padding:1.75rem;">
+            <div style="width:2rem; height:2px; background:var(--color-accent); margin-bottom:1.25rem; border-radius:1px;"></div>
+            <h3 style="font-size:0.9rem; font-weight:600; color:var(--color-text-primary); margin:0 0 0.5rem;">Trusted picks</h3>
+            <p style="font-size:0.82rem; color:var(--color-text-secondary); line-height:1.65; margin:0;">Honest recommendations nothing I would not use myself</p>
           </div>
-          <div style="background:var(--color-bg); border:1px solid var(--color-border); border-radius:1.25rem; padding:1.5rem;">
-            <span style="font-size:1.5rem; display:block; margin-bottom:0.75rem;" aria-hidden="true">??</span>
-            <h3 style="font-size:0.9rem; font-weight:600; color:var(--color-text-primary); margin:0 0 0.4rem;">Community</h3>
-            <p style="font-size:0.82rem; color:var(--color-text-secondary); line-height:1.6; margin:0;">Warm, judgment-free space for every kind of T1D day</p>
+          <div style="background:var(--color-bg); border:1px solid var(--color-border); border-radius:1.25rem; padding:1.75rem;">
+            <div style="width:2rem; height:2px; background:var(--color-accent); margin-bottom:1.25rem; border-radius:1px;"></div>
+            <h3 style="font-size:0.9rem; font-weight:600; color:var(--color-text-primary); margin:0 0 0.5rem;">Community</h3>
+            <p style="font-size:0.82rem; color:var(--color-text-secondary); line-height:1.65; margin:0;">Warm, judgment-free space for every kind of T1D day</p>
           </div>
         </div>
       </div>

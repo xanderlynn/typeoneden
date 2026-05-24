@@ -14,7 +14,7 @@ export const CATEGORY_COLORS: Record<string, string> = {
 };
 
 export function getCategoryColor(category: string): string {
-  return CATEGORY_COLORS[category] ?? '#B0707A';
+  return CATEGORY_COLORS[category] ?? '#C8A87A';
 }
 
 export function getCategoryVar(category: string): string {

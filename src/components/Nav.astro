@@ -26,7 +26,7 @@ const isActive = (href: string) => {
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2.5 group shrink-0" aria-label="TypeOneDen home">
         <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[10px] font-black tracking-tighter select-none transition-all duration-200 group-hover:scale-105"
-          style="background: linear-gradient(135deg, #B0707A, #8E5660); color: #ffffff; letter-spacing:-0.05em;">
+          style="background: linear-gradient(135deg, #C8A87A, #A88558); color: #0C0C0C; letter-spacing:-0.05em;">
           T1D
         </span>
         <span class="font-semibold text-base tracking-tight transition-colors" style="color:var(--color-text-primary);">
@@ -37,7 +37,7 @@ const isActive = (href: string) => {
       <!-- Mobile toggle -->
       <button
         type="button"
-      class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#30363D] text-[#E6EDF3] md:hidden transition-colors hover:border-[var(--color-accent)]"
+      class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-text-primary)] md:hidden transition-colors hover:border-[var(--color-accent)]"
         aria-expanded="false"
         aria-controls="primary-navigation"
         aria-label="Toggle navigation"
@@ -62,10 +62,10 @@ const isActive = (href: string) => {
                 <a
                   href={link.href}
                   class:list={[
-                    'nav-link relative inline-flex items-center rounded-full px-3.5 py-1.5 text-sm font-medium tracking-wide transition-all duration-200',
+                    'nav-link relative inline-flex items-center px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-200',
                     active
-                        ? 'bg-[#1C2128] text-[#E6EDF3] border border-[#30363D]'
-                        : 'text-[#8B949E] hover:text-[#E6EDF3] hover:bg-[#161B22]',
+                        ? 'text-[var(--color-text-primary)] nav-link--active'
+                        : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]',
                   ]}
                   aria-current={active ? 'page' : undefined}
                 >
@@ -76,7 +76,7 @@ const isActive = (href: string) => {
           })}
         </ul>
 
-        <div class="pl-2 md:pl-3 border-t border-[#21262D] md:border-t-0 md:border-l md:border-[#30363D] pt-3 md:pt-0 md:ml-1 flex items-center gap-2">
+        <div class="pl-2 md:pl-3 border-t border-[var(--color-border)] md:border-t-0 md:border-l md:border-[var(--color-border)] pt-3 md:pt-0 md:ml-1 flex items-center gap-2">
           <a href="/newsletter" class="button-accent text-sm py-[0.5rem] px-4">
             Subscribe
           </a>
@@ -159,4 +159,17 @@ const isActive = (href: string) => {
     });
   }
 </script>
+
+<style>
+  .nav-link--active::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0.75rem;
+    right: 0.75rem;
+    height: 1px;
+    background: var(--color-accent);
+    border-radius: 1px;
+  }
+</style>
 

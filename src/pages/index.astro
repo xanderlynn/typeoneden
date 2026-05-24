@@ -27,59 +27,48 @@ const heroVideoId = import.meta.env.PUBLIC_HERO_VIDEO_ID;
 >
   <main>
     <!-- ── Hero ─────────────────────────────────────────────── -->
-    <section class="relative overflow-hidden border-b border-[#30363D]" style="min-height: 88vh; display: flex; align-items: center;">
+    <section class="relative" style="min-height:95vh; display:flex; align-items:center; border-bottom:1px solid var(--color-border);">
 
-      <!-- Dot grid texture -->
-      <div class="dot-grid pointer-events-none absolute inset-0 opacity-20" aria-hidden="true"></div>
-
-      <!-- Purple glow orbs (Copilot-style) -->
-      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div style="position:absolute; top:-120px; left:50%; transform:translateX(-50%) translateZ(0); width:800px; height:500px; background:radial-gradient(ellipse, rgba(137,87,229,0.2) 0%, transparent 70%); filter:blur(40px); will-change:transform;"></div>
-        <div style="position:absolute; bottom:0; right:-100px; width:400px; height:400px; background:radial-gradient(ellipse, rgba(88,166,255,0.07) 0%, transparent 70%); will-change:transform; transform:translateZ(0);"></div>
-      </div>
-
-      <div class="relative wide-container px-4 py-28 md:py-36">
-        <div class="mx-auto max-w-[780px] space-y-8 text-center fade-up">
+      <div class="wide-container px-4 py-28 md:py-40">
+        <div class="fade-up" style="max-width:960px; margin:0 auto; text-align:center;">
 
           <!-- Eyebrow -->
-          <div>
-            <span class="eyebrow">
-              <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#5E8C8A;"></span>
-              T1D Lifestyle &amp; Community
-            </span>
-          </div>
+          <p style="font-size:0.65rem; font-weight:700; letter-spacing:0.42em; text-transform:uppercase; color:var(--color-accent); margin:0 0 3rem;">
+            T1D &nbsp;·&nbsp; Lifestyle &nbsp;·&nbsp; Community
+          </p>
 
-          <!-- Headline -->
-          <h1 style="font-family:'Playfair Display',serif; font-size:clamp(3rem,8vw,5.5rem); line-height:1.05; letter-spacing:-0.02em; font-weight:700;">
-            <span class="text-gradient">Living Boldly</span><br/>
-            <span style="color:#E6EDF3;">with Type&nbsp;1</span>
+          <!-- Editorial headline -->
+          <h1 style="font-family:var(--font-serif); font-size:clamp(3.8rem,10vw,7.5rem); line-height:0.92; letter-spacing:-0.025em; font-weight:700; margin:0 0 2.5rem; color:var(--color-text-primary);">
+            Living<br/>
+            <em style="font-style:italic; color:var(--color-accent);">Boldly</em><br/>
+            <span style="opacity:0.55;">with Type&nbsp;1</span>
           </h1>
 
-          <!-- Sub -->
-          <p style="font-size:clamp(1rem,2.5vw,1.2rem); color:#8B949E; line-height:1.75; max-width:520px; margin-inline:auto;">
+          <!-- Subtitle -->
+          <p style="font-size:1.05rem; color:var(--color-text-secondary); line-height:1.9; max-width:480px; margin:0 auto 3rem;">
             Real stories, honest tech reviews, T1D nutrition, and a community
-            that actually gets it. No sugar-coating — just real life.
+            that actually understands what it takes.
           </p>
 
           <!-- CTAs -->
-          <div style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; padding-top:0.5rem;">
+          <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
             <a href="/blog" class="button-accent">
               Read the Blog
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
             </a>
             <a href="/start" class="button-outline">Start Here</a>
           </div>
 
-          <!-- Social proof pills -->
-          <div style="display:flex; gap:0.6rem; justify-content:center; flex-wrap:wrap; padding-top:0.75rem;">
+          <!-- Horizontal category rule -->
+          <div style="margin-top:4.5rem; padding-top:2rem; border-top:1px solid var(--color-border); display:flex; justify-content:center; align-items:center; gap:0; flex-wrap:wrap;">
             {[
-              '💉 Real T1D experiences',
-              '⌚ CGM & pump reviews',
-              '🥗 T1D nutrition tips',
-              '📢 Advocacy & access',
-            ].map((pill) => (
-              <span style="border:1px solid #30363D; background:#161B22; border-radius:9999px; padding:0.3rem 0.85rem; font-size:0.75rem; color:#8B949E; white-space:nowrap;">
-                {pill}
+              'Real T1D stories',
+              'CGM & pump reviews',
+              'T1D nutrition',
+              'Advocacy',
+            ].map((label, i) => (
+              <span style={`font-size:0.62rem; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:var(--color-text-tertiary); padding:0 1.75rem; ${i > 0 ? 'border-left:1px solid var(--color-border);' : ''}`}>
+                {label}
               </span>
             ))}
           </div>
@@ -94,7 +83,7 @@ const heroVideoId = import.meta.env.PUBLIC_HERO_VIDEO_ID;
         <div class="wide-container px-4 space-y-8">
           <div style="display:flex; align-items:baseline; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
             <p class="section-label">Featured Post</p>
-            <a href="/blog" style="font-size:0.8rem; color:#8B949E; text-decoration:none; display:flex; align-items:center; gap:0.3rem;" class="hover:text-[#6E9E9C]">
+            <a href="/blog" style="font-size:0.8rem; color:var(--color-text-secondary); text-decoration:none; display:flex; align-items:center; gap:0.3rem;" class="hover:text-[var(--color-accent)]">
               All posts
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
             </a>
@@ -121,12 +110,12 @@ const heroVideoId = import.meta.env.PUBLIC_HERO_VIDEO_ID;
                 <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#484F58;margin-bottom:0.85rem;">
                   {featuredPost.data.pubDate.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}
                 </p>
-                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.2;font-weight:700;color:#E6EDF3;margin:0 0 1rem;" class="group-hover:text-[#6E9E9C] transition-colors">
+                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.2;font-weight:700;color:var(--color-text-primary);margin:0 0 1rem;" class="group-hover:text-[var(--color-accent)] transition-colors">
                   {featuredPost.data.title}
                 </h2>
                 <p style="color:#8B949E;font-size:0.95rem;line-height:1.7;margin:0;">{featuredPost.data.description}</p>
               </div>
-              <span style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;color:#5E8C8A;">
+              <span style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;color:var(--color-accent);">
                 Read article
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
               </span>
@@ -188,8 +177,8 @@ const heroVideoId = import.meta.env.PUBLIC_HERO_VIDEO_ID;
     }
   }
   .featured-card:hover {
-    border-color: #5E8C8A !important;
-    box-shadow: 0 8px 40px rgba(94,140,138,0.15);
+    border-color: var(--color-accent) !important;
+    box-shadow: 0 8px 40px rgba(200,168,122,0.12);
   }
   .md\:grid-cols-2 {
     grid-template-columns: 1fr;
